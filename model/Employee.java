@@ -15,8 +15,11 @@ public class Employee
     /**
      * Constructor for objects of class Employee
      */
-    public Employee()
+    public Employee(String newEmployeeID, String newType)
     {
+        // Initializes instance variables
+        this.employeeID = newEmployeeID;
+        this.type = newType;
         
     }
 
