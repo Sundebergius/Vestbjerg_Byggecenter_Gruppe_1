@@ -7,7 +7,7 @@ package model;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Customer
+public class Customer extends Person
 {
     // instance variables - replace the example below with your own
     private String customerID;
@@ -16,9 +16,10 @@ public class Customer
     /**
      * Constructor for objects of class Customer
      */
-    public Customer(String newCustomerID, double newCustomerDiscount)
+    public Customer(String newCustomerID, double newCustomerDiscount, String name, String address, int postalCode, String city, String mobileNo)
     {
         // Initialise instance variables
+        super(name,address,postalCode,city,mobileNo);
         this.customerID = newCustomerID;
         this.customerDiscount = newCustomerDiscount;
     }
