@@ -19,11 +19,12 @@ public class Sale
     private ArrayList<SalesLineItem> saleLines;
     private Customer customer;
     private Employee employee;
+    private String saleID;
 
     /**
      * Constructor for objects of class Sale
      */
-    public Sale(Employee employee)
+    private Sale(Employee employee)
     {
         // initialise instance variables
         this.saleLines = new ArrayList<>();
@@ -34,5 +35,10 @@ public class Sale
     private void addSalesLineItem(SalesLineItem salesLineItem)
     {
         saleLines.add(salesLineItem);
+    }
+    
+    private void addCustomerToSale(Customer customer)
+    {
+       this.customer = customer;
     }
 }
