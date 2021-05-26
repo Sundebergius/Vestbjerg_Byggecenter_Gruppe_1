@@ -16,11 +16,11 @@ public class Customer
     /**
      * Constructor for objects of class Customer
      */
-    public Customer(String newCustomerID, double newCustomerDiscount)
+    public Customer(String customerID, double customerDiscount)
     {
         // Initialise instance variables
-        this.customerID = newCustomerID;
-        this.customerDiscount = newCustomerDiscount;
+        this.customerID = customerID;
+        this.customerDiscount = customerDiscount;
     }
 
     /**

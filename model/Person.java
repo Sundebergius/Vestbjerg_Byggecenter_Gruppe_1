@@ -19,14 +19,14 @@ public class Person
     /**
      * Constructor for objects of class Person
      */
-    public Person(String newName, String newAddress, int newPostalCode, String newCity, String newMobileNo)
+    public Person(String name, String address, int postalCode, String city, String mobileNo)
     {
         // Initializes instance variables
-        this.name = newName;
-        this.address = newAddress;
-        this.postalCode = newPostalCode;
-        this.city = newCity;
-        this.mobileNo = newMobileNo;
+        this.name = name;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.mobileNo = mobileNo;
     
     }
 }

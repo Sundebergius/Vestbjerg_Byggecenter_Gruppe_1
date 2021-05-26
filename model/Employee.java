@@ -15,11 +15,11 @@ public class Employee
     /**
      * Constructor for objects of class Employee
      */
-    public Employee(String newEmployeeID, String newType)
+    public Employee(String employeeID, String type)
     {
         // Initializes instance variables
-        this.employeeID = newEmployeeID;
-        this.type = newType;
+        this.employeeID = employeeID;
+        this.type = type;
         
     }
 
