@@ -1,5 +1,4 @@
 package tui;
-import java.util.Scanner;
 
 /**
  * Write a description of class MainMenuUI here.
@@ -9,13 +8,13 @@ import java.util.Scanner;
  */
 public class MainMenuUI extends Menu
 {
-
+    private SaleUI saleUI;
 
     /**
      * Constructor for objects of class MainMenuUI
      */
     public MainMenuUI(){
-
+        saleUI = new SaleUI();
     }
 
     public void start(){
@@ -35,7 +34,7 @@ public class MainMenuUI extends Menu
 
             switch(choice){
                 case 1:
-                
+                saleUI.doUI();
                 break;
 
                 case 0:
