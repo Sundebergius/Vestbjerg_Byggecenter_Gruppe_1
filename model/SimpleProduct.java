@@ -12,7 +12,7 @@ public abstract class SimpleProduct extends Product
     /**
      * Constructor for objects of class SimpleProduct
      */
-    public SimpleProduct(String description, double price, String barcode){
-        super(description, price, barcode);
+    public SimpleProduct(String name, String description, double price, String barcode){
+        super(name, description, price, barcode);
     }
 }
