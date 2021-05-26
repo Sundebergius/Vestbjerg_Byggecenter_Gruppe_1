@@ -16,13 +16,15 @@ public class Employee extends Person
     /**
      * Constructor for objects of class Employee
      */
-    public Employee(String newEmployeeID, String newType,String name, String address, int postalCode, String city, String mobileNo)
+
+    public Employee(String EmployeeID, String type,String name, String address, int postalCode, String city, String mobileNo)
+
     {
         // Initializes instance variables
+
         super(name,address,postalCode,city,mobileNo);
-        this.employeeID = newEmployeeID;
-        this.type = newType;
-        
+        this.employeeID = EmployeeID;
+        this.type = type;        
     }
 
  }

@@ -16,12 +16,15 @@ public class Customer extends Person
     /**
      * Constructor for objects of class Customer
      */
-    public Customer(String newCustomerID, double newCustomerDiscount, String name, String address, int postalCode, String city, String mobileNo)
+
+    public Customer(String customerID, double customerDiscount, String name, String address, int postalCode, String city, String mobileNo)
+
     {
         // Initialise instance variables
+
         super(name,address,postalCode,city,mobileNo);
-        this.customerID = newCustomerID;
-        this.customerDiscount = newCustomerDiscount;
+        this.customerID = customerID;
+        this.customerDiscount = customerDiscount;
     }
 
     /**
