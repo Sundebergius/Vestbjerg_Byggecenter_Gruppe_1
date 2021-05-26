@@ -24,7 +24,7 @@ public class Sale
     /**
      * Constructor for objects of class Sale
      */
-    private Sale(Employee employee)
+    public Sale(Employee employee)
     {
         // initialise instance variables
         this.saleLines = new ArrayList<>();
@@ -32,12 +32,12 @@ public class Sale
         dateTime = new Date();
     }
     
-    private void addSalesLineItem(SalesLineItem salesLineItem)
+    public void addSalesLineItem(SalesLineItem salesLineItem)
     {
         saleLines.add(salesLineItem);
     }
     
-    private void addCustomerToSale(Customer customer)
+    public void addCustomerToSale(Customer customer)
     {
        this.customer = customer;
     }

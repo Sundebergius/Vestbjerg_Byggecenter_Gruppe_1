@@ -1,5 +1,10 @@
 package control;
 import model.SaleContainer;
+import model.Sale;
+import model.SalesLineItem;
+import model.Product;
+import model.Employee;
+import model.Customer;
 
 /**
  * Write a description of class SaleController here.
@@ -10,14 +15,48 @@ import model.SaleContainer;
 public class SaleController
 {
     // instance variables
+    private SaleContainer saleContainer;
+    private Sale currentSale; 
+    private ProductController productController;
+    private PersonController personController;
     
-
-    /**
-     * Constructor for objects of class SaleController
-     */
     public SaleController()
     {
-        
+        productController = new ProductController();
+        personController = new PersonController(); 
+        saleContainer = saleContainer.getInstance();
     }
-
+    
+    public Sale createSale()
+    {
+        Employee employee = personController.getCurrentEmployee();
+        currentSale = new Sale(employee);
+        return currentSale;
+    }
+    
+    public Product addProductToSale(String barcode, int quantity)
+    {
+        Product product = productController.findProductByBarcode(barcode);
+        SalesLineItem salesLineItem = new SalesLineItem(product, quantity);
+        currentSale.addSalesLineItem(salesLineItem);
+        return product;
+    }
+    
+    public Customer addCustomerToSale(String customerID)
+    {
+        Customer customer = personController.findCustomerByCustomerID(customerID);
+        currentSale.addCustomerToSale(customer);
+        return customer;
+    }
+    
+    public String addDeliveryAddressToSale(String address)
+    {
+        currentSale.addDeliveryAddressToSale(address);
+        return address; 
+    }
+    
+    public boolean pay(double money)
+    {
+        currentSale.
+    }
 }
