@@ -1,7 +1,7 @@
 package control;
 import model.SaleContainer;
 import model.Sale;
-import model.SalesLineItem;
+import model.SaleLineItem;
 import model.Product;
 import model.Employee;
 import model.Customer;
@@ -37,8 +37,8 @@ public class SaleController
     public Product addProductToSale(String barcode, int quantity)
     {
         Product product = productController.findProductByBarcode(barcode);
-        SalesLineItem salesLineItem = new SalesLineItem(product, quantity);
-        currentSale.addSalesLineItem(salesLineItem);
+        SaleLineItem saleLineItem = new SaleLineItem(product, quantity);
+        currentSale.addSaleLineItem(saleLineItem);
         return product;
     }
     
@@ -58,5 +58,6 @@ public class SaleController
     public boolean pay(double money)
     {
         currentSale.pay(money);
+        return true;
     }
 }

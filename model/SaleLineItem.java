@@ -7,7 +7,7 @@ package model;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class SalesLineItem
+public class SaleLineItem
 {
     // instance variables - replace the example below with your own
     private int quantity;
@@ -16,7 +16,7 @@ public class SalesLineItem
     /**
      * Constructor for objects of class SalesLineItem
      */
-    public SalesLineItem(Product product, int quantity)
+    public SaleLineItem(Product product, int quantity)
     {
         // initialise instance variables
         this.product = product;

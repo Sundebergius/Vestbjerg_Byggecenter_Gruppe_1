@@ -15,10 +15,11 @@ public class Sale
     private Date dateTime;
     private double discount;
     private String state;
-    private ArrayList<SalesLineItem> saleLines;
+    private ArrayList<SaleLineItem> saleLines;
     private Customer customer;
     private Employee employee;
     private String saleID;
+    private double moneyReceived;
     private String deliveryAddress;
 
     /**
@@ -32,9 +33,9 @@ public class Sale
         dateTime = new Date();
     }
     
-    public void addSalesLineItem(SalesLineItem salesLineItem)
+    public void addSaleLineItem(SaleLineItem saleLineItem)
     {
-        saleLines.add(salesLineItem);
+        saleLines.add(saleLineItem);
     }
     
     public void addCustomerToSale(Customer customer)
@@ -42,7 +43,7 @@ public class Sale
        this.customer = customer;
     }
     
-    private void addDeliveryAddressToSale(String deliveryAddress){
+    public void addDeliveryAddressToSale(String deliveryAddress){
         this.deliveryAddress = deliveryAddress;
     }
     
@@ -51,5 +52,11 @@ public class Sale
      */
     private String getSaleID(){
         return saleID;
+    }
+    
+    public double pay(double money)
+    {
+        moneyReceived += money;
+        return moneyReceived;
     }
 }
