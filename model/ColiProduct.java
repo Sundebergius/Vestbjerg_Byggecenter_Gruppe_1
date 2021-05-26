@@ -12,8 +12,8 @@ public class ColiProduct extends SimpleProduct
     /**
      * Constructor for objects of class ColiProduct
      */
-    public ColiProduct(String description, double price, String barcode){
-        super(description, price, barcode);
+    public ColiProduct(String name, String description, double price, String barcode){
+        super(name, description, price, barcode);
     }
 
 }
