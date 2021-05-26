@@ -45,4 +45,11 @@ public class Sale
     private void addAddressToSale(String address){
         this.address = address;
     }
+    
+    /**
+     * 
+     */
+    private String getSaleID(){
+        return saleID;
+    }
 }
