@@ -15,6 +15,10 @@ public class SaleUI extends Menu
     public void doUI()
     {
      printSaleMenu();
+     createSale();
+     addProductToSale();
+     printCurrentSaleTotalPrice();
+     
     }
 
     /**
@@ -65,6 +69,14 @@ public class SaleUI extends Menu
     
     private void startPaymentTransaction()
     {
-            
+        System.out.println("Hvor meget betales der med?");
+        double money = getNextDouble();
+        saleController.pay(money);  
+    }
+    
+    private void printCurrentSaleTotalPrice()
+    {
+        double totalPrice = saleController.getCurrentSaleTotalPrice();
+        System.out.println("Pris: " + totalPrice + "DKK");
     }
 }

@@ -61,4 +61,9 @@ public class SaleController
         
         return remainingPayment;
     }
+    
+    public double getCurrentSaleTotalPrice()
+    {
+        return currentSale.calculateTotalPrice();  
+    }
 }

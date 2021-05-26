@@ -32,6 +32,25 @@ public abstract class Menu
         
         return inputInt;
     }
+
+     public double getNextDouble(){
+        double inputDouble = 0;
+        Scanner input = new Scanner(System.in);
+        
+        while(!input.hasNextDouble()){
+            System.out.print("\f");
+            System.out.println("Input skal være et tal");
+            input.nextLine();
+        }
+        
+        System.out.print("\f");
+        
+        inputDouble = input.nextDouble();
+        
+        System.out.println(inputDouble);
+        
+        return inputDouble;
+    }
     
     public String getNextWord(){
         String inputString = null;
