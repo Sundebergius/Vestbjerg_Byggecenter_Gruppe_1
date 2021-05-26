@@ -19,7 +19,7 @@ public class Sale
     private Customer customer;
     private Employee employee;
     private String saleID;
-    private String address;
+    private String deliveryAddress;
 
     /**
      * Constructor for objects of class Sale
@@ -42,8 +42,8 @@ public class Sale
        this.customer = customer;
     }
     
-    private void addAddressToSale(String address){
-        this.address = address;
+    private void addDeliveryAddressToSale(String deliveryAddress){
+        this.deliveryAddress = deliveryAddress;
     }
     
     /**
