@@ -57,6 +57,6 @@ public class SaleController
     
     public boolean pay(double money)
     {
-        currentSale.
+        currentSale.pay(money);
     }
 }
