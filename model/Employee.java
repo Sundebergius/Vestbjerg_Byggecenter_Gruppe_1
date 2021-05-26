@@ -7,20 +7,24 @@ package model;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Employee
+public class Employee extends Person
 {
     private String employeeID;
     private String type;
+    
 
     /**
      * Constructor for objects of class Employee
      */
-    public Employee(String employeeID, String type)
+
+    public Employee(String EmployeeID, String type,String name, String address, int postalCode, String city, String mobileNo)
+
     {
         // Initializes instance variables
-        this.employeeID = employeeID;
-        this.type = type;
-        
+
+        super(name,address,postalCode,city,mobileNo);
+        this.employeeID = EmployeeID;
+        this.type = type;        
     }
 
  }
