@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @author Andreas Clement Holmgaard
  * @version (a version number or a date)
  */
-public class MainUI extends Menu
+public class MainMenuUI extends Menu
 {
 
 
