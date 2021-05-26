@@ -22,4 +22,10 @@ public class SalesLineItem
         this.product = product;
         this.quantity = quantity;
     }
+    
+    public double calculateTotalPrice()
+    {
+        return product.getPrice() * quantity;
+    }
+    
 }
