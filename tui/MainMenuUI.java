@@ -14,7 +14,7 @@ public class MainMenuUI extends Menu
     /**
      * Constructor for objects of class MainMenuUI
      */
-    public MainUI(){
+    public MainMenuUI(){
 
     }
 
