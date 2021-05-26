@@ -2,7 +2,6 @@ package model;
 import java.util.Date;
 import java.util.ArrayList;
 
-
 /**
  * Write a description of class Sale here.
  *
@@ -20,6 +19,7 @@ public class Sale
     private Customer customer;
     private Employee employee;
     private String saleID;
+    private String address;
 
     /**
      * Constructor for objects of class Sale
@@ -40,5 +40,9 @@ public class Sale
     private void addCustomerToSale(Customer customer)
     {
        this.customer = customer;
+    }
+    
+    private void addAddressToSale(String address){
+        this.address = address;
     }
 }
