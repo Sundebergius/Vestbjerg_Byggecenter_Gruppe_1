@@ -1,7 +1,7 @@
 package control;
 import model.PersonContainer;
 import model.Customer;
-
+import model.Employee;
 
 /**
  * Write a description of class PersonController here.
@@ -13,6 +13,7 @@ public class PersonController
 {
     // instance variables - replace the example below with your own
     private PersonContainer personContainer;
+    private Employee currentEmployee;
     /**
      * Constructor for objects of class PersonController
      */
@@ -26,6 +27,9 @@ public class PersonController
     {
          return personContainer.findCustomerByCustomerID(customerID);   
     }
-
     
+    public Employee getCurrentEmployee()
+    {
+        return currentEmployee;
+    }
 }
