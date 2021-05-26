@@ -55,9 +55,10 @@ public class SaleController
         return address; 
     }
     
-    public boolean pay(double money)
+    public double pay(double money)
     {
-        currentSale.pay(money);
-        return true;
+        double remainingPayment = currentSale.pay(money);        
+        
+        return remainingPayment;
     }
 }

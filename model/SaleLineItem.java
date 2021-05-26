@@ -23,7 +23,7 @@ public class SaleLineItem
         this.quantity = quantity;
     }
     
-    public double calculateTotalPrice()
+    public double calculateLinePrice()
     {
         return product.getPrice() * quantity;
     }

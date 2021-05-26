@@ -43,20 +43,36 @@ public class Sale
        this.customer = customer;
     }
     
-    public void addDeliveryAddressToSale(String deliveryAddress){
+    public void addDeliveryAddressToSale(String deliveryAddress)
+    {
         this.deliveryAddress = deliveryAddress;
     }
     
     /**
      * 
      */
-    private String getSaleID(){
+    private String getSaleID()
+    {
         return saleID;
+    }
+    
+    public double calculateTotalPrice()
+    {
+        double totalPrice = 0;
+        
+        for(SaleLineItem saleLine : saleLines){
+            totalPrice += saleLine.calculateLinePrice();
+        }
+        
+        return totalPrice;
     }
     
     public double pay(double money)
     {
         moneyReceived += money;
-        return moneyReceived;
+        
+        double remainingPayment = calculateTotalPrice()-moneyReceived;
+        
+        return remainingPayment;
     }
 }
