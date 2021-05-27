@@ -2,10 +2,10 @@ package model;
 
 
 /**
- * Write a description of class SalesLineItem here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Calculates the price for the quantity of an individual product, 
+ * and adds it as a sales line item. 
+ * 
+ * @author Mathias Søndberg-Madsen
  */
 public class SaleLineItem
 {
@@ -15,7 +15,7 @@ public class SaleLineItem
 
     /**
      * Constructor for objects of class SalesLineItem.
-     * @param Product product, int quantity. 
+     * @param the specific product, the quantity as an int. 
      */
     public SaleLineItem(Product product, int quantity)
     {
@@ -35,7 +35,7 @@ public class SaleLineItem
     
     /**
      * Get method of product. 
-     * @return product. 
+     * @return the product. 
      */
     public Product getProduct()
     {
@@ -44,7 +44,7 @@ public class SaleLineItem
     
     /**
      * Get method of quantity. 
-     * @return quantity. 
+     * @return the quantity of product. 
      */
     public int getQuantity(){
         return quantity;
