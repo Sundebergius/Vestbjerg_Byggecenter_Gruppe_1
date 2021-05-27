@@ -6,8 +6,7 @@ import model.Product;
 /**
  * Write a description of class ProductController here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Mathias Søndberg-Madsen
  */
 public class ProductController
 {
