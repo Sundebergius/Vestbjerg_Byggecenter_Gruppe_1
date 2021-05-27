@@ -73,6 +73,10 @@ public class Sale
         return (SaleLineItem[])saleLines.toArray();
     }
     
+    /**
+     * Calculates the total price of the customer's products. 
+     * @return totalPrice. 
+     */
     public double calculateTotalPrice()
     {
         double totalPrice = 0;

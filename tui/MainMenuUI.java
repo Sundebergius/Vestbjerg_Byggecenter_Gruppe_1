@@ -34,7 +34,7 @@ public class MainMenuUI extends Menu
 
             switch(choice){
                 case 1:
-                saleUI.doUI();
+                
                 break;
 
                 case 0:
@@ -59,10 +59,10 @@ public class MainMenuUI extends Menu
     private void printMainMenu(){
         //System.out.print("\f");
         System.out.println("****** Hovedmenu ******");
-        System.out.println(" (1) Sale menu");
+        System.out.println(" (1) Salgs menu");
         System.out.println(" (9) Generer testdata");// will generate testdata, delete in final version
         System.out.println(" (0) Afslut programmet");
         System.out.println(" Vælg:");
     }
-
+    
 }
