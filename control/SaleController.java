@@ -66,4 +66,9 @@ public class SaleController
     {
         return currentSale.calculateTotalPrice();  
     }
+    
+    public Sale getCurrentSale()
+    {
+         return currentSale;   
+    }
 }

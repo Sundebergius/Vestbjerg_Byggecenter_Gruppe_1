@@ -14,10 +14,13 @@ public class SaleUI extends Menu
     private SaleController saleController;
     public void doUI()
     {
-     printSaleMenu();
      createSale();
      addProductToSale();
      printCurrentSaleTotalPrice();
+     addCustomerToSale();
+     addDeliveryAddressToSale();
+     printCurrentSale();
+     
      
     }
 
@@ -30,12 +33,38 @@ public class SaleUI extends Menu
         
     }
 
-    private void printSaleMenu(){
+  public void saleMenu(){
+        boolean running = true;
+
+        while(running){
+            printSaleMenu();
+            int choice = getNextInt();
+
+            switch(choice){
+                case 1:
+                doUI();
+                break;
+                
+                case 2:
+                printSaleMenu();
+                running = false;
+                break;
+                
+                default:
+                System.out.println("Ukendt kommando : " + choice + ".");
+                break;
+            }
+        }
+
+        System.out.println("Farvel.");
+
+    }   
+    
+ private void printSaleMenu(){
         //System.out.print("\f");
-        System.out.println("****** Salgsmenu ******");
-        System.out.println("  (1) ");
-        System.out.println(" (9) ");
-        System.out.println(" (0) Afslut programmet");
+        System.out.println("****** Hovedmenu ******");
+        System.out.println(" (1) Opret Salg");
+        System.out.println(" (2) Tilbage til hovedmenu");
         System.out.println(" Vælg:");
     }
     
@@ -79,4 +108,11 @@ public class SaleUI extends Menu
         double totalPrice = saleController.getCurrentSaleTotalPrice();
         System.out.println("Pris: " + totalPrice + "DKK");
     }
+    
+    private void printCurrentSale()
+    {
+         System.out.println("Current Sale: " + saleController.getCurrentSale().getCustomer() +
+         saleController.getCurrentSale().getDeliveryAddress() + saleController.getCurrentSaleTotalPrice());   
+    }
+
 }
