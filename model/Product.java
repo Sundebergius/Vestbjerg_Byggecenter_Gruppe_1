@@ -1,10 +1,9 @@
 package model;
 
 /**
- * Write a description of class Product here.
+ * A class used to add an individual product, with all the required parameters, into the system. 
  *
  * @author Andreas Clement Holmgaard
- * @version (a version number or a date)
  */
 public abstract class Product
 {
@@ -15,7 +14,9 @@ public abstract class Product
 
     
     /**
-     * Constructor for objects of class Product
+     * Constructor for objects of class Product.
+     * @param a String of the name, a String of the description, 
+     * a double of the price, a String of the barcode.
      */
     public Product(String name, String description, double price, String barcode)
     {
@@ -25,21 +26,37 @@ public abstract class Product
         this.name = name;
     }
 
+    /**
+     * Get method for Barcode. 
+     *@return the barcode of product. 
+     */
     public String getBarcode()
     {
         return barcode;
     }
     
+    /**
+     * Get method for price. 
+     * @return the price of product.
+     */
     public double getPrice()
     {
         return price;
     }
     
+    /**
+     * Get method for name. 
+     * @return the name of product. 
+     */
     public String getName()
     {
         return name;   
     }
     
+    /**
+     * Get method for description. 
+     * @return the description of product. 
+     */
     public String getDescription()
     {
         return description;

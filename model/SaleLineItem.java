@@ -14,7 +14,8 @@ public class SaleLineItem
     private Product product;
 
     /**
-     * Constructor for objects of class SalesLineItem
+     * Constructor for objects of class SalesLineItem.
+     * @param Product product, int quantity. 
      */
     public SaleLineItem(Product product, int quantity)
     {
@@ -23,16 +24,28 @@ public class SaleLineItem
         this.quantity = quantity;
     }
     
+    /**
+     * Method to calculate the total price of specified quantity of specific product. 
+     * @return total price of specified quantity of specific product. 
+     */
     public double calculateLinePrice()
     {
         return product.getPrice() * quantity;
     }
     
+    /**
+     * Get method of product. 
+     * @return product. 
+     */
     public Product getProduct()
     {
         return product;
     }
     
+    /**
+     * Get method of quantity. 
+     * @return quantity. 
+     */
     public int getQuantity(){
         return quantity;
     }
