@@ -2,10 +2,8 @@ package model;
 
 
 /**
- * Write a description of class Person here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * The Person class is for makeing a person with some attributes, such as name,address, postal code, city 
+ * and mobile number
  */
 public class Person
 {
