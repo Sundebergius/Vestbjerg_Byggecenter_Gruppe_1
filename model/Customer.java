@@ -28,17 +28,21 @@ public class Customer extends Person
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Method to show customerID
+     * @return showing customerID
      */
+    //Not implemented
     public String getCustomerID()
     {
         // Returns customerID
         return customerID;
     }
     
+    /**
+     * Method making a discount for the customer
+     * @return Showing customer discount
+     */
+    //not implemented
     public double getCustomerDiscount()
     {
         return customerDiscount;

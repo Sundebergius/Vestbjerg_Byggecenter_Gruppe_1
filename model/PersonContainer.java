@@ -25,6 +25,9 @@ public class PersonContainer
         employeeContainer = new HashMap<>();
     }
     
+    /**
+     * 
+     */
     public static PersonContainer getInstance()
     {
         // Singleton
@@ -33,7 +36,11 @@ public class PersonContainer
         }
         return instance;
     }
-    
+    /**
+     * Method to find customer by customerID
+     * @param customerID The customerID
+     * @return Showing the finded customer by customerID
+     */
     public Customer findCustomerByCustomerID(String customerID)
     {
         // Returns customer value in HashMap stored by key

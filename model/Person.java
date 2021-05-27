@@ -30,22 +30,42 @@ public class Person
     
     }
     
+    /**
+     * Method to show the name from the created person
+     * @return Showing the name of the person
+     */
     public String getName(){
         return name;
     }
     
+    /**
+     * Method to show the address from the created person
+     * @return Showing the address of the person
+     */
     public String getAddress(){
         return address;
     }
     
+    /**
+     * Method to show the postal code from the created person
+     * @return Showing the postal code of the person
+     */
     public int getPostalCode(){
         return postalCode;        
     }
     
+    /**
+     * Method to show the city from the created person
+     * @return Showing the city of the person
+     */
     public String getCity(){
         return city;   
     }
     
+    /**
+     * Method to show the mobile number from the created person
+     * @return Showing the mobile number of the person
+     */
     public String getMobileNo(){
         return mobileNo;
     }
