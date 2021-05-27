@@ -58,6 +58,7 @@ public abstract class Product
      * Get method for description. 
      * @return the description of product. 
      */
+
     public String getDescription()
     {
         return description;
