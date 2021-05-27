@@ -61,10 +61,64 @@ public class SaleUI extends Menu
 
         addDeliveryAddressToSale();
 
-        printCurrentSaleOverview();
-        
-        startPaymentTransaction();
+        while(saleController.getCurrentSale() != null){
 
+            printCurrentSaleOverview();
+
+            boolean makeChoice = false;
+
+            while(!makeChoice){
+
+                System.out.println("Er informationen korrekt?");
+                System.out.println(" (1) Tilføj flere varer");
+                System.out.println(" (2) Fjern varer");
+                System.out.println(" (3) Ændre kundenummer");
+                System.out.println(" (4) Ændre leveringsadresse");
+                System.out.println(" (5) Start betalingstransaktion");
+                System.out.println(" (0) Annuller salg");
+
+                int choice = getNextInt();
+
+                switch(choice)
+                {
+                    case 1:
+                    makeChoice = true;
+                    addProductsLoop();
+                    break;
+
+                    case 2:
+                    makeChoice = true;
+                    // needs to be implemented
+                    break;
+                    
+                    case 3:
+                    makeChoice = true;
+                    addCustomerToSale();
+                    break;
+                    
+                    case 4:
+                    makeChoice = true;
+                    addDeliveryAddressToSale();
+                    break;
+                    
+                    case 5:
+                    makeChoice = true;
+                    startPaymentTransaction();
+
+                    case 0:
+                    makeChoice = true;
+                    //skal implementeres
+                    //saleController.cancelSale();
+                    break;
+
+                    default:
+                    System.out.println("Ukendt kommando prøv igen");
+                    makeChoice = false;
+                    break;
+
+                }
+            }
+        }
     }
 
     private void printSaleMenu(){
@@ -219,13 +273,70 @@ public class SaleUI extends Menu
 
     private void startPaymentTransaction()
     {
-        
+
         System.out.println("Hvor meget betales der med?");
         double money = getNextDouble();
-        saleController.pay(money);  
-        
-        
-        
+        double remainingPayment = saleController.pay(money);         
+
+        boolean canceledTransaction = false;
+
+        while(remainingPayment > 0 || canceledTransaction){
+            System.out.println("Du mangler at betale: " + remainingPayment + " DKK");      
+
+            boolean makeChoice = false;      
+            while(!makeChoice){
+
+                System.out.println("Skal transaktionen annulleres?");
+                System.out.println(" (1) Ja");
+                System.out.println(" (0) Nej");
+
+                int choice = getNextInt();
+
+                switch(choice)
+                {
+                    case 1:
+                    makeChoice = true;
+                    canceledTransaction = true;
+                    break;
+
+                    case 0:
+                    makeChoice = true;
+                    canceledTransaction = false;
+
+                    break;
+
+                    default:
+                    System.out.println("Ukendt kommando prøv igen");
+                    makeChoice = false;
+                    break;
+
+                }
+            }
+
+            System.out.println("Hvor meget betales der med?");
+            money = getNextDouble();
+            remainingPayment = saleController.pay(money); 
+        }
+
+        if(!canceledTransaction){
+
+            logFinishedSale();
+            printReceipt();
+
+        }
+    }
+
+    private void logFinishedSale(){
+
+    }
+
+    private void printReceipt(){
+        printCurrentSaleOverview();
+        Sale currentSale = saleController.getCurrentSale();
+        System.out.println("Beløb modtaget: " + currentSale.getMoneyReceived());
+        System.out.println("Retur beløb: " + (-currentSale.getRemainingPayment()));
+        System.out.println("SalgsID: " + currentSale.getSaleID());
+
     }
 
     private void printCurrentSaleTotalPrice()
@@ -237,7 +348,7 @@ public class SaleUI extends Menu
     private void printCurrentSaleOverview()
     {
         Sale currentSale = saleController.getCurrentSale();
-        
+
         //Prints all the products added to the sale
         SaleLineItem[] saleLineItems = currentSale.getSaleLineItems();
 
@@ -258,7 +369,6 @@ public class SaleUI extends Menu
         System.out.println("        Total: " + currentSale.calculateTotalPrice() + " DKK");
         System.out.println("--------------------");
 
-        
         //prints the customer added to the sale if a customer has been added
         if(currentSale.getCustomer() != null){
             System.out.println("Tilknyttet kundenummer: " + currentSale.getCustomer().getCustomerID());
@@ -269,7 +379,11 @@ public class SaleUI extends Menu
         //prints the delivery address for the sale if its being delivered
         if(currentSale.getDeliveryAddress().isBlank()){
             System.out.println("Leveres til: " + currentSale.getDeliveryAddress());
+            System.out.println("--------------------");
         }
+
+        System.out.println("Betjent af: " + currentSale.getEmployee().getName());
+        System.out.println("--------------------");
     }
 
 }
