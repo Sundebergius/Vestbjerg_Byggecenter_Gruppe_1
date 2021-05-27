@@ -133,6 +133,10 @@ public class Sale
         return remainingPayment;
     }
     
+    public double getMoneyReceived(){
+         return moneyReceived;  
+    }
+    
     /**
      * A method to pay for the products in the current sale. 
      * @param money received from the customer to the sales assistant. 
