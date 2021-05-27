@@ -3,10 +3,7 @@ import java.util.HashMap;
 
 
 /**
- * Write a description of class SaleContainer here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Storing sales that has been made
  */
 public class SaleContainer
 {
@@ -21,7 +18,12 @@ public class SaleContainer
     {
          saleContainer = new HashMap<>(); 
     }
-
+    
+    /**
+     * Get the current instance of sale container
+     * if not, create one
+     * @return instance
+     */
     public static SaleContainer getInstance()
     {
         // Singleton
@@ -31,6 +33,11 @@ public class SaleContainer
         return instance;
     }
     
+    /**
+     * Method adding a sale the to sale container
+     * @param saleID Identity of sale
+     * @param sale HashMap 
+     */
     public void addSale(String saleID, Sale sale)
     { 
         // adds a sale to HashMap
