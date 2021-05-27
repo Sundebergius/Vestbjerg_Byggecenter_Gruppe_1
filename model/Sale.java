@@ -140,7 +140,8 @@ public class Sale
     /**
      * A method to pay for the products in the current sale. 
      * @param money received from the customer to the sales assistant. 
-     * @return the amount remaining of a transaction. 
+     * @return the amount remaining of a transaction - will be negative 
+     * if money should be returned to the customer. 
      */
     public double pay(double money)
     {
