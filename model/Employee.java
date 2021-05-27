@@ -27,11 +27,21 @@ public class Employee extends Person
         this.type = type;        
     }
     
+    /**
+     * Method showing employeeID
+     * @return showing employeeID
+     */
+    //Not implemented
     public String getEmployeeID()
     {
         return employeeID;
     }
     
+    /**
+     * Method showing employee type
+     * @return showing the type of the employee
+     */
+    //Not impolemented
     public String getEmployeeType()
     {
         return type;
