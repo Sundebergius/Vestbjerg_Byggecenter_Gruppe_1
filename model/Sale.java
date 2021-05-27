@@ -151,4 +151,12 @@ public class Sale
         
         return remainingPayment;
     }
+    
+    /**
+     * sets the saleID on the sale
+     * @param saleID The value given to the sales saleID
+     */    
+    public void setSaleID(String saleID){
+        this.saleID = saleID;
+    }
 }

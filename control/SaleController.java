@@ -71,4 +71,20 @@ public class SaleController
     {
          return currentSale;   
     }
+    
+    public void cancelSale(){
+        currentSale = null;
+    }
+    
+    public void logSale(){
+        
+        //needs to be implemented
+        String saleID = saleContainer.getNewSaleID();
+        
+        currentSale.setSaleID(saleID);
+        
+        saleContainer.addSale(currentSale.getSaleID(), currentSale);
+        currentSale = null;
+    }
+    
 }
