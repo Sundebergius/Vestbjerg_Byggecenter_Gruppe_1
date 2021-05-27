@@ -4,7 +4,7 @@ import model.Product;
 
 
 /**
- * Write a description of class ProductController here.
+ * 
  *
  * @author Mathias Søndberg-Madsen
  */
@@ -21,7 +21,12 @@ public class ProductController
         // initialise instance variables
         productContainer = productContainer.getInstance();
     }
-
+    
+    /**
+     * A method to find a specific product by searching with a barcode as a String. 
+     * @param the barcode of a product as a type String. 
+     * @return the specific product if associated with an existing barcode. If not, returns null. 
+     */
     public Product findProductByBarcode(String barcode)
     {
         return productContainer.findProductByBarcode(barcode);
