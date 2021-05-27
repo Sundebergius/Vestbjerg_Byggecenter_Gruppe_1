@@ -48,12 +48,29 @@ public class Sale
         this.deliveryAddress = deliveryAddress;
     }
     
-    /**
-     * 
-     */
-    private String getSaleID()
+    public String getSaleID()
     {
         return saleID;
+    }
+    
+    public String getDeliveryAddress()
+    {
+        return deliveryAddress;
+    }
+    
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+    
+    public Employee getEmployee()
+    {
+        return employee;
+    }
+    
+    public SaleLineItem[] getSaleLineItems()
+    {
+        return (SaleLineItem[])saleLines.toArray();
     }
     
     public double calculateTotalPrice()
@@ -65,6 +82,13 @@ public class Sale
         }
         
         return totalPrice;
+    }
+    
+    public double getRemainingPayment(){
+        
+        double remainingPayment = 0;
+        remainingPayment = calculateTotalPrice() - moneyReceived;
+        return remainingPayment;
     }
     
     public double pay(double money)
