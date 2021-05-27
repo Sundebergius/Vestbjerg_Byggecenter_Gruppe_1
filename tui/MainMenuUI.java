@@ -17,10 +17,6 @@ public class MainMenuUI extends Menu
         saleUI = new SaleUI();
     }
 
-    public void start(){
-        doUI();
-    }
-
     public void doUI(){
         mainMenu();
     }
@@ -34,7 +30,7 @@ public class MainMenuUI extends Menu
 
             switch(choice){
                 case 1:
-                
+                saleUI.doUI();
                 break;
 
                 case 0:
