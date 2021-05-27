@@ -32,6 +32,19 @@ public class ProductContainer
         }
         return instance;
     }
+    public boolean checkBarcodeAvailability(String barcode)
+    {
+        boolean isAvailable = false;
+        if (productContainer.containsKey(barcode))
+        {
+            isAvailable = false;
+        }
+        else
+        {
+            isAvailable = true;
+        }
+        return isAvailable;
+    }
     
     /**
      * Add method for the individual proudct into the instance of a product container. 
