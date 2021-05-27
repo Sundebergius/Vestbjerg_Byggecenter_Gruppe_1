@@ -21,6 +21,7 @@ public abstract class Product
         this.description = description;
         this.price = price;
         this.barcode = barcode;
+        this.name = name;
     }
     
     public String getBarcode(){
