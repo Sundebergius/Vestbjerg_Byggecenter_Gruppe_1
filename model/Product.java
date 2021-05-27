@@ -23,8 +23,9 @@ public abstract class Product
         this.barcode = barcode;
         this.name = name;
     }
-    
-    public String getBarcode(){
+   
+    public String getBarcode()
+    {
         return barcode;
     }
     
