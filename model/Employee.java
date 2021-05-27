@@ -2,10 +2,7 @@ package model;
 
 
 /**
- * Write a description of class Employee here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * The employee class is for giving the created person a employeeID and a employee type
  */
 public class Employee extends Person
 {

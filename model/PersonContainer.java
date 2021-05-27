@@ -1,7 +1,6 @@
 package model;
 import java.util.HashMap;
 
-
 /**
  * Write a description of class PersonContainer here.
  *
@@ -24,10 +23,7 @@ public class PersonContainer
         customerContainer = new HashMap<>();
         employeeContainer = new HashMap<>();
     }
-    
-    /**
-     * 
-     */
+
     public static PersonContainer getInstance()
     {
         // Singleton
@@ -36,6 +32,7 @@ public class PersonContainer
         }
         return instance;
     }
+
     /**
      * Method to find customer by customerID
      * @param customerID The customerID
@@ -46,6 +43,5 @@ public class PersonContainer
         // Returns customer value in HashMap stored by key
         return customerContainer.get(customerID);
     }
-    
-    
+
 }

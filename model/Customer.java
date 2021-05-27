@@ -2,10 +2,8 @@ package model;
 
 
 /**
- * Write a description of class Customer here.
+ * The class Customer is for giving the created person a customerID and a customer discount
  *
- * @author (your name)
- * @version (a version number or a date)
  */
 public class Customer extends Person
 {
