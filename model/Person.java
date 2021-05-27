@@ -29,4 +29,24 @@ public class Person
         this.mobileNo = mobileNo;
     
     }
+    
+    public String getName(){
+        return name;
+    }
+    
+    public String getAddress(){
+        return address;
+    }
+    
+    public int getPostalCode(){
+        return postalCode;        
+    }
+    
+    public String getCity(){
+        return city;   
+    }
+    
+    public String getMobileNo(){
+        return mobileNo;
+    }
 }
