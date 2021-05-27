@@ -26,5 +26,15 @@ public class Employee extends Person
         this.employeeID = EmployeeID;
         this.type = type;        
     }
+    
+    public String getEmployeeID()
+    {
+        return employeeID;
+    }
+    
+    public String getEmployeeType()
+    {
+        return type;
+    }
 
  }

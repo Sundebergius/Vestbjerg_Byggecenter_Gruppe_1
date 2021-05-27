@@ -38,4 +38,9 @@ public class Customer extends Person
         // Returns customerID
         return customerID;
     }
+    
+    public double getCustomerDiscount()
+    {
+        return customerDiscount;
+    }
 }
