@@ -3,10 +3,9 @@ import java.util.HashMap;
 
 
 /**
- * Write a description of class ProductContainer here.
+ * A container class to store the data of the created products. 
  *
  * @author Andreas Clement Holmgaard
- * @version (a version number or a date)
  */
 public class ProductContainer
 {
@@ -23,7 +22,7 @@ public class ProductContainer
     }
     
     /**
-     * Get method of individual instance of product container.
+     * Get the current instance of product container - if none exists, create one.
      * @return instance of the product container. 
      */
     public static ProductContainer getInstance(){
@@ -32,6 +31,13 @@ public class ProductContainer
         }
         return instance;
     }
+    
+    /**
+     * A boolean to check if the barcode for a specific product is not 
+     * currently being used by another product. 
+     * @param the current barcode that the user wants to check. 
+     * @return boolean of the availability of the barcode. 
+     */
     public boolean checkBarcodeAvailability(String barcode)
     {
         boolean isAvailable = false;

@@ -3,10 +3,10 @@ import java.util.Date;
 import java.util.ArrayList;
 
 /**
- * Write a description of class Sale here.
+ * A class to begin and end a specific sale to a specific customer, with the products
+ * that the customer wants to buy. 
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Mathias Søndberg-Madsen
  */
 public class Sale
 {

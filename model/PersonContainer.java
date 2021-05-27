@@ -2,10 +2,7 @@ package model;
 import java.util.HashMap;
 
 /**
- * Write a description of class PersonContainer here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * It's storing the persons that are made
  */
 public class PersonContainer
 {
@@ -23,7 +20,12 @@ public class PersonContainer
         customerContainer = new HashMap<>();
         employeeContainer = new HashMap<>();
     }
-
+    
+    /**
+     * get the current instance of person container
+     * if not, create one
+     * @return instance
+     */
     public static PersonContainer getInstance()
     {
         // Singleton
