@@ -43,4 +43,12 @@ public class SaleContainer
         // adds a sale to HashMap
         saleContainer.put(saleID, sale);
     }
+    
+    public String getNewSaleID(){
+        String saleID = "";
+        
+        saleID += saleContainer.size();
+        
+        return saleID;
+    }
 }

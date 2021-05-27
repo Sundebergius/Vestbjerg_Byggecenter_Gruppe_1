@@ -78,7 +78,7 @@ public class SaleController
     
     public void logSale(){
         
-        //needs to be implemented
+        
         String saleID = saleContainer.getNewSaleID();
         
         currentSale.setSaleID(saleID);
