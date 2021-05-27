@@ -13,35 +13,39 @@ public abstract class Product
     private double price;
     private String barcode;
 
-    
     /**
      * Constructor for objects of class Product
      */
-    public Product(String name, String description, double price, String barcode)
+    public Product(String name, String description, double price)
     {
         this.description = description;
         this.price = price;
-        this.barcode = barcode;
         this.name = name;
     }
+
 
     public String getBarcode()
     {
         return barcode;
     }
-    
+
     public double getPrice()
     {
         return price;
     }
-    
+
     public String getName()
     {
         return name;   
     }
-    
+
     public String getDescription()
     {
         return description;
+    }
+
+    public void setBarcode(String newBarcode)
+    {
+        barcode = newBarcode;
     }
 }

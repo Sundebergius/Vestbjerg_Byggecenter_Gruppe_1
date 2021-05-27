@@ -28,6 +28,19 @@ public class ProductContainer
         }
         return instance;
     }
+    public boolean checkBarcodeAvailability(String barcode)
+    {
+        boolean isAvailable = false;
+        if (productContainer.containsKey(barcode))
+        {
+            isAvailable = false;
+        }
+        else
+        {
+            isAvailable = true;
+        }
+        return isAvailable;
+    }
     
     public void addProduct(Product product){
         productContainer.put(product.getBarcode(), product);
