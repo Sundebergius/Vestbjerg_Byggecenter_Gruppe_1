@@ -107,8 +107,8 @@ public class SaleUI extends Menu
 
                     case 0:
                     makeChoice = true;
-                    //skal implementeres
-                    //saleController.cancelSale();
+                    
+                    saleController.cancelSale();
                     break;
 
                     default:
@@ -327,7 +327,7 @@ public class SaleUI extends Menu
     }
 
     private void logFinishedSale(){
-
+        saleController.logSale();
     }
 
     private void printReceipt(){
