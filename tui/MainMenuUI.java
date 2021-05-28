@@ -93,7 +93,7 @@ public class MainMenuUI extends Menu
             System.out.println("Indtast dit Medarbejdernummer");
             String employeeID = getNextWord();
             try{
-                currentEmployee = personController.getEmployeeByEmployeeID(employeeID);
+                currentEmployee = personController.findEmployeeByEmployeeID(employeeID);
             }catch(NullPointerException e){
                 System.out.println("fejl medarbejder blev ikke fundet prøv igen");
             }

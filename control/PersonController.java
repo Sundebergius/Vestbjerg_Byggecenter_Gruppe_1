@@ -28,7 +28,7 @@ public class PersonController
          return personContainer.findCustomerByCustomerID(customerID);   
     }
     
-    public Employee getEmployeeByEmployeeID(String employeeID)
+    public Employee findEmployeeByEmployeeID(String employeeID)
     {
         return personContainer.findEmployeeByEmployeeID(employeeID);
     }
