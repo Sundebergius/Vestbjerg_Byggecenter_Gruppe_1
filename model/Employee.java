@@ -38,7 +38,7 @@ public class Employee extends Person
      * Method showing employee type
      * @return showing the type of the employee
      */
-    //Not impolemented
+    //Not implemented
     public String getEmployeeType()
     {
         return type;
