@@ -13,7 +13,7 @@ public class PersonController
 {
     // instance variables - replace the example below with your own
     private PersonContainer personContainer;
-    private Employee currentEmployee;
+
     /**
      * Constructor for objects of class PersonController
      */
@@ -28,8 +28,8 @@ public class PersonController
          return personContainer.findCustomerByCustomerID(customerID);   
     }
     
-    public Employee getCurrentEmployee()
+    public Employee getEmployeeByEmployeeID(String employeeID)
     {
-        return currentEmployee;
+        return personContainer.findEmployeeByEmployeeID(employeeID);
     }
 }

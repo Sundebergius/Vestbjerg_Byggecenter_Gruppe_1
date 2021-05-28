@@ -45,13 +45,13 @@ public class SaleContainer
     }
     
     /**
-     * Method  getting a new saleID
+     * Method for getting a new unique saleID
      * @return saleID
      */
     public String getNewSaleID(){
-        String saleID = "";
+        String saleID;
         
-        saleID += saleContainer.size();
+        saleID = "" + saleContainer.size();
         
         return saleID;
     }

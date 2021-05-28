@@ -3,6 +3,7 @@ import control.SaleController;
 import model.Sale;
 import model.SaleLineItem;
 import model.Product;
+import model.Employee;
 
 /**
  * Write a description of class SaleUI here.
@@ -14,12 +15,14 @@ public class SaleUI extends Menu
 {
     // instance variables - replace the example below with your own
     private SaleController saleController;
+    private Employee currentEmployee;
 
     /**
      * Constructor for objects of class SaleUI
      */
-    public SaleUI()
+    public SaleUI(Employee currentEmployee)
     {
+        this.currentEmployee = currentEmployee;
         saleController = new SaleController();
 
     }
@@ -106,8 +109,7 @@ public class SaleUI extends Menu
                     startPaymentTransaction();
 
                     case 0:
-                    makeChoice = true;
-                    
+                    makeChoice = true;                    
                     saleController.cancelSale();
                     break;
 
@@ -131,7 +133,7 @@ public class SaleUI extends Menu
 
     private void createSale()
     {
-        saleController.createSale();   
+        saleController.createSale(currentEmployee);   
     }
 
     private void addProductsLoop()
@@ -272,16 +274,17 @@ public class SaleUI extends Menu
     }
 
     private void startPaymentTransaction()
-    {
-
-        System.out.println("Hvor meget betales der med?");
-        double money = getNextDouble();
-        double remainingPayment = saleController.pay(money);         
-
+    {     
+        double remainingPayment;        
         boolean canceledTransaction = false;
 
-        while(remainingPayment > 0 || canceledTransaction){
-            System.out.println("Du mangler at betale: " + remainingPayment + " DKK");      
+        //while loop is made as do-while loop to make sure at least 1 transaction happens
+        //remainingPayment starts as 0 and would therefor not satisfy the while loops conditions
+        do{
+               
+            System.out.println("Hvor meget betales der med?");
+            double money = getNextDouble();
+            remainingPayment = saleController.pay(money); 
 
             boolean makeChoice = false;      
             while(!makeChoice){
@@ -312,17 +315,18 @@ public class SaleUI extends Menu
 
                 }
             }
+            
+            if(remainingPayment > 0 && !canceledTransaction){
+                System.out.println("Du mangler at betale: " + remainingPayment + " DKK");   
+            }
 
-            System.out.println("Hvor meget betales der med?");
-            money = getNextDouble();
-            remainingPayment = saleController.pay(money); 
-        }
+            
+        }while(remainingPayment > 0 && !canceledTransaction);
 
-        if(!canceledTransaction){
-
-            logFinishedSale();
+        if(remainingPayment <= 0){
+            saleController.setCurrentSaleID();
             printReceipt();
-
+            logFinishedSale();
         }
     }
 
@@ -331,11 +335,13 @@ public class SaleUI extends Menu
     }
 
     private void printReceipt(){
+        System.out.println(" \f");
         printCurrentSaleOverview();
         Sale currentSale = saleController.getCurrentSale();
         System.out.println("Beløb modtaget: " + currentSale.getMoneyReceived());
         System.out.println("Retur beløb: " + (-currentSale.getRemainingPayment()));
         System.out.println("SalgsID: " + currentSale.getSaleID());
+        System.out.println();
 
     }
 
@@ -377,7 +383,7 @@ public class SaleUI extends Menu
         }
 
         //prints the delivery address for the sale if its being delivered
-        if(currentSale.getDeliveryAddress().isBlank()){
+        if(!currentSale.getDeliveryAddress().isBlank()){
             System.out.println("Leveres til: " + currentSale.getDeliveryAddress());
             System.out.println("--------------------");
         }

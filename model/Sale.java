@@ -31,6 +31,7 @@ public class Sale
         // initialise instance variables
         this.saleLines = new ArrayList<>();
         this.employee = employee;
+        deliveryAddress = "";
         dateTime = new Date();
     }
     

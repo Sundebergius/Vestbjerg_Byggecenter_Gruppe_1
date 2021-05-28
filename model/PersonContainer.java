@@ -46,6 +46,11 @@ public class PersonContainer
         return customerContainer.get(customerID);
     }
     
+    public Employee findEmployeeByEmployeeID(String employeeID)
+    {
+        return employeeContainer.get(employeeID);
+    }
+    
     public void addCustomer(Customer customer){
         customerContainer.put(customer.getCustomerID(), customer);
     }

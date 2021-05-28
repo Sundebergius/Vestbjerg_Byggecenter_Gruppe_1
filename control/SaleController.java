@@ -27,10 +27,9 @@ public class SaleController
         saleContainer = saleContainer.getInstance();
     }
     
-    public Sale createSale()
+    public Sale createSale(Employee currentEmployee)
     {
-        Employee employee = personController.getCurrentEmployee();
-        currentSale = new Sale(employee);
+        currentSale = new Sale(currentEmployee);
         return currentSale;
     }
     
@@ -76,15 +75,16 @@ public class SaleController
         currentSale = null;
     }
     
-    public void logSale(){
-        
-        
-        String saleID = saleContainer.getNewSaleID();
-        
+    public void setCurrentSaleID(){
+        String saleID = saleContainer.getNewSaleID();        
         currentSale.setSaleID(saleID);
-        
+    }
+    
+    public void logSale(){       
         saleContainer.addSale(currentSale.getSaleID(), currentSale);
         currentSale = null;
     }
+    
+
     
 }
