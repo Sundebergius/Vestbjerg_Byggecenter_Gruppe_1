@@ -14,7 +14,7 @@ public abstract class SimpleProduct extends Product
      * @param a String of the name, a String of the description,
      * a double of the price, a String of the barcode.
      */
-    public SimpleProduct(String name, String description, double price){
-        super(name, description, price);
+    public SimpleProduct(String barcode, String name, String description, double price){
+        super(barcode, name, description, price);
     }
 }

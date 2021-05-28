@@ -17,11 +17,12 @@ public abstract class Product
      * @param a String of the name, a String of the description, 
      * a double of the price, a String of the barcode.
      */
-    public Product(String name, String description, double price)
+    public Product(String barcode, String name, String description, double price)
     {
         this.description = description;
         this.price = price;
         this.name = name;
+        this.barcode = barcode;
     }
 
     /**

@@ -12,6 +12,9 @@ import model.*;
 public class TryMe
 {
     // instance variables
+    private SaleContainer saleContainer;
+    private PersonContainer personContainer;
+    private ProductContainer productContainer;
     
 
     /**
@@ -19,6 +22,12 @@ public class TryMe
      */
     public TryMe()
     {
+        saleContainer = SaleContainer.getInstance();
+        personContainer = PersonContainer.getInstance();
+        productContainer = ProductContainer.getInstance();
+        
+        
+        
         
     }
 
