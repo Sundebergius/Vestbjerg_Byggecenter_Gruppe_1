@@ -99,12 +99,15 @@ public class Sale
     }
     
     /**
-     * Get method of all the current products in the line sale. 
-     * @return each product in the line sale. 
+     * Get method for all the current products in the line sale. 
+     * @return an array containing each saleline added to the sale. 
      */
     public SaleLineItem[] getSaleLineItems()
     {
-        return (SaleLineItem[])saleLines.toArray();
+        SaleLineItem[] saleLinesArray = new SaleLineItem[saleLines.size()];
+        saleLinesArray = saleLines.toArray(saleLinesArray);
+        
+        return saleLinesArray;
     }
     
     /**

@@ -1,4 +1,5 @@
 package tui;
+import control.PersonController;
 
 /**
  * Write a description of class MainMenuUI here.
@@ -38,7 +39,7 @@ public class MainMenuUI extends Menu
                 break;
 
                 case 9:
-                //new TryMe();
+                new TryMe();
                 System.out.println("Test data genereret");
                 break;
 
@@ -50,6 +51,10 @@ public class MainMenuUI extends Menu
 
         System.out.println("Farvel.");
 
+    }
+    
+    private void login(){
+        
     }
 
     private void printMainMenu(){
