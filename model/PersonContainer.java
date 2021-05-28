@@ -45,5 +45,13 @@ public class PersonContainer
         // Returns customer value in HashMap stored by key
         return customerContainer.get(customerID);
     }
+    
+    public void addCustomer(Customer customer){
+        customerContainer.put(customer.getCustomerID(), customer);
+    }
+    
+    public void addEmployee(Employee employee){
+        employeeContainer.put(employee.getEmployeeID(), employee);
+    }
 
 }
