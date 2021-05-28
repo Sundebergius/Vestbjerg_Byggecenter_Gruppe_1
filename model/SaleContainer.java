@@ -44,6 +44,10 @@ public class SaleContainer
         saleContainer.put(saleID, sale);
     }
     
+    /**
+     * Method  getting a new saleID
+     * @return saleID
+     */
     public String getNewSaleID(){
         String saleID = "";
         
