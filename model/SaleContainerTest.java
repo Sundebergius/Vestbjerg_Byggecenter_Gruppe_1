@@ -51,7 +51,6 @@ public class SaleContainerTest
      @Test
     public void testAddSalePositive()
     {
-        
         SaleContainer saleContainer = SaleContainer.getInstance();
         PersonContainer personContainer = PersonContainer.getInstance();
         ProductContainer productContainer = ProductContainer.getInstance();
@@ -59,13 +58,12 @@ public class SaleContainerTest
         Employee kurtKristensen = new Employee("SalgsAss001", "Salgsassistent", "Kurt Kristensen", "Jernbanegade 5", 9000, "Aalborg", "+4500000001");
         personContainer.addEmployee(kurtKristensen);
    
-        String saleID1 = saleContainer.getNewSaleID();
         Sale sale1 = new Sale(kurtKristensen);
 
         int size = saleContainer.getSize();
-        saleContainer.addSale(saleID1, sale1);
+        saleContainer.addSale(sale1);
         assertEquals(size+1, saleContainer.getSize());
-        
+         
     }
     
 }
