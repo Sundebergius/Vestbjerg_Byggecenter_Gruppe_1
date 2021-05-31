@@ -90,7 +90,8 @@ public class SaleUI extends Menu
                     break;
 
                     case 2:
-                    makeChoice = true;
+                    makeChoice = false;
+                    System.out.println("not Implemented");
                     // needs to be implemented
                     break;
                     
