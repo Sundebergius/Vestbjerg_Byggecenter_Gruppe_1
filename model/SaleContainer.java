@@ -55,4 +55,9 @@ public class SaleContainer
         
         return saleID;
     }
+    
+    public int getSize(){
+        
+        return saleContainer.size();
+    }
 }
