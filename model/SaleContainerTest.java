@@ -59,6 +59,7 @@ public class SaleContainerTest
         personContainer.addEmployee(kurtKristensen);
    
         Sale sale1 = new Sale(kurtKristensen);
+        sale1.setSaleID(saleContainer.getNewSaleID());
 
         int size = saleContainer.getSize();
         saleContainer.addSale(sale1);
