@@ -76,7 +76,7 @@ public class SaleController
     }
     
     public void logSale(){       
-        saleContainer.addSale(currentSale.getSaleID(), currentSale);
+        saleContainer.addSale(currentSale);
         currentSale = null;
     }
     

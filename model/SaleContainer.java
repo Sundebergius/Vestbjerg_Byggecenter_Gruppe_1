@@ -34,14 +34,13 @@ public class SaleContainer
     }
     
     /**
-     * Method adding a sale the to sale container
-     * @param saleID Identity of sale
-     * @param sale HashMap 
+     * Method adding a sale the to sale container using the sales ID as the key
+     * @param sale the sale to be added to the container
      */
-    public void addSale(String saleID, Sale sale)
+    public void addSale(Sale sale)
     { 
         // adds a sale to HashMap
-        saleContainer.put(saleID, sale);
+        saleContainer.put(sale.getSaleID(), sale);
     }
     
     /**
