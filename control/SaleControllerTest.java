@@ -117,7 +117,8 @@ public class SaleControllerTest
     @Test
     public void addEmptySaleTest(){
         
-        Employee kurtKristensen = new Employee("SalgsAss001", "Salgsassistent", "Kurt Kristensen", "Jernbanegade 5", 9000, "Aalborg", "+4500000001");
+        Employee kurtKristensen = new Employee("SalgsAss001", "Salgsassistent",
+        "Kurt Kristensen", "Jernbanegade 5", 9000, "Aalborg", "+4500000001");
         
         saleController.createSale(kurtKristensen);
         
@@ -136,7 +137,8 @@ public class SaleControllerTest
     @Test
     public void addUnpaidSaleTest()
     {
-        Employee kurtKristensen = new Employee("SalgsAss001", "Salgsassistent", "Kurt Kristensen", "Jernbanegade 5", 9000, "Aalborg", "+4500000001");
+        Employee kurtKristensen = new Employee("SalgsAss001", "Salgsassistent",
+        "Kurt Kristensen", "Jernbanegade 5", 9000, "Aalborg", "+4500000001");
                 
         saleController.createSale(kurtKristensen); 
         
@@ -150,8 +152,7 @@ public class SaleControllerTest
         
         saleController.setCurrentSaleID();
         
-        Sale currentSale = saleController.getCurrentSale();
-    
+        Sale currentSale = saleController.getCurrentSale();    
         
         SaleContainer saleContainer = SaleContainer.getInstance();
         
@@ -162,6 +163,21 @@ public class SaleControllerTest
         assertNotEquals(saleContainer.getSize(), size+1);
         assertNotEquals(saleController.getCurrentSale(), null);
         
+        
+    }
+    
+    @Test
+    public void payEmptySaleTest(){
+        Employee kurtKristensen = new Employee("SalgsAss001", "Salgsassistent",
+        "Kurt Kristensen", "Jernbanegade 5", 9000, "Aalborg", "+4500000001");
+        
+        saleController.createSale(kurtKristensen);
+        
+        saleController.pay(100);
+        
+        Sale currentSale = saleController.getCurrentSale();
+        
+        assertEquals(currentSale.getMoneyReceived(), 0);
         
     }
 }

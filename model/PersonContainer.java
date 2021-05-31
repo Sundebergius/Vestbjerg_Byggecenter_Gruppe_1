@@ -38,7 +38,7 @@ public class PersonContainer
     /**
      * Method to find customer by customerID
      * @param customerID The customerID
-     * @return Showing the finded customer by customerID
+     * @return the found customer objekt
      */
     public Customer findCustomerByCustomerID(String customerID)
     {
