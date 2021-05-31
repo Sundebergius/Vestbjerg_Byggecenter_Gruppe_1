@@ -1,5 +1,11 @@
 package control;
-import model.*;
+import model.PersonContainer;
+import model.ProductContainer;
+import model.Customer;
+import model.Employee;
+import model.Product;
+import model.ColiProduct;
+
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,7 +45,7 @@ public class PersonControllerTest
         Employee kurtKristensen = new Employee("SalgsAss001", "Salgsassistent", "Kurt Kristensen", "Jernbanegade 5", 9000, "Aalborg", "+4500000001");
         
         personContainer.addEmployee(kurtKristensen);
-        
+       
     }
 
     /**
