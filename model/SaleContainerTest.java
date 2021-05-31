@@ -63,7 +63,7 @@ public class SaleContainerTest
         Sale sale1 = new Sale(kurtKristensen);
 
         int size = saleContainer.getSize();
-        saleContainer.addSale(saleID1, sale1);
+        saleContainer.addSale(sale1);
         assertEquals(size+1, saleContainer.getSize());
         
     }
