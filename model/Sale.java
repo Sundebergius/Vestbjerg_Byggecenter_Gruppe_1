@@ -151,9 +151,7 @@ public class Sale
     {
         moneyReceived += money;
         
-        double remainingPayment = calculateTotalPrice()-moneyReceived;
-        
-        return remainingPayment;
+        return getRemainingPayment();
     }
     
     /**
