@@ -2,3 +2,5 @@
 /MainMenuWindow.class
 /LoginDialog.class
 /AddCustomerToSaleDialog.class
+/PaymentTransaction.class
+/PaymentTransactionError.class
