@@ -47,7 +47,7 @@ public class PaymentTransaction extends JDialog {
 		}
 		else
 		{
-			PaymentTransactionError
+			
 		}
 		return validTransaction;
 	}
