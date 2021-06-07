@@ -20,6 +20,10 @@ public class MainMenuUI extends Menu
     public MainMenuUI(){
         personController = new PersonController();
     }
+    
+    public static void main(String[] arg) {
+		new MainMenuUI().doUI();
+	}
 
     public void doUI(){
         loginMenu();
