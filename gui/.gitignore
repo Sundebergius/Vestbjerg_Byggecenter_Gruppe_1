@@ -3,3 +3,10 @@
 /LoginDialog.class
 /SaleMenu.class
 /LeveringsVindue.class
+/AddProcductDialogWindow.class
+/AddProductsWindow.class
+/AddProductsWindow$1.class
+/ProductWindow.class
+/PaymentTransaction.class
+/PaymentTransactionError.class
+/AddCustomerToSaleDialog.class
