@@ -14,7 +14,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import gui.PaymentTransactionError;
 
 public class PaymentTransaction extends JDialog {
 
