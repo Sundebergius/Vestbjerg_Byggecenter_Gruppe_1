@@ -1,18 +1,23 @@
 /MainMenuWindow$1.class
 /MainMenuWindow.class
 /LoginDialog.class
+/AddCustomerToSaleDialog.class
+/PaymentTransaction.class
+/PaymentTransactionError.class
+/AddCustomerToSaleDialog$1.class
 /SaleMenu.class
 /LeveringsVindue.class
 /AddProcductDialogWindow.class
 /AddProductsWindow.class
 /AddProductsWindow$1.class
 /ProductWindow.class
-/PaymentTransaction.class
-/PaymentTransactionError.class
-<<<<<<< HEAD
 /PaymentTransaction$1.class
+<<<<<<< HEAD
 /PaymentTransaction$2.class
 =======
 /AddCustomerToSaleDialog.class
 >>>>>>> branch 'gui-branch' of https://github.com/Sundebergius/Vestbjerg_Byggecenter_Gruppe_1.git
 /RefundWindow.class
+=======
+/PaymentTransaction$2.class
+>>>>>>> branch 'gui-branch' of https://github.com/Sundebergius/Vestbjerg_Byggecenter_Gruppe_1.git
