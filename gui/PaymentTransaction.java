@@ -44,7 +44,7 @@ public class PaymentTransaction extends JDialog {
 	
 	public boolean checkValidTransaction()
 	{
-		//subtotal = SaleLineItem.calculateLinePrice();
+		//subtotal = saleLineItem.calculateLinePrice();
 		subtotal = 100; 
 		indbetalt = Double.parseDouble(textFieldIndbetalt.getText());
 		validTransaction = false;

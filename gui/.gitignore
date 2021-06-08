@@ -1,7 +1,17 @@
 /MainMenuWindow$1.class
 /MainMenuWindow.class
 /LoginDialog.class
+/SaleMenu.class
+/LeveringsVindue.class
+/AddProcductDialogWindow.class
+/AddProductsWindow.class
+/AddProductsWindow$1.class
+/ProductWindow.class
 /PaymentTransaction.class
 /PaymentTransactionError.class
+<<<<<<< HEAD
 /PaymentTransaction$1.class
 /PaymentTransaction$2.class
+=======
+/AddCustomerToSaleDialog.class
+>>>>>>> branch 'gui-branch' of https://github.com/Sundebergius/Vestbjerg_Byggecenter_Gruppe_1.git
