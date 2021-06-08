@@ -12,14 +12,16 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AddCustomerToSaleDialog extends JDialog {
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField;
+	private JTextField customerNameField;
+	private JTextField customerAddressField;
+	private JTextField customerZipcodeField;
+	private JTextField customerCityField;
+	private JTextField customerPhoneNoField;
+	private JTextField customerIDInputField;
 
 	/**
 	 * Launch the application.
@@ -47,13 +49,18 @@ public class AddCustomerToSaleDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Tilføj Kunde");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton addCustomerButton = new JButton("Tilføj Kunde");
+				addCustomerButton.setActionCommand("OK");
+				buttonPane.add(addCustomerButton);
+				getRootPane().setDefaultButton(addCustomerButton);
 			}
 			{
 				JButton cancelButton = new JButton("Annuller");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -77,15 +84,15 @@ public class AddCustomerToSaleDialog extends JDialog {
 				InfoPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
 			}
 			{
-				textField_1 = new JTextField();
-				textField_1.setEditable(false);
-				GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-				gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-				gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-				gbc_textField_1.gridx = 2;
-				gbc_textField_1.gridy = 1;
-				InfoPane.add(textField_1, gbc_textField_1);
-				textField_1.setColumns(10);
+				customerNameField = new JTextField();
+				customerNameField.setEditable(false);
+				GridBagConstraints gbc_customerNameField = new GridBagConstraints();
+				gbc_customerNameField.insets = new Insets(0, 0, 5, 5);
+				gbc_customerNameField.fill = GridBagConstraints.HORIZONTAL;
+				gbc_customerNameField.gridx = 2;
+				gbc_customerNameField.gridy = 1;
+				InfoPane.add(customerNameField, gbc_customerNameField);
+				customerNameField.setColumns(10);
 			}
 			{
 				JLabel lblNewLabel_2 = new JLabel("Adresse");
@@ -97,15 +104,15 @@ public class AddCustomerToSaleDialog extends JDialog {
 				InfoPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 			}
 			{
-				textField_2 = new JTextField();
-				textField_2.setEditable(false);
-				textField_2.setColumns(10);
-				GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-				gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-				gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-				gbc_textField_2.gridx = 2;
-				gbc_textField_2.gridy = 2;
-				InfoPane.add(textField_2, gbc_textField_2);
+				customerAddressField = new JTextField();
+				customerAddressField.setEditable(false);
+				customerAddressField.setColumns(10);
+				GridBagConstraints gbc_customerAddressField = new GridBagConstraints();
+				gbc_customerAddressField.insets = new Insets(0, 0, 5, 5);
+				gbc_customerAddressField.fill = GridBagConstraints.HORIZONTAL;
+				gbc_customerAddressField.gridx = 2;
+				gbc_customerAddressField.gridy = 2;
+				InfoPane.add(customerAddressField, gbc_customerAddressField);
 			}
 			{
 				JLabel lblNewLabel_2 = new JLabel("Postnummer");
@@ -117,15 +124,15 @@ public class AddCustomerToSaleDialog extends JDialog {
 				InfoPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 			}
 			{
-				textField_3 = new JTextField();
-				textField_3.setEditable(false);
-				textField_3.setColumns(10);
-				GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-				gbc_textField_3.insets = new Insets(0, 0, 5, 5);
-				gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-				gbc_textField_3.gridx = 2;
-				gbc_textField_3.gridy = 3;
-				InfoPane.add(textField_3, gbc_textField_3);
+				customerZipcodeField = new JTextField();
+				customerZipcodeField.setEditable(false);
+				customerZipcodeField.setColumns(10);
+				GridBagConstraints gbc_customerZipcodeField = new GridBagConstraints();
+				gbc_customerZipcodeField.insets = new Insets(0, 0, 5, 5);
+				gbc_customerZipcodeField.fill = GridBagConstraints.HORIZONTAL;
+				gbc_customerZipcodeField.gridx = 2;
+				gbc_customerZipcodeField.gridy = 3;
+				InfoPane.add(customerZipcodeField, gbc_customerZipcodeField);
 			}
 			{
 				JLabel lblNewLabel_2 = new JLabel("By");
@@ -137,15 +144,15 @@ public class AddCustomerToSaleDialog extends JDialog {
 				InfoPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 			}
 			{
-				textField_4 = new JTextField();
-				textField_4.setEditable(false);
-				textField_4.setColumns(10);
-				GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-				gbc_textField_4.insets = new Insets(0, 0, 5, 5);
-				gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
-				gbc_textField_4.gridx = 2;
-				gbc_textField_4.gridy = 4;
-				InfoPane.add(textField_4, gbc_textField_4);
+				customerCityField = new JTextField();
+				customerCityField.setEditable(false);
+				customerCityField.setColumns(10);
+				GridBagConstraints gbc_customerCityField = new GridBagConstraints();
+				gbc_customerCityField.insets = new Insets(0, 0, 5, 5);
+				gbc_customerCityField.fill = GridBagConstraints.HORIZONTAL;
+				gbc_customerCityField.gridx = 2;
+				gbc_customerCityField.gridy = 4;
+				InfoPane.add(customerCityField, gbc_customerCityField);
 			}
 			{
 				JLabel lblNewLabel_2 = new JLabel("Telefon Nummer");
@@ -157,20 +164,20 @@ public class AddCustomerToSaleDialog extends JDialog {
 				InfoPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 			}
 			{
-				textField_5 = new JTextField();
-				textField_5.setEditable(false);
-				textField_5.setColumns(10);
-				GridBagConstraints gbc_textField_5 = new GridBagConstraints();
-				gbc_textField_5.insets = new Insets(0, 0, 0, 5);
-				gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
-				gbc_textField_5.gridx = 2;
-				gbc_textField_5.gridy = 5;
-				InfoPane.add(textField_5, gbc_textField_5);
+				customerPhoneNoField = new JTextField();
+				customerPhoneNoField.setEditable(false);
+				customerPhoneNoField.setColumns(10);
+				GridBagConstraints gbc_customerPhoneNoField = new GridBagConstraints();
+				gbc_customerPhoneNoField.insets = new Insets(0, 0, 0, 5);
+				gbc_customerPhoneNoField.fill = GridBagConstraints.HORIZONTAL;
+				gbc_customerPhoneNoField.gridx = 2;
+				gbc_customerPhoneNoField.gridy = 5;
+				InfoPane.add(customerPhoneNoField, gbc_customerPhoneNoField);
 			}
 		}
 		{
 			JPanel contentPanel = new JPanel();
-			contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+			contentPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 			getContentPane().add(contentPanel, BorderLayout.NORTH);
 			GridBagLayout gbl_contentPanel = new GridBagLayout();
 			gbl_contentPanel.columnWidths = new int[]{30, 90, 0, 0, 30, 0};
@@ -188,22 +195,22 @@ public class AddCustomerToSaleDialog extends JDialog {
 				contentPanel.add(lblNewLabel, gbc_lblNewLabel);
 			}
 			{
-				textField = new JTextField();
-				textField.setColumns(10);
-				GridBagConstraints gbc_textField = new GridBagConstraints();
-				gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-				gbc_textField.insets = new Insets(0, 0, 0, 5);
-				gbc_textField.gridx = 2;
-				gbc_textField.gridy = 1;
-				contentPanel.add(textField, gbc_textField);
+				customerIDInputField = new JTextField();
+				customerIDInputField.setColumns(10);
+				GridBagConstraints gbc_customerIDInputField = new GridBagConstraints();
+				gbc_customerIDInputField.fill = GridBagConstraints.HORIZONTAL;
+				gbc_customerIDInputField.insets = new Insets(0, 0, 0, 5);
+				gbc_customerIDInputField.gridx = 2;
+				gbc_customerIDInputField.gridy = 1;
+				contentPanel.add(customerIDInputField, gbc_customerIDInputField);
 			}
 			{
-				JButton btnNewButton = new JButton("Søg");
-				GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-				gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-				gbc_btnNewButton.gridx = 3;
-				gbc_btnNewButton.gridy = 1;
-				contentPanel.add(btnNewButton, gbc_btnNewButton);
+				JButton searchButton = new JButton("Søg");
+				GridBagConstraints gbc_searchButton = new GridBagConstraints();
+				gbc_searchButton.insets = new Insets(0, 0, 0, 5);
+				gbc_searchButton.gridx = 3;
+				gbc_searchButton.gridy = 1;
+				contentPanel.add(searchButton, gbc_searchButton);
 			}
 		}
 	}
