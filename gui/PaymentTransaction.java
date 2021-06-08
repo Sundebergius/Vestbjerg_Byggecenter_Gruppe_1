@@ -14,6 +14,10 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import model.SaleLineItem;
 
 public class PaymentTransaction extends JDialog {
 
@@ -23,6 +27,7 @@ public class PaymentTransaction extends JDialog {
 	private boolean validTransaction;
 	private double subtotal;
 	private double indbetalt;
+	private JLabel lblOutput;
 
 	/**
 	 * Launch the application.
@@ -39,21 +44,31 @@ public class PaymentTransaction extends JDialog {
 	
 	public boolean checkValidTransaction()
 	{
+		//subtotal = saleLineItem.calculateLinePrice();
+		subtotal = 100; 
+		indbetalt = Double.parseDouble(textFieldIndbetalt.getText());
 		validTransaction = false;
-		if(subtotal >= indbetalt)
+		if(indbetalt >= subtotal)
 		{
 			validTransaction = true;
 		}
-		else
+		else lblOutput.setText("Der skal tilføjes " + remainingTransaction() + " DKK til købet. ");
 		{
 			
 		}
 		return validTransaction;
 	}
 	
-	public void transaction()
+	public double remainingTransaction()
 	{
-		checkValidTransaction();
+		this.subtotal = subtotal - indbetalt;
+		return this.subtotal;
+	}
+	
+	public double customerRefund()
+	{
+		this.indbetalt = indbetalt - subtotal;
+		return this.indbetalt;
 	}
 
 	/**
@@ -114,7 +129,7 @@ public class PaymentTransaction extends JDialog {
 				textFieldIndbetalt.setColumns(10);
 			}
 			{
-				JLabel lblOutput = new JLabel("Skriv den indbetalte sum foroven");
+				lblOutput = new JLabel("Skriv den indbetalte sum foroven");
 				GridBagConstraints gbc_lblOutput = new GridBagConstraints();
 				gbc_lblOutput.insets = new Insets(0, 0, 0, 5);
 				gbc_lblOutput.gridx = 3;
@@ -128,12 +143,26 @@ public class PaymentTransaction extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton payButton = new JButton("Indbetal");
+				payButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						checkValidTransaction();
+						if(checkValidTransaction() == true)
+						{
+							lblOutput.setText("Betalingen er gennemført. Kunden skal havde " + customerRefund() + " DKK tilbage. ");
+						}
+					}
+				});
 				payButton.setActionCommand("OK");
 				buttonPane.add(payButton);
 				getRootPane().setDefaultButton(payButton);
 			}
 			{
 				JButton cancelButton = new JButton("Annuller");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
