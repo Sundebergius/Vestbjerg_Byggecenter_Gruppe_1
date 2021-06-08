@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
@@ -20,21 +21,31 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+
+import control.SaleController;
+import model.SaleLineItem;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
 public class CreateSaleFrame extends JFrame {
 
 	private JPanel contentPane;
+	private SaleController saleController;
+	private JList<SaleLineItem> productList;
+	private DefaultListModel<SaleLineItem> listRepresentation;
+	
+	private JTextField customerIDField;
+	private JTextField customerNameField;
+	private JTextField subtotalField;
+	private JTextField recieverField;
+	private JTextField deliveryAddressField;
+	private JTextField deliveryCityField;
+	private JTextField deliveryZipCodeField;	
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_2;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JList productList;
 
 	/**
 	 * Launch the application.
@@ -56,6 +67,59 @@ public class CreateSaleFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public CreateSaleFrame() {
+		createGUI();
+		saleController = new SaleController();
+		
+	}
+	
+	private void addProductButton() {
+		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog();
+		productToSaleDialog.setVisible(true);
+	
+	}
+	
+	private void addCustomerButton() {
+		AddCustomerToSaleDialog customerToSaleDialog = new AddCustomerToSaleDialog();
+		customerToSaleDialog.setVisible(true);
+	
+	}
+	
+	private void addDeliveryButton() {
+		AddDeliveryToSaleDialog deliveryToSaleDialog = new AddDeliveryToSaleDialog();
+		deliveryToSaleDialog.setVisible(true);
+		
+	}
+	
+	private void payButton() {
+		PaySaleDialog paySaleDialog = new PaySaleDialog();
+		paySaleDialog.setVisible(true);
+		
+	}
+	
+	private void cancelButton() {
+		//ask for confirmation
+		dispose();		
+	}
+	
+	private void removeProductButton() {
+		System.out.println("Not implemented yet");
+	
+	}
+	
+	private void updateProductList() {
+		listRepresentation = new DefaultListModel<SaleLineItem>();
+		ArrayList<SaleLineItem> saleLineItemList = new ArrayList<>();
+		saleLineItemList.addAll(Arrays.asList(saleController.getCurrentSale().getSaleLineItems()));
+		
+		for (SaleLineItem saleLineItem : saleLineItemList) {
+			listRepresentation.addElement(saleLineItem);
+		}
+		productList.setModel(listRepresentation);
+	}
+	
+	
+	
+	private void createGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 941, 1083);
 		contentPane = new JPanel();
@@ -68,9 +132,19 @@ public class CreateSaleFrame extends JFrame {
 		saleConfirmationPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
 		
 		JButton startPaymentButton = new JButton("Betal");
+		startPaymentButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				payButton();
+			}
+		});
 		saleConfirmationPanel.add(startPaymentButton);
 		
 		JButton cancelButton = new JButton("Annuller salg");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cancelButton();
+			}
+		});
 		saleConfirmationPanel.add(cancelButton);
 		
 		JPanel contentPanels = new JPanel();
@@ -101,13 +175,21 @@ public class CreateSaleFrame extends JFrame {
 		fl_productContentPanel.setAlignment(FlowLayout.RIGHT);
 		productControlPanel.add(productContentPanel, BorderLayout.NORTH);
 		
+		JLabel lblNewLabel_7 = new JLabel("Moms");
+		productContentPanel.add(lblNewLabel_7);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		productContentPanel.add(textField);
+		textField.setColumns(10);
+		
 		JLabel lblNewLabel_4 = new JLabel("Subtotal");
 		productContentPanel.add(lblNewLabel_4);
 		
-		textField_3 = new JTextField();
-		textField_3.setEditable(false);
-		productContentPanel.add(textField_3);
-		textField_3.setColumns(10);
+		subtotalField = new JTextField();
+		subtotalField.setEditable(false);
+		productContentPanel.add(subtotalField);
+		subtotalField.setColumns(10);
 		
 		JPanel productButtonPanel = new JPanel();
 		FlowLayout fl_productButtonPanel = (FlowLayout) productButtonPanel.getLayout();
@@ -115,6 +197,11 @@ public class CreateSaleFrame extends JFrame {
 		productControlPanel.add(productButtonPanel, BorderLayout.SOUTH);
 		
 		JButton removeProductButton = new JButton("Fjern varer");
+		removeProductButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removeProductButton();
+			}
+		});
 		productButtonPanel.add(removeProductButton);
 		
 		JButton addProductButton = new JButton("Tilføj varer");
@@ -147,6 +234,11 @@ public class CreateSaleFrame extends JFrame {
 		customerPanel.add(customerButtonPanel, BorderLayout.SOUTH);
 		
 		JButton addCustomerButton = new JButton("Tilføj kunde");
+		addCustomerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addCustomerButton();
+			}
+		});
 		customerButtonPanel.add(addCustomerButton);
 		
 		JPanel customerContentPanel = new JPanel();
@@ -157,18 +249,18 @@ public class CreateSaleFrame extends JFrame {
 		JLabel lblNewLabel = new JLabel("Kunde ID");
 		customerContentPanel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		customerContentPanel.add(textField);
-		textField.setColumns(10);
+		customerIDField = new JTextField();
+		customerIDField.setEditable(false);
+		customerContentPanel.add(customerIDField);
+		customerIDField.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Navn");
 		customerContentPanel.add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		customerContentPanel.add(textField_1);
-		textField_1.setColumns(10);
+		customerNameField = new JTextField();
+		customerNameField.setEditable(false);
+		customerContentPanel.add(customerNameField);
+		customerNameField.setColumns(10);
 		
 		JPanel deliveryPanel = new JPanel();
 		deliveryPanel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Levering", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -185,6 +277,11 @@ public class CreateSaleFrame extends JFrame {
 		deliveryPanel.add(deliveryButtonPanel, BorderLayout.SOUTH);
 		
 		JButton addDeliveryButton = new JButton("Tilføj levering");
+		addDeliveryButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addDeliveryButton();
+			}
+		});
 		deliveryButtonPanel.add(addDeliveryButton);
 		
 		JPanel deliveryContentPanel = new JPanel();
@@ -204,16 +301,16 @@ public class CreateSaleFrame extends JFrame {
 		gbc_lblNewLabel_2.gridy = 0;
 		deliveryContentPanel.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.gridwidth = 5;
-		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 1;
-		gbc_textField_2.gridy = 0;
-		deliveryContentPanel.add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
+		recieverField = new JTextField();
+		recieverField.setEditable(false);
+		GridBagConstraints gbc_recieverField = new GridBagConstraints();
+		gbc_recieverField.gridwidth = 5;
+		gbc_recieverField.insets = new Insets(0, 0, 5, 0);
+		gbc_recieverField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_recieverField.gridx = 1;
+		gbc_recieverField.gridy = 0;
+		deliveryContentPanel.add(recieverField, gbc_recieverField);
+		recieverField.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Adresse");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
@@ -223,15 +320,15 @@ public class CreateSaleFrame extends JFrame {
 		gbc_lblNewLabel_3.gridy = 1;
 		deliveryContentPanel.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		textField_4 = new JTextField();
-		textField_4.setEditable(false);
-		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-		gbc_textField_4.insets = new Insets(0, 0, 0, 5);
-		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_4.gridx = 1;
-		gbc_textField_4.gridy = 1;
-		deliveryContentPanel.add(textField_4, gbc_textField_4);
-		textField_4.setColumns(10);
+		deliveryAddressField = new JTextField();
+		deliveryAddressField.setEditable(false);
+		GridBagConstraints gbc_deliveryAddressField = new GridBagConstraints();
+		gbc_deliveryAddressField.insets = new Insets(0, 0, 0, 5);
+		gbc_deliveryAddressField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_deliveryAddressField.gridx = 1;
+		gbc_deliveryAddressField.gridy = 1;
+		deliveryContentPanel.add(deliveryAddressField, gbc_deliveryAddressField);
+		deliveryAddressField.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("By");
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
@@ -241,15 +338,15 @@ public class CreateSaleFrame extends JFrame {
 		gbc_lblNewLabel_6.gridy = 1;
 		deliveryContentPanel.add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
-		textField_5 = new JTextField();
-		textField_5.setEditable(false);
-		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
-		gbc_textField_5.insets = new Insets(0, 0, 0, 5);
-		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_5.gridx = 3;
-		gbc_textField_5.gridy = 1;
-		deliveryContentPanel.add(textField_5, gbc_textField_5);
-		textField_5.setColumns(10);
+		deliveryCityField = new JTextField();
+		deliveryCityField.setEditable(false);
+		GridBagConstraints gbc_deliveryCityField = new GridBagConstraints();
+		gbc_deliveryCityField.insets = new Insets(0, 0, 0, 5);
+		gbc_deliveryCityField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_deliveryCityField.gridx = 3;
+		gbc_deliveryCityField.gridy = 1;
+		deliveryContentPanel.add(deliveryCityField, gbc_deliveryCityField);
+		deliveryCityField.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Postnummer");
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
@@ -259,18 +356,14 @@ public class CreateSaleFrame extends JFrame {
 		gbc_lblNewLabel_5.gridy = 1;
 		deliveryContentPanel.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
-		textField_6 = new JTextField();
-		textField_6.setEditable(false);
-		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
-		gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_6.gridx = 5;
-		gbc_textField_6.gridy = 1;
-		deliveryContentPanel.add(textField_6, gbc_textField_6);
-		textField_6.setColumns(10);
-	}
-	
-	private void addProductButton() {
-		
+		deliveryZipCodeField = new JTextField();
+		deliveryZipCodeField.setEditable(false);
+		GridBagConstraints gbc_deliveryZipCodeField = new GridBagConstraints();
+		gbc_deliveryZipCodeField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_deliveryZipCodeField.gridx = 5;
+		gbc_deliveryZipCodeField.gridy = 1;
+		deliveryContentPanel.add(deliveryZipCodeField, gbc_deliveryZipCodeField);
+		deliveryZipCodeField.setColumns(10);
 	
 	}
 	
