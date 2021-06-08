@@ -18,7 +18,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
-public class LeveringsVindue extends JDialog {
+public class AddDeliveryToSaleDialog extends JDialog {
 	private final JButton btnNewButton = new JButton("Luk");
 	private JTextField textField;
 	private JTextField textField_1;
@@ -30,7 +30,7 @@ public class LeveringsVindue extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			LeveringsVindue dialog = new LeveringsVindue();
+			AddDeliveryToSaleDialog dialog = new AddDeliveryToSaleDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -41,7 +41,7 @@ public class LeveringsVindue extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public LeveringsVindue() {
+	public AddDeliveryToSaleDialog() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);
 		

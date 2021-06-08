@@ -21,6 +21,8 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CreateSaleFrame extends JFrame {
 
@@ -32,6 +34,7 @@ public class CreateSaleFrame extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	private JList productList;
 
 	/**
 	 * Launch the application.
@@ -115,12 +118,17 @@ public class CreateSaleFrame extends JFrame {
 		productButtonPanel.add(removeProductButton);
 		
 		JButton addProductButton = new JButton("Tilføj varer");
+		addProductButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addProductButton();
+			}
+		});
 		productButtonPanel.add(addProductButton);
 		
 		JScrollPane productListPanel = new JScrollPane();
 		productPanel.add(productListPanel, BorderLayout.CENTER);
 		
-		JList productList = new JList();
+		productList = new JList();
 		productListPanel.setViewportView(productList);
 		
 		JPanel customerPanel = new JPanel();
@@ -260,5 +268,11 @@ public class CreateSaleFrame extends JFrame {
 		deliveryContentPanel.add(textField_6, gbc_textField_6);
 		textField_6.setColumns(10);
 	}
+	
+	private void addProductButton() {
+		
+	
+	}
+	
 
 }

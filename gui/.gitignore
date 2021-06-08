@@ -23,3 +23,12 @@
 >>>>>>> branch 'gui-branch' of https://github.com/Sundebergius/Vestbjerg_Byggecenter_Gruppe_1.git
 /CreateSaleFrame$1.class
 /CreateSaleFrame.class
+/CreateSaleFrame$2.class
+/AddProductToSaleDialog.class
+/AddDeliveryToSaleDialog.class
+/MainMenuFrame$1.class
+/MainMenuFrame.class
+/PaySaleDialog$1.class
+/PaySaleDialog$2.class
+/PaySaleDialog.class
+/RefundPaymentDialog.class
