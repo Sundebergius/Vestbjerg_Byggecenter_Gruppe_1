@@ -15,11 +15,13 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
+	private JTextField employeeIDField;
 	private JPasswordField passwordField;
 
 	/**
@@ -34,6 +36,17 @@ public class LoginDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
+	
+	public String getEmployeeName()
+	{
+		String employeeName = employeeIDField.getText();
+		return employeeName;
+	}
+	
+	private void loginButton()
+	{
+		
+	}
 
 	/**
 	 * Create the dialog.
@@ -47,44 +60,44 @@ public class LoginDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("Medarbejder Login");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPanel.add(lblNewLabel, BorderLayout.NORTH);
+		JLabel headlineLabel = new JLabel("Medarbejder Login");
+		headlineLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		headlineLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		contentPanel.add(headlineLabel, BorderLayout.NORTH);
 		
-		JPanel panel = new JPanel();
-		contentPanel.add(panel, BorderLayout.CENTER);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{20, 0, 0, 20, 0};
-		gbl_panel.rowHeights = new int[]{20, 0, 20, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
+		JPanel bodyPanel = new JPanel();
+		contentPanel.add(bodyPanel, BorderLayout.CENTER);
+		GridBagLayout gbl_bodyPanel = new GridBagLayout();
+		gbl_bodyPanel.columnWidths = new int[]{20, 0, 0, 20, 0};
+		gbl_bodyPanel.rowHeights = new int[]{20, 0, 20, 0, 0, 0};
+		gbl_bodyPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_bodyPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		bodyPanel.setLayout(gbl_bodyPanel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Medarbejder ID:");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 1;
-		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		JLabel employeeIDLabel = new JLabel("Medarbejder ID:");
+		GridBagConstraints gbc_employeeIDLabel = new GridBagConstraints();
+		gbc_employeeIDLabel.anchor = GridBagConstraints.EAST;
+		gbc_employeeIDLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeIDLabel.gridx = 1;
+		gbc_employeeIDLabel.gridy = 1;
+		bodyPanel.add(employeeIDLabel, gbc_employeeIDLabel);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 1;
-		panel.add(textField, gbc_textField);
+		employeeIDField = new JTextField();
+		employeeIDField.setColumns(10);
+		GridBagConstraints gbc_employeeIDField = new GridBagConstraints();
+		gbc_employeeIDField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_employeeIDField.insets = new Insets(0, 0, 5, 5);
+		gbc_employeeIDField.gridx = 2;
+		gbc_employeeIDField.gridy = 1;
+		bodyPanel.add(employeeIDField, gbc_employeeIDField);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Kodeord:");
-		GridBagConstraints gbc_lblNewLabel_1_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1_1.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_1_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1_1.gridx = 1;
-		gbc_lblNewLabel_1_1.gridy = 3;
-		panel.add(lblNewLabel_1_1, gbc_lblNewLabel_1_1);
+		JLabel passwordLabel = new JLabel("Kodeord:");
+		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
+		gbc_passwordLabel.anchor = GridBagConstraints.EAST;
+		gbc_passwordLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordLabel.gridx = 1;
+		gbc_passwordLabel.gridy = 3;
+		bodyPanel.add(passwordLabel, gbc_passwordLabel);
 		
 		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -92,7 +105,7 @@ public class LoginDialog extends JDialog {
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
 		gbc_passwordField.gridx = 2;
 		gbc_passwordField.gridy = 3;
-		panel.add(passwordField, gbc_passwordField);
+		bodyPanel.add(passwordField, gbc_passwordField);
 		
 		JPanel panel_1 = new JPanel();
 		contentPanel.add(panel_1, BorderLayout.SOUTH);
@@ -103,19 +116,24 @@ public class LoginDialog extends JDialog {
 		gbl_panel_1.rowWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
-		JPanel panel_2 = new JPanel();
-		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.fill = GridBagConstraints.BOTH;
-		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 0;
-		panel_1.add(panel_2, gbc_panel_2);
+		JPanel buttonPanel = new JPanel();
+		GridBagConstraints gbc_buttonPanel = new GridBagConstraints();
+		gbc_buttonPanel.fill = GridBagConstraints.BOTH;
+		gbc_buttonPanel.insets = new Insets(0, 0, 5, 0);
+		gbc_buttonPanel.gridx = 0;
+		gbc_buttonPanel.gridy = 0;
+		panel_1.add(buttonPanel, gbc_buttonPanel);
 		
 		JButton btnNewButton = new JButton("Login");
-		panel_2.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		buttonPanel.add(btnNewButton);
 		
 		JButton btnCacel = new JButton("Cancel");
-		panel_2.add(btnCacel);
+		buttonPanel.add(btnCacel);
 	}
 
 }
