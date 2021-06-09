@@ -92,7 +92,7 @@ public class CreateSaleFrame extends JFrame {
 	}
 	
 	private void payButton() {
-		PaySaleDialog paySaleDialog = new PaySaleDialog();
+		PaySaleDialog paySaleDialog = new PaySaleDialog(saleController);
 		paySaleDialog.setVisible(true);
 		
 	}

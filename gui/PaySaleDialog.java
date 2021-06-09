@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import control.*;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -28,64 +29,65 @@ public class PaySaleDialog extends JDialog {
 	private double subtotal;
 	private double indbetalt;
 	private JLabel lblOutput;
+	
+	private SaleController saleController;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			PaySaleDialog dialog = new PaySaleDialog();
+			PaySaleDialog dialog = new PaySaleDialog(new SaleController());
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public boolean checkValidTransaction()
-	{
-		//subtotal = saleLineItem.calculateLinePrice();
-		subtotal = 100; 
+
+	public PaySaleDialog(SaleController saleController) {
+		this.saleController = saleController;
+		createGUI();
+	}
+
+	private boolean checkValidTransaction() {
+		subtotal = getSubtotal();
 		indbetalt = Double.parseDouble(textFieldIndbetalt.getText());
 		validTransaction = false;
-		if(indbetalt > subtotal)
-		{
+		if (indbetalt > subtotal) {
 			validTransaction = true;
-			lblOutput.setText("Betalingen er gennemfï¿½rt. Kunden skal havde " + customerRefund() + " DKK tilbage. ");
-		}
-		else if(indbetalt == subtotal)
-		{
+			lblOutput.setText("Betalingen er gennemført. Kunden skal havde " + customerRefund() + " DKK tilbage. ");
+		} else if (indbetalt == subtotal) {
 			validTransaction = true;
 			lblOutput.setText("Betalingen er gennemført. ");
-		}
-		else if(indbetalt < subtotal) 
-		{
-			lblOutput.setText("Betalingen er ikke gennemført. Der skal tilfï¿½jes " + remainingTransaction() + " DKK til kï¿½bet. ");
+		} else if (indbetalt < subtotal) {
+			lblOutput.setText(
+					"Betalingen er ikke gennemført. Der skal tilføjes " + remainingTransaction() + " DKK til købet. ");
 		}
 		return validTransaction;
 	}
-	
-	public double remainingTransaction()
-	{
+
+	private double remainingTransaction() {
 		this.subtotal = subtotal - indbetalt;
 		return this.subtotal;
 	}
-	
-	public double customerRefund()
-	{
+
+	private double customerRefund() {
 		this.indbetalt = indbetalt - subtotal;
 		return this.indbetalt;
 	}
-	
-	public void getSubtotal()
-	{
-		
-	}
 
-	/**
-	 * Create the dialog.
-	 */
-	public PaySaleDialog() {
+	private double getSubtotal() {
+		double totalPrice;
+		totalPrice = saleController.getCurrentSale().calculateTotalPrice();
+		//totalPrice = Double.parseDouble(textFieldSubtotal.setText(totalPrice));
+		String subtotalPrice = String.valueOf(totalPrice);
+		textFieldSubtotal.setText(subtotalPrice);
+		return totalPrice;
+	}
+	
+	private void createGUI() {
+
 		setTitle("Betalings vindue");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -96,10 +98,10 @@ public class PaySaleDialog extends JDialog {
 			JPanel panel = new JPanel();
 			contentPanel.add(panel, BorderLayout.CENTER);
 			GridBagLayout gbl_panel = new GridBagLayout();
-			gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-			gbl_panel.rowHeights = new int[]{0, 0, 20, 0, 20, 0, 0, 0};
-			gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panel.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
+			gbl_panel.rowHeights = new int[] { 0, 0, 20, 0, 20, 0, 0, 0 };
+			gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+			gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 			panel.setLayout(gbl_panel);
 			{
 				JLabel lblSubtotal = new JLabel("Subtotal");
@@ -174,6 +176,11 @@ public class PaySaleDialog extends JDialog {
 				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+
+				/**
+				 * Create the dialog.
+				 */
+
 			}
 		}
 	}
