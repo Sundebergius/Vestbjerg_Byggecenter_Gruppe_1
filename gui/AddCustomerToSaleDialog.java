@@ -25,6 +25,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 	
 	private SaleController saleController;
 	private PersonController personController;
+	private Customer foundCustomer;
 	
 	private JTextField customerNameField;
 	private JTextField customerAddressField;
@@ -39,6 +40,8 @@ public class AddCustomerToSaleDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			new TryMe();
+			
 			AddCustomerToSaleDialog dialog = new AddCustomerToSaleDialog(new SaleController());
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -58,7 +61,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 	
 	private void searchButton() {
 		String customerID = customerIDInputField.getText();
-		Customer foundCustomer = personController.findCustomerByCustomerID(customerID);
+		foundCustomer = personController.findCustomerByCustomerID(customerID);
 		if(foundCustomer != null) {
 			errorInfoLabel.setText("");
 			customerNameField.setText(foundCustomer.getName());
@@ -74,6 +77,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 	
 	private void addCustomerButton() {
 		
+		saleController.addCustomerToSale(foundCustomer.getCustomerID());
 	}
 	
 	private void cancelButton() {
