@@ -37,7 +37,6 @@ public class CreateSaleFrame extends JFrame {
 
 	private JPanel contentPane;
 	private SaleController saleController;
-	private ProductController productController;
 	private JList<SaleLineItem> productList;
 	private DefaultListModel<SaleLineItem> listRepresentation;
 	
@@ -58,6 +57,7 @@ public class CreateSaleFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					new TryMe();
 					CreateSaleFrame frame = new CreateSaleFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {

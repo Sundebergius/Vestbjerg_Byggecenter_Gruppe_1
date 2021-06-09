@@ -38,6 +38,7 @@ public class AddProductToSaleDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			new TryMe();
 			AddProductToSaleDialog dialog = new AddProductToSaleDialog(new SaleController());
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -138,7 +139,7 @@ public class AddProductToSaleDialog extends JDialog {
 			quantityField.setColumns(10);
 		}
 		{
-			JTextArea textArea = new JTextArea();
+			textArea = new JTextArea();
 			GridBagConstraints gbc_textArea = new GridBagConstraints();
 			gbc_textArea.insets = new Insets(0, 0, 0, 5);
 			gbc_textArea.fill = GridBagConstraints.BOTH;
