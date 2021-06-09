@@ -48,13 +48,19 @@ public class PaySaleDialog extends JDialog {
 		subtotal = 100; 
 		indbetalt = Double.parseDouble(textFieldIndbetalt.getText());
 		validTransaction = false;
-		if(indbetalt >= subtotal)
+		if(indbetalt > subtotal)
 		{
 			validTransaction = true;
+			lblOutput.setText("Betalingen er gennemfï¿½rt. Kunden skal havde " + customerRefund() + " DKK tilbage. ");
 		}
-		else lblOutput.setText("Der skal tilfï¿½jes " + remainingTransaction() + " DKK til kï¿½bet. ");
+		else if(indbetalt == subtotal)
 		{
-			
+			validTransaction = true;
+			lblOutput.setText("Betalingen er gennemført. ");
+		}
+		else if(indbetalt < subtotal) 
+		{
+			lblOutput.setText("Betalingen er ikke gennemført. Der skal tilfï¿½jes " + remainingTransaction() + " DKK til kï¿½bet. ");
 		}
 		return validTransaction;
 	}
@@ -101,6 +107,7 @@ public class PaySaleDialog extends JDialog {
 			}
 			{
 				textFieldSubtotal = new JTextField();
+				textFieldSubtotal.setEditable(false);
 				textFieldSubtotal.setHorizontalAlignment(SwingConstants.CENTER);
 				GridBagConstraints gbc_textFieldSubtotal = new GridBagConstraints();
 				gbc_textFieldSubtotal.insets = new Insets(0, 0, 5, 5);
@@ -131,8 +138,9 @@ public class PaySaleDialog extends JDialog {
 			{
 				lblOutput = new JLabel("Skriv den indbetalte sum foroven");
 				GridBagConstraints gbc_lblOutput = new GridBagConstraints();
+				gbc_lblOutput.gridwidth = 4;
 				gbc_lblOutput.insets = new Insets(0, 0, 0, 5);
-				gbc_lblOutput.gridx = 3;
+				gbc_lblOutput.gridx = 0;
 				gbc_lblOutput.gridy = 6;
 				panel.add(lblOutput, gbc_lblOutput);
 			}
@@ -146,10 +154,6 @@ public class PaySaleDialog extends JDialog {
 				payButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						checkValidTransaction();
-						if(checkValidTransaction() == true)
-						{
-							lblOutput.setText("Betalingen er gennemfï¿½rt. Kunden skal havde " + customerRefund() + " DKK tilbage. ");
-						}
 					}
 				});
 				payButton.setActionCommand("OK");
