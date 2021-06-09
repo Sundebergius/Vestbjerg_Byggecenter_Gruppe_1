@@ -86,7 +86,7 @@ public class CreateSaleFrame extends JFrame {
 	}
 	
 	private void addDeliveryButton() {
-		AddDeliveryToSaleDialog deliveryToSaleDialog = new AddDeliveryToSaleDialog();
+		AddDeliveryToSaleDialog deliveryToSaleDialog = new AddDeliveryToSaleDialog(saleController);
 		deliveryToSaleDialog.setVisible(true);
 		
 	}
