@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import control.SaleController;
+import control.PersonController;
+import model.Person;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -83,7 +85,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		private void addDeliveryAddress()
 		{
 			saleController.addDeliveryAddressToSale(address);
-		}	
+		}
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);

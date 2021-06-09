@@ -24,6 +24,7 @@ import javax.swing.border.TitledBorder;
 
 import control.SaleController;
 import model.Employee;
+import model.Customer;
 import model.SaleLineItem;
 
 import javax.swing.border.EtchedBorder;
@@ -92,8 +93,7 @@ public class CreateSaleFrame extends JFrame {
 		deliveryToSaleDialog.setVisible(true);
 		
 		String deliveryAddress = saleController.getCurrentSale().getDeliveryAddress();
-		deliveryAddressField.setText(deliveryAddress);
-		
+		deliveryAddressField.setText(deliveryAddress);		
 		
 	}
 	
