@@ -22,7 +22,6 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import control.ProductController;
 import control.SaleController;
 import model.Employee;
 import model.SaleLineItem;

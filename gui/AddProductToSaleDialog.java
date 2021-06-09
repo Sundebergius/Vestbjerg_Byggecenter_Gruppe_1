@@ -61,7 +61,7 @@ public class AddProductToSaleDialog extends JDialog {
 	private void findProductByBarcode() {
 		
 		Product product = productController.findProductByBarcode(barcodeField.getText());
-		 textArea.setText(product.getName());
+		 textArea.setText(product.getName());	
 	}
 	
 
