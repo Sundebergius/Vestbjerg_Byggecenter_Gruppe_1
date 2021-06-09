@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import control.SaleController;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -16,6 +19,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AddCustomerToSaleDialog extends JDialog {
+	
+	private SaleController saleController;
+	
 	private JTextField customerNameField;
 	private JTextField customerAddressField;
 	private JTextField customerZipcodeField;
@@ -28,7 +34,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			AddCustomerToSaleDialog dialog = new AddCustomerToSaleDialog();
+			AddCustomerToSaleDialog dialog = new AddCustomerToSaleDialog(new SaleController());
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -39,7 +45,26 @@ public class AddCustomerToSaleDialog extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AddCustomerToSaleDialog() {
+	public AddCustomerToSaleDialog(SaleController saleController) {
+		this.saleController = saleController;
+		createGUI();
+	}
+	
+	private void searchButton() {
+		
+		
+	}
+	
+	private void addCustomerButton() {
+		
+	}
+	
+	private void cancelButton() {
+		
+		
+	}
+	
+	private void createGUI() {		
 		setTitle("Tilføj kunde til salget");
 		setModal(true);
 		setBounds(100, 100, 450, 300);
@@ -50,6 +75,11 @@ public class AddCustomerToSaleDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton addCustomerButton = new JButton("Tilføj Kunde");
+				addCustomerButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						addCustomerButton();
+					}
+				});
 				addCustomerButton.setActionCommand("OK");
 				buttonPane.add(addCustomerButton);
 				getRootPane().setDefaultButton(addCustomerButton);
@@ -58,7 +88,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 				JButton cancelButton = new JButton("Annuller");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						dispose();
+						cancelButton();
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
@@ -206,6 +236,11 @@ public class AddCustomerToSaleDialog extends JDialog {
 			}
 			{
 				JButton searchButton = new JButton("Søg");
+				searchButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						searchButton();
+					}
+				});
 				GridBagConstraints gbc_searchButton = new GridBagConstraints();
 				gbc_searchButton.insets = new Insets(0, 0, 0, 5);
 				gbc_searchButton.gridx = 3;

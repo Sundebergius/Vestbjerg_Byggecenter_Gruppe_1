@@ -79,7 +79,7 @@ public class CreateSaleFrame extends JFrame {
 	}
 	
 	private void addCustomerButton() {
-		AddCustomerToSaleDialog customerToSaleDialog = new AddCustomerToSaleDialog();
+		AddCustomerToSaleDialog customerToSaleDialog = new AddCustomerToSaleDialog(saleController);
 		customerToSaleDialog.setVisible(true);
 	
 	}
