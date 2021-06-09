@@ -76,6 +76,11 @@ public class PaySaleDialog extends JDialog {
 		this.indbetalt = indbetalt - subtotal;
 		return this.indbetalt;
 	}
+	
+	public void getSubtotal()
+	{
+		
+	}
 
 	/**
 	 * Create the dialog.
