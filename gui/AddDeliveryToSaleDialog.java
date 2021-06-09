@@ -61,6 +61,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public AddDeliveryToSaleDialog(SaleController saleController) {
+		setModal(true);
 		this.saleController = saleController;
 		createUI();
 	}
@@ -76,13 +77,13 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		private void addAddressButton()
 		{
 			input();
+			addDeliveryAddress();
 			dispose();
 		}
 		private void addDeliveryAddress()
 		{
 			saleController.addDeliveryAddressToSale(address);
-		}
-	
+		}	
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);

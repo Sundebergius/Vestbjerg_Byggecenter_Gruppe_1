@@ -23,6 +23,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import control.SaleController;
+import model.Employee;
 import model.SaleLineItem;
 
 import javax.swing.border.EtchedBorder;
@@ -70,6 +71,7 @@ public class CreateSaleFrame extends JFrame {
 	public CreateSaleFrame() {
 		createGUI();
 		saleController = new SaleController();
+		saleController.createSale(new Employee("title", "title", "title", "title", 1, "title", "title"));
 		
 	}
 	
@@ -88,6 +90,10 @@ public class CreateSaleFrame extends JFrame {
 	private void addDeliveryButton() {
 		AddDeliveryToSaleDialog deliveryToSaleDialog = new AddDeliveryToSaleDialog(saleController);
 		deliveryToSaleDialog.setVisible(true);
+		
+		String deliveryAddress = saleController.getCurrentSale().getDeliveryAddress();
+		deliveryAddressField.setText(deliveryAddress);
+		
 		
 	}
 	
@@ -122,7 +128,7 @@ public class CreateSaleFrame extends JFrame {
 	
 	private void createGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 941, 1083);
+		setBounds(100, 100, 649, 659);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
