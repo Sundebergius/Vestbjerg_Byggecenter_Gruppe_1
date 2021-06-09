@@ -80,6 +80,7 @@ public class CreateSaleFrame extends JFrame {
 	private void addProductButton() {
 		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog(saleController);
 		productToSaleDialog.setVisible(true);
+		updateProductList();
 	
 	}
 	
@@ -116,6 +117,9 @@ public class CreateSaleFrame extends JFrame {
 	}
 	
 	private void updateProductList() {
+		SaleLineItemCellRenderer cellRenderer = new SaleLineItemCellRenderer();
+		productList.setCellRenderer(cellRenderer);
+		
 		listRepresentation = new DefaultListModel<SaleLineItem>();
 		ArrayList<SaleLineItem> saleLineItemList = new ArrayList<>();
 		saleLineItemList.addAll(Arrays.asList(saleController.getCurrentSale().getSaleLineItems()));
