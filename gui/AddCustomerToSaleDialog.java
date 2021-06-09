@@ -8,7 +8,9 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import control.PersonController;
 import control.SaleController;
+import model.Customer;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -17,10 +19,12 @@ import javax.swing.JTextField;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 
 public class AddCustomerToSaleDialog extends JDialog {
 	
 	private SaleController saleController;
+	private PersonController personController;
 	
 	private JTextField customerNameField;
 	private JTextField customerAddressField;
@@ -28,6 +32,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 	private JTextField customerCityField;
 	private JTextField customerPhoneNoField;
 	private JTextField customerIDInputField;
+	private JLabel errorInfoLabel;
 
 	/**
 	 * Launch the application.
@@ -47,12 +52,24 @@ public class AddCustomerToSaleDialog extends JDialog {
 	 */
 	public AddCustomerToSaleDialog(SaleController saleController) {
 		this.saleController = saleController;
+		personController = new PersonController();
 		createGUI();
 	}
 	
 	private void searchButton() {
+		String customerID = customerIDInputField.getText();
+		Customer foundCustomer = personController.findCustomerByCustomerID(customerID);
+		if(foundCustomer != null) {
+			errorInfoLabel.setText("");
+			customerNameField.setText(foundCustomer.getName());
+			customerAddressField.setText(foundCustomer.getAddress());
+			customerZipcodeField.setText("" + foundCustomer.getPostalCode());
+			customerCityField.setText(foundCustomer.getCity());
+			customerPhoneNoField.setText(foundCustomer.getMobileNo());
 		
-		
+		}else {
+			errorInfoLabel.setText("Fejl der blev ikke fundet nogen kunde med denne ID");
+		}
 	}
 	
 	private void addCustomerButton() {
@@ -100,10 +117,21 @@ public class AddCustomerToSaleDialog extends JDialog {
 			getContentPane().add(InfoPane, BorderLayout.CENTER);
 			GridBagLayout gbl_InfoPane = new GridBagLayout();
 			gbl_InfoPane.columnWidths = new int[]{30, 90, 0, 30, 0};
-			gbl_InfoPane.rowHeights = new int[]{15, 0, 0, 0, 0, 0, 0};
+			gbl_InfoPane.rowHeights = new int[]{25, 0, 0, 0, 0, 0, 0};
 			gbl_InfoPane.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 			gbl_InfoPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			InfoPane.setLayout(gbl_InfoPane);
+			{
+				errorInfoLabel = new JLabel("");
+				errorInfoLabel.setForeground(UIManager.getColor("OptionPane.errorDialog.border.background"));
+				GridBagConstraints gbc_errorInfoLabel = new GridBagConstraints();
+				gbc_errorInfoLabel.anchor = GridBagConstraints.NORTH;
+				gbc_errorInfoLabel.gridwidth = 2;
+				gbc_errorInfoLabel.insets = new Insets(0, 0, 5, 5);
+				gbc_errorInfoLabel.gridx = 1;
+				gbc_errorInfoLabel.gridy = 0;
+				InfoPane.add(errorInfoLabel, gbc_errorInfoLabel);
+			}
 			{
 				JLabel lblNewLabel_1 = new JLabel("Kunde Navn");
 				GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
