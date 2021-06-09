@@ -46,6 +46,7 @@ public class CreateSaleFrame extends JFrame {
 	private JTextField deliveryCityField;
 	private JTextField deliveryZipCodeField;	
 	private JTextField textField;
+	private JTextField deliveryMobileNumberField;
 
 	/**
 	 * Launch the application.
@@ -91,7 +92,7 @@ public class CreateSaleFrame extends JFrame {
 	}
 	
 	private void payButton() {
-		PaySaleDialog paySaleDialog = new PaySaleDialog();
+		PaySaleDialog paySaleDialog = new PaySaleDialog(saleController);
 		paySaleDialog.setVisible(true);
 		
 	}
@@ -276,7 +277,7 @@ public class CreateSaleFrame extends JFrame {
 		fl_deliveryButtonPanel.setAlignment(FlowLayout.RIGHT);
 		deliveryPanel.add(deliveryButtonPanel, BorderLayout.SOUTH);
 		
-		JButton addDeliveryButton = new JButton("Tilføj levering");
+		JButton addDeliveryButton = new JButton("Tilf\u00F8j levering");
 		addDeliveryButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addDeliveryButton();
@@ -287,16 +288,16 @@ public class CreateSaleFrame extends JFrame {
 		JPanel deliveryContentPanel = new JPanel();
 		deliveryPanel.add(deliveryContentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_deliveryContentPanel = new GridBagLayout();
-		gbl_deliveryContentPanel.columnWidths = new int[]{0, 0, 0, 80, 0, 40, 0};
+		gbl_deliveryContentPanel.columnWidths = new int[]{0, 0, 0, 0, 80, 0, 40, 0};
 		gbl_deliveryContentPanel.rowHeights = new int[]{0, 0, 0};
-		gbl_deliveryContentPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_deliveryContentPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_deliveryContentPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		deliveryContentPanel.setLayout(gbl_deliveryContentPanel);
 		
-		JLabel lblNewLabel_2 = new JLabel("Modtager");
+		JLabel lblNewLabel_2 = new JLabel("Modtager :");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_2.gridx = 0;
 		gbc_lblNewLabel_2.gridy = 0;
 		deliveryContentPanel.add(lblNewLabel_2, gbc_lblNewLabel_2);
@@ -304,17 +305,34 @@ public class CreateSaleFrame extends JFrame {
 		recieverField = new JTextField();
 		recieverField.setEditable(false);
 		GridBagConstraints gbc_recieverField = new GridBagConstraints();
-		gbc_recieverField.gridwidth = 5;
-		gbc_recieverField.insets = new Insets(0, 0, 5, 0);
+		gbc_recieverField.insets = new Insets(0, 0, 5, 5);
 		gbc_recieverField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_recieverField.gridx = 1;
 		gbc_recieverField.gridy = 0;
 		deliveryContentPanel.add(recieverField, gbc_recieverField);
 		recieverField.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("Adresse");
+		JLabel lblNewLabel_8 = new JLabel("Mobil nummer : ");
+		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
+		gbc_lblNewLabel_8.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_8.gridx = 3;
+		gbc_lblNewLabel_8.gridy = 0;
+		deliveryContentPanel.add(lblNewLabel_8, gbc_lblNewLabel_8);
+		
+		deliveryMobileNumberField = new JTextField();
+		deliveryMobileNumberField.setEditable(false);
+		GridBagConstraints gbc_deliveryMobileNumberField = new GridBagConstraints();
+		gbc_deliveryMobileNumberField.insets = new Insets(0, 0, 5, 5);
+		gbc_deliveryMobileNumberField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_deliveryMobileNumberField.gridx = 4;
+		gbc_deliveryMobileNumberField.gridy = 0;
+		deliveryContentPanel.add(deliveryMobileNumberField, gbc_deliveryMobileNumberField);
+		deliveryMobileNumberField.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("Adresse :");
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_3.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel_3.gridx = 0;
 		gbc_lblNewLabel_3.gridy = 1;
@@ -332,9 +350,10 @@ public class CreateSaleFrame extends JFrame {
 		
 		JLabel lblNewLabel_6 = new JLabel("By");
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+		gbc_lblNewLabel_6.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_6.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblNewLabel_6.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_6.gridx = 2;
+		gbc_lblNewLabel_6.gridx = 3;
 		gbc_lblNewLabel_6.gridy = 1;
 		deliveryContentPanel.add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
@@ -343,16 +362,16 @@ public class CreateSaleFrame extends JFrame {
 		GridBagConstraints gbc_deliveryCityField = new GridBagConstraints();
 		gbc_deliveryCityField.insets = new Insets(0, 0, 0, 5);
 		gbc_deliveryCityField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_deliveryCityField.gridx = 3;
+		gbc_deliveryCityField.gridx = 4;
 		gbc_deliveryCityField.gridy = 1;
 		deliveryContentPanel.add(deliveryCityField, gbc_deliveryCityField);
 		deliveryCityField.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Postnummer");
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-		gbc_lblNewLabel_5.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_5.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_5.gridx = 4;
+		gbc_lblNewLabel_5.gridx = 5;
 		gbc_lblNewLabel_5.gridy = 1;
 		deliveryContentPanel.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
@@ -360,7 +379,7 @@ public class CreateSaleFrame extends JFrame {
 		deliveryZipCodeField.setEditable(false);
 		GridBagConstraints gbc_deliveryZipCodeField = new GridBagConstraints();
 		gbc_deliveryZipCodeField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_deliveryZipCodeField.gridx = 5;
+		gbc_deliveryZipCodeField.gridx = 6;
 		gbc_deliveryZipCodeField.gridy = 1;
 		deliveryContentPanel.add(deliveryZipCodeField, gbc_deliveryZipCodeField);
 		deliveryZipCodeField.setColumns(10);
