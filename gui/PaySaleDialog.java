@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 
 import model.SaleLineItem;
 
-public class PaymentTransaction extends JDialog {
+public class PaySaleDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textFieldSubtotal;
@@ -34,7 +34,7 @@ public class PaymentTransaction extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			PaymentTransaction dialog = new PaymentTransaction();
+			PaySaleDialog dialog = new PaySaleDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -52,7 +52,7 @@ public class PaymentTransaction extends JDialog {
 		{
 			validTransaction = true;
 		}
-		else lblOutput.setText("Der skal tilføjes " + remainingTransaction() + " DKK til købet. ");
+		else lblOutput.setText("Der skal tilfï¿½jes " + remainingTransaction() + " DKK til kï¿½bet. ");
 		{
 			
 		}
@@ -74,7 +74,7 @@ public class PaymentTransaction extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public PaymentTransaction() {
+	public PaySaleDialog() {
 		setTitle("Betalings vindue");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -148,7 +148,7 @@ public class PaymentTransaction extends JDialog {
 						checkValidTransaction();
 						if(checkValidTransaction() == true)
 						{
-							lblOutput.setText("Betalingen er gennemført. Kunden skal havde " + customerRefund() + " DKK tilbage. ");
+							lblOutput.setText("Betalingen er gennemfï¿½rt. Kunden skal havde " + customerRefund() + " DKK tilbage. ");
 						}
 					}
 				});

@@ -14,7 +14,7 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
-public class ProductWindow extends JDialog {
+public class AddProductToSaleDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtStregkode;
@@ -25,7 +25,7 @@ public class ProductWindow extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			ProductWindow dialog = new ProductWindow();
+			AddProductToSaleDialog dialog = new AddProductToSaleDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -36,7 +36,7 @@ public class ProductWindow extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ProductWindow() {
+	public AddProductToSaleDialog() {
 		setTitle("Vare vindue");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
