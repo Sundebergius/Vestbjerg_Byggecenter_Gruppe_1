@@ -24,6 +24,7 @@ import javax.swing.border.TitledBorder;
 
 import control.ProductController;
 import control.SaleController;
+import model.Customer;
 import model.Employee;
 import model.SaleLineItem;
 
@@ -87,7 +88,11 @@ public class CreateSaleFrame extends JFrame {
 	private void addCustomerButton() {
 		AddCustomerToSaleDialog customerToSaleDialog = new AddCustomerToSaleDialog(saleController);
 		customerToSaleDialog.setVisible(true);
-	
+		
+		Customer currentCustomer = saleController.getCurrentSale().getCustomer();
+		
+		customerIDField.setText(currentCustomer.getCustomerID());
+		customerNameField.setText(currentCustomer.getName());
 	}
 	
 	private void addDeliveryButton() {
@@ -255,24 +260,51 @@ public class CreateSaleFrame extends JFrame {
 		customerButtonPanel.add(addCustomerButton);
 		
 		JPanel customerContentPanel = new JPanel();
-		FlowLayout fl_customerContentPanel = (FlowLayout) customerContentPanel.getLayout();
-		fl_customerContentPanel.setAlignment(FlowLayout.LEFT);
 		customerPanel.add(customerContentPanel, BorderLayout.CENTER);
+		GridBagLayout gbl_customerContentPanel = new GridBagLayout();
+		gbl_customerContentPanel.columnWidths = new int[]{44, 86, 25, 86, 86, 0};
+		gbl_customerContentPanel.rowHeights = new int[]{20, 0};
+		gbl_customerContentPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_customerContentPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		customerContentPanel.setLayout(gbl_customerContentPanel);
 		
-		JLabel lblNewLabel = new JLabel("Kunde ID");
-		customerContentPanel.add(lblNewLabel);
+		JLabel lblNewLabel = new JLabel("Kunde ID :");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 0;
+		customerContentPanel.add(lblNewLabel, gbc_lblNewLabel);
 		
 		customerIDField = new JTextField();
 		customerIDField.setEditable(false);
-		customerContentPanel.add(customerIDField);
+		GridBagConstraints gbc_customerIDField = new GridBagConstraints();
+		gbc_customerIDField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_customerIDField.anchor = GridBagConstraints.NORTH;
+		gbc_customerIDField.insets = new Insets(0, 0, 0, 5);
+		gbc_customerIDField.gridx = 1;
+		gbc_customerIDField.gridy = 0;
+		customerContentPanel.add(customerIDField, gbc_customerIDField);
 		customerIDField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Navn");
-		customerContentPanel.add(lblNewLabel_1);
+		JLabel lblNewLabel_1 = new JLabel("Navn :");
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_1.gridx = 2;
+		gbc_lblNewLabel_1.gridy = 0;
+		customerContentPanel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		customerNameField = new JTextField();
 		customerNameField.setEditable(false);
-		customerContentPanel.add(customerNameField);
+		GridBagConstraints gbc_customerNameField = new GridBagConstraints();
+		gbc_customerNameField.gridwidth = 2;
+		gbc_customerNameField.insets = new Insets(0, 0, 0, 5);
+		gbc_customerNameField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_customerNameField.anchor = GridBagConstraints.NORTH;
+		gbc_customerNameField.gridx = 3;
+		gbc_customerNameField.gridy = 0;
+		customerContentPanel.add(customerNameField, gbc_customerNameField);
 		customerNameField.setColumns(10);
 		
 		JPanel deliveryPanel = new JPanel();

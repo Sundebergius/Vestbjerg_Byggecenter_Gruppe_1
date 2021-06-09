@@ -78,11 +78,11 @@ public class AddCustomerToSaleDialog extends JDialog {
 	private void addCustomerButton() {
 		
 		saleController.addCustomerToSale(foundCustomer.getCustomerID());
+		dispose();
 	}
 	
 	private void cancelButton() {
-		
-		
+		dispose();		
 	}
 	
 	private void createGUI() {		
