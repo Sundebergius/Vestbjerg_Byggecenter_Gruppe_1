@@ -22,6 +22,7 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import control.ProductController;
 import control.SaleController;
 import model.SaleLineItem;
 
@@ -35,6 +36,7 @@ public class CreateSaleFrame extends JFrame {
 
 	private JPanel contentPane;
 	private SaleController saleController;
+	private ProductController productController;
 	private JList<SaleLineItem> productList;
 	private DefaultListModel<SaleLineItem> listRepresentation;
 	
@@ -73,7 +75,7 @@ public class CreateSaleFrame extends JFrame {
 	}
 	
 	private void addProductButton() {
-		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog();
+		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog(saleController);
 		productToSaleDialog.setVisible(true);
 	
 	}
