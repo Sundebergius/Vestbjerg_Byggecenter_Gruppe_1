@@ -22,6 +22,7 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import control.ProductController;
 import control.SaleController;
 import model.Employee;
 import model.Customer;
@@ -57,6 +58,7 @@ public class CreateSaleFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					new TryMe();
 					CreateSaleFrame frame = new CreateSaleFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -77,8 +79,9 @@ public class CreateSaleFrame extends JFrame {
 	}
 	
 	private void addProductButton() {
-		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog();
+		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog(saleController);
 		productToSaleDialog.setVisible(true);
+		updateProductList();
 	
 	}
 	
@@ -114,6 +117,9 @@ public class CreateSaleFrame extends JFrame {
 	}
 	
 	private void updateProductList() {
+		SaleLineItemCellRenderer cellRenderer = new SaleLineItemCellRenderer();
+		productList.setCellRenderer(cellRenderer);
+		
 		listRepresentation = new DefaultListModel<SaleLineItem>();
 		ArrayList<SaleLineItem> saleLineItemList = new ArrayList<>();
 		saleLineItemList.addAll(Arrays.asList(saleController.getCurrentSale().getSaleLineItems()));
