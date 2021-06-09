@@ -35,8 +35,13 @@ public class Delivery extends JDialog {
 	private JPanel panel;
 	private JButton addButton;
 	private JPanel panel_1;
-	private JLabel phoneNumberLabel;
-	private JTextField MobileNumber;
+	private JLabel mobileNumberLabel;
+	private JTextField mobileNumber;
+	private String name;
+	private String address;
+	private String postal;
+	private String city;
+	private String phoneNumber;
 
 	/**
 	 * Launch the application.
@@ -59,7 +64,25 @@ public class Delivery extends JDialog {
 		this.saleController = saleController;
 		createUI();
 	}
-
+	private void input()
+	{
+		name = nameField.getText();
+		address = addressField.getText();
+		postal = postalField.getText();
+		city = cityField.getText();
+		phoneNumber = mobileNumber.getText();
+		
+	}
+		private void addAddressButton()
+		{
+			input();
+			dispose();
+		}
+		private void addDeliveryAddress()
+		{
+			saleController.addDeliveryAddressToSale(address);
+		}
+	
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);
@@ -70,7 +93,7 @@ public class Delivery extends JDialog {
 		addButton = new JButton("Tilf\u00F8j");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				addAddressButton();
 			}
 		});
 		panel.add(addButton);
@@ -140,41 +163,41 @@ public class Delivery extends JDialog {
 		gbc_postalField.gridy = 2;
 		panel_1.add(postalField, gbc_postalField);
 		postalField.setColumns(10);
-				
-				phoneNumberLabel = new JLabel("Telefon nummer :");
-				GridBagConstraints gbc_phoneNumberLabel = new GridBagConstraints();
-				gbc_phoneNumberLabel.anchor = GridBagConstraints.WEST;
-				gbc_phoneNumberLabel.insets = new Insets(0, 0, 5, 5);
-				gbc_phoneNumberLabel.gridx = 1;
-				gbc_phoneNumberLabel.gridy = 3;
-				panel_1.add(phoneNumberLabel, gbc_phoneNumberLabel);
-				
-				MobileNumber = new JTextField();
-				GridBagConstraints gbc_MobileNumber = new GridBagConstraints();
-				gbc_MobileNumber.insets = new Insets(0, 0, 5, 5);
-				gbc_MobileNumber.fill = GridBagConstraints.HORIZONTAL;
-				gbc_MobileNumber.gridx = 2;
-				gbc_MobileNumber.gridy = 3;
-				panel_1.add(MobileNumber, gbc_MobileNumber);
-				MobileNumber.setColumns(10);
-		
-				JLabel cityLabel = new JLabel("By :");
-				GridBagConstraints gbc_cityLabel = new GridBagConstraints();
-				gbc_cityLabel.anchor = GridBagConstraints.WEST;
-				gbc_cityLabel.insets = new Insets(0, 0, 0, 5);
-				gbc_cityLabel.gridx = 1;
-				gbc_cityLabel.gridy = 4;
-				panel_1.add(cityLabel, gbc_cityLabel);
-		
-				cityField = new JTextField();
-				GridBagConstraints gbc_cityField = new GridBagConstraints();
-				gbc_cityField.anchor = GridBagConstraints.SOUTH;
-				gbc_cityField.insets = new Insets(0, 0, 0, 5);
-				gbc_cityField.fill = GridBagConstraints.HORIZONTAL;
-				gbc_cityField.gridx = 2;
-				gbc_cityField.gridy = 4;
-				panel_1.add(cityField, gbc_cityField);
-				cityField.setColumns(10);
+
+		mobileNumberLabel = new JLabel("Telefon nummer :");
+		GridBagConstraints gbc_mobileNumberLabel = new GridBagConstraints();
+		gbc_mobileNumberLabel.anchor = GridBagConstraints.WEST;
+		gbc_mobileNumberLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_mobileNumberLabel.gridx = 1;
+		gbc_mobileNumberLabel.gridy = 3;
+		panel_1.add(mobileNumberLabel, gbc_mobileNumberLabel);
+
+		mobileNumber = new JTextField();
+		GridBagConstraints gbc_MobileNumber = new GridBagConstraints();
+		gbc_MobileNumber.insets = new Insets(0, 0, 5, 5);
+		gbc_MobileNumber.fill = GridBagConstraints.HORIZONTAL;
+		gbc_MobileNumber.gridx = 2;
+		gbc_MobileNumber.gridy = 3;
+		panel_1.add(mobileNumber, gbc_MobileNumber);
+		mobileNumber.setColumns(10);
+
+		JLabel cityLabel = new JLabel("By :");
+		GridBagConstraints gbc_cityLabel = new GridBagConstraints();
+		gbc_cityLabel.anchor = GridBagConstraints.WEST;
+		gbc_cityLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_cityLabel.gridx = 1;
+		gbc_cityLabel.gridy = 4;
+		panel_1.add(cityLabel, gbc_cityLabel);
+
+		cityField = new JTextField();
+		GridBagConstraints gbc_cityField = new GridBagConstraints();
+		gbc_cityField.anchor = GridBagConstraints.SOUTH;
+		gbc_cityField.insets = new Insets(0, 0, 0, 5);
+		gbc_cityField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cityField.gridx = 2;
+		gbc_cityField.gridy = 4;
+		panel_1.add(cityField, gbc_cityField);
+		cityField.setColumns(10);
 	}
 
 }
