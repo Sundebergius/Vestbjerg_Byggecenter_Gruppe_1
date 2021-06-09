@@ -51,6 +51,7 @@ public class AddProductToSaleDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public AddProductToSaleDialog(SaleController saleController) {
+		setModal(true);
 		this.saleController = saleController;
 		productController  = new ProductController();
 		createGUI();
