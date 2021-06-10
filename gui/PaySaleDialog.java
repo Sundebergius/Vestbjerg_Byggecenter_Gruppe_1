@@ -29,8 +29,11 @@ public class PaySaleDialog extends JDialog {
 	private double subtotal;
 	private double indbetalt;
 	private JLabel lblOutput;
+	private double remainingPayment;
+	private boolean changeMode;
 	
 	private SaleController saleController;
+	private JLabel lblIndbetalt;
 
 	/**
 	 * Launch the application.
@@ -48,11 +51,12 @@ public class PaySaleDialog extends JDialog {
 	public PaySaleDialog(SaleController saleController) {
 		this.saleController = saleController;
 		createGUI();
+		getSubtotal();
 	}
 
 	private boolean checkValidTransaction() {
-		subtotal = getSubtotal();
-		indbetalt = Double.parseDouble(textFieldIndbetalt.getText());
+		//subtotal = getSubtotal();
+		indbetalt = indbetalt + Double.parseDouble(textFieldIndbetalt.getText());
 		validTransaction = false;
 		if (indbetalt > subtotal) {
 			validTransaction = true;
@@ -77,13 +81,32 @@ public class PaySaleDialog extends JDialog {
 		return this.indbetalt;
 	}
 
-	private double getSubtotal() {
+	private void getSubtotal() {
 		double totalPrice;
 		totalPrice = saleController.getCurrentSale().calculateTotalPrice();
 		//totalPrice = Double.parseDouble(textFieldSubtotal.setText(totalPrice));
 		String subtotalPrice = String.valueOf(totalPrice);
 		textFieldSubtotal.setText(subtotalPrice);
-		return totalPrice;
+		subtotal = totalPrice;
+	}
+	
+	private void withdrawAmount()
+	{
+		double moneyAmount = Double.parseDouble(textFieldIndbetalt.getText());
+		indbetalt = indbetalt - moneyAmount;
+		
+	}
+	
+	private void changeModeButton()
+	{
+		changeMode = !changeMode;
+		if(changeMode) {
+			lblIndbetalt.setText("Inbetalt: ");
+			lblOutput.setText("Skriv den indbetalte sum foroven. ");
+		}else {
+			lblIndbetalt.setText("Tilbagebetaling: ");
+			lblOutput.setText("Skriv summen som skal tilbagebetales foroven. ");
+		}
 	}
 	
 	private void createGUI() {
@@ -125,7 +148,7 @@ public class PaySaleDialog extends JDialog {
 				textFieldSubtotal.setColumns(10);
 			}
 			{
-				JLabel lblIndbetalt = new JLabel("Indbetalt");
+				lblIndbetalt = new JLabel("Indbetalt");
 				GridBagConstraints gbc_lblIndbetalt = new GridBagConstraints();
 				gbc_lblIndbetalt.insets = new Insets(0, 0, 5, 5);
 				gbc_lblIndbetalt.gridx = 1;
@@ -163,6 +186,16 @@ public class PaySaleDialog extends JDialog {
 						checkValidTransaction();
 					}
 				});
+				{
+					JButton modeButton = new JButton("Skift tilstand");
+					modeButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							//withdrawAmount();
+							changeModeButton();
+						}
+					});
+					buttonPane.add(modeButton);
+				}
 				payButton.setActionCommand("OK");
 				buttonPane.add(payButton);
 				getRootPane().setDefaultButton(payButton);
