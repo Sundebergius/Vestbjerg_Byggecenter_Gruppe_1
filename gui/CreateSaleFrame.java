@@ -138,11 +138,10 @@ public class CreateSaleFrame extends JFrame {
 	}
 	
 	private void updateSubtotal() {
+			
+		double totalPrice = saleController.getCurrentSale().calculateTotalPrice();
+		subtotalField.setText(String.format("%2f", totalPrice));
 		
-		double totalPrice;
-		totalPrice = saleController.getCurrentSale().calculateTotalPrice();
-		String subtotalPrice = String.valueOf(totalPrice);
-		subtotalField.setText(subtotalPrice);
 		
 	}
 	
