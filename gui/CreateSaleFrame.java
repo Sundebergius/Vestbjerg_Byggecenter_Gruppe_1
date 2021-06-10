@@ -82,6 +82,10 @@ public class CreateSaleFrame extends JFrame {
 		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog(saleController);
 		productToSaleDialog.setVisible(true);
 		updateProductList();
+		double totalPrice = saleController.getCurrentSale().calculateTotalPrice();
+		
+		//String.format("%.2f", totalPrice) this method formats totalPrice to have 2 decimal spots
+		subtotalField.setText(String.format("%.2f", totalPrice));
 	
 	}
 	
