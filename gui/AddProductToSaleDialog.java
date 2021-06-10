@@ -12,6 +12,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+
+
 import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
@@ -30,6 +32,7 @@ public class AddProductToSaleDialog extends JDialog {
 	private JTextField quantityField;
 	private JLabel nameLabel;
 	private JLabel descriptionLabel;
+	private JLabel errorLabel;
 	
 	
 	
@@ -65,8 +68,15 @@ public class AddProductToSaleDialog extends JDialog {
 	private void findProductByBarcode() {
 		
 		Product product = productController.findProductByBarcode(barcodeField.getText());
-		nameLabel.setText(product.getName());
-		descriptionLabel.setText(product.getDescription());
+		if (product != null) {
+			
+			nameLabel.setText(product.getName());
+			descriptionLabel.setText(product.getDescription());
+			errorLabel.setText("");
+		}
+		else {
+			  errorLabel.setText("Fejl der blev ikke fundet nogen produkter med denne stregkode");
+		}
 		
 	}
 	
@@ -88,9 +98,9 @@ public class AddProductToSaleDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{53, 269, 57, 0};
-		gbl_contentPanel.rowHeights = new int[]{35, 23, 20, 0, 0, 0};
+		gbl_contentPanel.rowHeights = new int[]{35, 23, 20, 0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel barcodeLabel = new JLabel("Stregkode:");
@@ -156,10 +166,18 @@ public class AddProductToSaleDialog extends JDialog {
 		{
 			descriptionLabel = new JLabel("");
 			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-			gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel_1.gridx = 1;
 			gbc_lblNewLabel_1.gridy = 4;
 			contentPanel.add(descriptionLabel, gbc_lblNewLabel_1);
+		}
+		{
+			errorLabel = new JLabel("");
+			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+			gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
+			gbc_lblNewLabel.gridx = 1;
+			gbc_lblNewLabel.gridy = 5;
+			contentPanel.add(errorLabel, gbc_lblNewLabel);
 		}
 	
 	
