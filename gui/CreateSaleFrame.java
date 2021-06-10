@@ -105,6 +105,15 @@ public class CreateSaleFrame extends JFrame {
 		
 		String receiverName = saleController.getCurrentSale().getDeliveryName();
 		recieverField.setText(receiverName);
+		
+		int deliveryPostal = saleController.getCurrentSale().getPostal();
+		deliveryZipCodeField.setText("" +deliveryPostal);
+		
+		String deliveryPhoneNumber = saleController.getCurrentSale().getPhoneNumber();
+		deliveryMobileNumberField.setText(deliveryPhoneNumber);
+		
+		String deliveryCity = saleController.getCurrentSale().getDeliveryCity();
+		deliveryCityField.setText(deliveryCity);
 	}
 	
 	private void payButton() {
@@ -140,9 +149,9 @@ public class CreateSaleFrame extends JFrame {
 	private void updateSubtotal() {
 			
 		double totalPrice = saleController.getCurrentSale().calculateTotalPrice();
-		subtotalField.setText(String.format("%.2f", totalPrice));
 		
-		
+		//String.format("%.2f", totalPrice) this method formats totalPrice to have 2 decimal spots
+		subtotalField.setText(String.format("%.2f", totalPrice));		
 	}
 	
 	

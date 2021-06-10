@@ -23,14 +23,13 @@ import model.SaleLineItem;
 public class PaySaleDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textFieldSubtotal;
-	private JTextField textFieldIndbetalt;
-	private boolean validTransaction;
-	private double subtotal;
-	private double indbetalt;
+	private JTextField subtotalTextField;
+	private JTextField payAmountTextField;
 	private JLabel lblOutput;
+
 	
 	private SaleController saleController;
+	private JLabel lblIndbetalt;
 
 	/**
 	 * Launch the application.
@@ -47,43 +46,42 @@ public class PaySaleDialog extends JDialog {
 
 	public PaySaleDialog(SaleController saleController) {
 		this.saleController = saleController;
-		createGUI();
+		createGUI();		
+		showRemainingPayment();
 	}
 
-	private boolean checkValidTransaction() {
-		subtotal = getSubtotal();
-		indbetalt = Double.parseDouble(textFieldIndbetalt.getText());
-		validTransaction = false;
-		if (indbetalt > subtotal) {
-			validTransaction = true;
-			lblOutput.setText("Betalingen er gennemført. Kunden skal havde " + customerRefund() + " DKK tilbage. ");
-		} else if (indbetalt == subtotal) {
-			validTransaction = true;
-			lblOutput.setText("Betalingen er gennemført. ");
-		} else if (indbetalt < subtotal) {
-			lblOutput.setText(
-					"Betalingen er ikke gennemført. Der skal tilføjes " + remainingTransaction() + " DKK til købet. ");
+
+	
+	private void showRemainingPayment() {
+		double remainingPayment = saleController.getCurrentSale().getRemainingPayment();
+		String remainingPaymentString = String.format("%.2f", remainingPayment);
+		subtotalTextField.setText(remainingPaymentString);
+	}
+	
+	private void payButton() {
+		
+		double amountPayed = Double.parseDouble(payAmountTextField.getText());
+		double remainingPayment = saleController.pay(amountPayed);
+		
+		if(remainingPayment > 0) {
+			showRemainingPayment();
+			
+			String amountPayedString = String.format("%.2f", amountPayed);
+			String remainingPaymentString = String.format("%.2f", saleController.getCurrentSale().getRemainingPayment());			
+			
+			lblOutput.setText(amountPayedString + " DKK blev tilfÃ¸jet til salget, der mangler stadig " + remainingPaymentString + " DKK");
+			
+		}else if(remainingPayment == 0) {
+			//open receipt dialog box
+			System.out.println("Transaction is complete");
+			dispose();
+			
+		}else if(remainingPayment < 0){
+			RefundPaymentDialog refundPaymentDialog = new RefundPaymentDialog();
+			refundPaymentDialog.setVisible(true);
 		}
-		return validTransaction;
-	}
-
-	private double remainingTransaction() {
-		this.subtotal = subtotal - indbetalt;
-		return this.subtotal;
-	}
-
-	private double customerRefund() {
-		this.indbetalt = indbetalt - subtotal;
-		return this.indbetalt;
-	}
-
-	private double getSubtotal() {
-		double totalPrice;
-		totalPrice = saleController.getCurrentSale().calculateTotalPrice();
-		//totalPrice = Double.parseDouble(textFieldSubtotal.setText(totalPrice));
-		String subtotalPrice = String.valueOf(totalPrice);
-		textFieldSubtotal.setText(subtotalPrice);
-		return totalPrice;
+		
+	
 	}
 	
 	private void createGUI() {
@@ -113,19 +111,19 @@ public class PaySaleDialog extends JDialog {
 				panel.add(lblSubtotal, gbc_lblSubtotal);
 			}
 			{
-				textFieldSubtotal = new JTextField();
-				textFieldSubtotal.setEditable(false);
-				textFieldSubtotal.setHorizontalAlignment(SwingConstants.CENTER);
-				GridBagConstraints gbc_textFieldSubtotal = new GridBagConstraints();
-				gbc_textFieldSubtotal.insets = new Insets(0, 0, 5, 5);
-				gbc_textFieldSubtotal.fill = GridBagConstraints.BOTH;
-				gbc_textFieldSubtotal.gridx = 3;
-				gbc_textFieldSubtotal.gridy = 2;
-				panel.add(textFieldSubtotal, gbc_textFieldSubtotal);
-				textFieldSubtotal.setColumns(10);
+				subtotalTextField = new JTextField();
+				subtotalTextField.setEditable(false);
+				subtotalTextField.setHorizontalAlignment(SwingConstants.CENTER);
+				GridBagConstraints gbc_subtotalTextField = new GridBagConstraints();
+				gbc_subtotalTextField.insets = new Insets(0, 0, 5, 5);
+				gbc_subtotalTextField.fill = GridBagConstraints.BOTH;
+				gbc_subtotalTextField.gridx = 3;
+				gbc_subtotalTextField.gridy = 2;
+				panel.add(subtotalTextField, gbc_subtotalTextField);
+				subtotalTextField.setColumns(10);
 			}
 			{
-				JLabel lblIndbetalt = new JLabel("Indbetalt");
+				lblIndbetalt = new JLabel("Indbetalt");
 				GridBagConstraints gbc_lblIndbetalt = new GridBagConstraints();
 				gbc_lblIndbetalt.insets = new Insets(0, 0, 5, 5);
 				gbc_lblIndbetalt.gridx = 1;
@@ -133,14 +131,14 @@ public class PaySaleDialog extends JDialog {
 				panel.add(lblIndbetalt, gbc_lblIndbetalt);
 			}
 			{
-				textFieldIndbetalt = new JTextField();
-				GridBagConstraints gbc_textFieldIndbetalt = new GridBagConstraints();
-				gbc_textFieldIndbetalt.insets = new Insets(0, 0, 5, 5);
-				gbc_textFieldIndbetalt.fill = GridBagConstraints.HORIZONTAL;
-				gbc_textFieldIndbetalt.gridx = 3;
-				gbc_textFieldIndbetalt.gridy = 4;
-				panel.add(textFieldIndbetalt, gbc_textFieldIndbetalt);
-				textFieldIndbetalt.setColumns(10);
+				payAmountTextField = new JTextField();
+				GridBagConstraints gbc_payAmountTextField = new GridBagConstraints();
+				gbc_payAmountTextField.insets = new Insets(0, 0, 5, 5);
+				gbc_payAmountTextField.fill = GridBagConstraints.HORIZONTAL;
+				gbc_payAmountTextField.gridx = 3;
+				gbc_payAmountTextField.gridy = 4;
+				panel.add(payAmountTextField, gbc_payAmountTextField);
+				payAmountTextField.setColumns(10);
 			}
 			{
 				lblOutput = new JLabel("Skriv den indbetalte sum foroven");
@@ -160,7 +158,7 @@ public class PaySaleDialog extends JDialog {
 				JButton payButton = new JButton("Indbetal");
 				payButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						checkValidTransaction();
+						payButton();
 					}
 				});
 				payButton.setActionCommand("OK");

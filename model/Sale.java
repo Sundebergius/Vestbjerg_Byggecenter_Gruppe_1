@@ -22,6 +22,9 @@ public class Sale
     private double moneyReceived;
     private String deliveryAddress;
     private String deliveryName;
+    private int postal;
+    private String phoneNumber;
+    private String city;
 
     /**
      * Constructor for objects of class Sale. 
@@ -72,6 +75,30 @@ public class Sale
     public String getDeliveryName()
     {
     	return deliveryName;
+    }
+    public void addDeliveryPostalToSale(int postal) 
+    {
+    	this.postal = postal;
+    }
+    public int getPostal()
+    {
+    	return postal;
+    }
+    public void addDeliveryPhoneNumber(String phoneNumber)
+    {
+    	this.phoneNumber = phoneNumber;
+    }
+    public String getPhoneNumber()
+    {
+    	return phoneNumber;
+    }
+    public void addDeliveryCity(String city)
+    {
+    	this.city = city;
+    }
+    public String getDeliveryCity()
+    {
+    	return city;
     }
     
     /**

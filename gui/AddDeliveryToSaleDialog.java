@@ -41,7 +41,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 	private JTextField mobileNumber;
 	private String name;
 	private String address;
-	private String postal;
+	private int postal;
 	private String city;
 	private String phoneNumber;
 
@@ -69,9 +69,9 @@ public class AddDeliveryToSaleDialog extends JDialog {
 	}
 	private void input()
 	{
+		postal = Integer.parseInt(postalField.getText());
 		name = nameField.getText();
 		address = addressField.getText();
-		postal = postalField.getText();
 		city = cityField.getText();
 		phoneNumber = mobileNumber.getText();
 		
@@ -81,6 +81,9 @@ public class AddDeliveryToSaleDialog extends JDialog {
 			input();
 			addName();
 			addDeliveryAddress();
+			addPostal();
+			addPhoneNumber();
+			addCity();
 			dispose();
 		}
 		private void addDeliveryAddress()
@@ -90,6 +93,19 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		private void addName()
 		{
 			saleController.addDeliveryNameToSale(name);
+		}
+		private void addPostal()
+		{
+			saleController.addPostalToSale(postal);
+		}
+		private void addPhoneNumber()
+		{
+			saleController.addPhoneNumberToSale(phoneNumber);
+		}
+		private void addCity()
+		{
+
+			saleController.addDeliveryCityToSale(city);
 		}
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
