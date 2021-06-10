@@ -65,6 +65,11 @@ public class SaleController
     {
          return currentSale;   
     }
+    public String addDeliveryNameToSale(String name)
+    {
+    	currentSale.addDeliveryNameToSale(name);
+    	return name;
+    }
     
     public void cancelSale(){
         currentSale = null;

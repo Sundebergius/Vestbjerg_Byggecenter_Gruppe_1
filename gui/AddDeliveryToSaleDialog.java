@@ -79,12 +79,17 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		private void addAddressButton()
 		{
 			input();
+			addName();
 			addDeliveryAddress();
 			dispose();
 		}
 		private void addDeliveryAddress()
 		{
 			saleController.addDeliveryAddressToSale(address);
+		}
+		private void addName()
+		{
+			saleController.addDeliveryNameToSale(name);
 		}
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");

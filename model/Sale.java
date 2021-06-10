@@ -21,6 +21,7 @@ public class Sale
     private String saleID;
     private double moneyReceived;
     private String deliveryAddress;
+    private String deliveryName;
 
     /**
      * Constructor for objects of class Sale. 
@@ -61,6 +62,16 @@ public class Sale
     public void addDeliveryAddressToSale(String deliveryAddress)
     {
         this.deliveryAddress = deliveryAddress;
+    }
+    
+    public void addDeliveryNameToSale(String deliveryName)
+    {
+    	this.deliveryName = deliveryName;
+    }
+    
+    public String getDeliveryName()
+    {
+    	return deliveryName;
     }
     
     /**
