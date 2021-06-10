@@ -105,6 +105,15 @@ public class CreateSaleFrame extends JFrame {
 		
 		String receiverName = saleController.getCurrentSale().getDeliveryName();
 		recieverField.setText(receiverName);
+		
+		int deliveryPostal = saleController.getCurrentSale().getPostal();
+		deliveryZipCodeField.setText("" +deliveryPostal);
+		
+		String deliveryPhoneNumber = saleController.getCurrentSale().getPhoneNumber();
+		deliveryMobileNumberField.setText(deliveryPhoneNumber);
+		
+		String deliveryCity = saleController.getCurrentSale().getDeliveryCity();
+		deliveryCityField.setText(deliveryCity);
 	}
 	
 	private void payButton() {

@@ -53,6 +53,26 @@ public class SaleController
         currentSale.addDeliveryAddressToSale(address);
         return address; 
     }
+    public String addDeliveryNameToSale(String name)
+    {
+    	currentSale.addDeliveryNameToSale(name);
+    	return name;
+    }
+    public int addPostalToSale(int postal)
+    {
+    	currentSale.addDeliveryPostalToSale(postal);
+    	return postal;
+    }
+    public String addPhoneNumberToSale(String phoneNumber)
+    {
+    	currentSale.addDeliveryPhoneNumber(phoneNumber);
+    	return phoneNumber;
+    }
+    public String addDeliveryCityToSale(String city)
+    {
+    	currentSale.addDeliveryCity(city);
+    	return city;
+    }
     
     public double pay(double money)
     {
@@ -65,12 +85,6 @@ public class SaleController
     {
          return currentSale;   
     }
-    public String addDeliveryNameToSale(String name)
-    {
-    	currentSale.addDeliveryNameToSale(name);
-    	return name;
-    }
-    
     public void cancelSale(){
         currentSale = null;
     }
