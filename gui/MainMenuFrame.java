@@ -60,11 +60,12 @@ public class MainMenuFrame extends JFrame {
 		loginDialog.setVisible(true);
 	}
 	
-	private void getEmployeeName()
+	private void setEmployeeName()
 	{
 		employeeName = loginDialog.getEmployeeName();
 		employeeLabel.setText(employeeName);
 	}
+	
 
 	private void createGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,6 +1,11 @@
 package gui;
 
 import java.awt.BorderLayout;
+
+import gui.MainMenuFrame;
+
+import control.SaleController;
+
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -23,6 +28,7 @@ public class LoginDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField employeeIDField;
 	private JPasswordField passwordField;
+	public String employeeName;
 
 	/**
 	 * Launch the application.
@@ -39,19 +45,27 @@ public class LoginDialog extends JDialog {
 	
 	public String getEmployeeName()
 	{
-		String employeeName = employeeIDField.getText();
+		employeeName = employeeIDField.getText();
 		return employeeName;
 	}
 	
-	private void loginButton()
+	public void loginButton()
 	{
+		getEmployeeName();
 		
+	}
+	
+	private void cancelButton()
+	{
+		dispose();
 	}
 
 	/**
 	 * Create the dialog.
 	 */
 	public LoginDialog() {
+		MainMenuFrame mainMenuFrane = new MainMenuFrame();
+		
 		setResizable(false);
 		setModal(true);
 		setBounds(100, 100, 450, 300);
@@ -133,6 +147,11 @@ public class LoginDialog extends JDialog {
 		buttonPanel.add(btnNewButton);
 		
 		JButton btnCacel = new JButton("Cancel");
+		btnCacel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cancelButton();
+			}
+		});
 		buttonPanel.add(btnCacel);
 	}
 
