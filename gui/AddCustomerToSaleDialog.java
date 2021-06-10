@@ -20,13 +20,15 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class AddCustomerToSaleDialog extends JDialog {
-	
+
 	private SaleController saleController;
 	private PersonController personController;
 	private Customer foundCustomer;
-	
+
 	private JTextField customerNameField;
 	private JTextField customerAddressField;
 	private JTextField customerZipcodeField;
@@ -41,7 +43,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 	public static void main(String[] args) {
 		try {
 			new TryMe();
-			
+
 			AddCustomerToSaleDialog dialog = new AddCustomerToSaleDialog(new SaleController());
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -58,34 +60,49 @@ public class AddCustomerToSaleDialog extends JDialog {
 		personController = new PersonController();
 		createGUI();
 	}
-	
+
 	private void searchButton() {
 		String customerID = customerIDInputField.getText();
 		foundCustomer = personController.findCustomerByCustomerID(customerID);
-		if(foundCustomer != null) {
+
+		if (foundCustomer != null) {
 			errorInfoLabel.setText("");
 			customerNameField.setText(foundCustomer.getName());
 			customerAddressField.setText(foundCustomer.getAddress());
 			customerZipcodeField.setText("" + foundCustomer.getPostalCode());
 			customerCityField.setText(foundCustomer.getCity());
 			customerPhoneNoField.setText(foundCustomer.getMobileNo());
-		
-		}else {
+
+		} else {
 			errorInfoLabel.setText("Fejl der blev ikke fundet nogen kunde med denne ID");
 		}
+
 	}
-	
+
 	private void addCustomerButton() {
-		
-		saleController.addCustomerToSale(foundCustomer.getCustomerID());
+		if (foundCustomer != null) {
+			saleController.addCustomerToSale(foundCustomer.getCustomerID());
+			dispose();
+		} else {
+			errorInfoLabel.setText("Fejl der er ikke blevet fundet en kunde endnu");
+		}
+	}
+
+	private void cancelButton() {
 		dispose();
 	}
-	
-	private void cancelButton() {
-		dispose();		
+
+	private void customerIDInputFieldAction() {
+
+		searchButton();
 	}
-	
-	private void createGUI() {		
+
+	private void customerIDInputFieldKeyAction() {
+		errorInfoLabel.setText("");
+		customerIDInputField.grabFocus();
+	}
+
+	private void createGUI() {
 		setTitle("Tilføj kunde til salget");
 		setModal(true);
 		setBounds(100, 100, 450, 300);
@@ -120,10 +137,10 @@ public class AddCustomerToSaleDialog extends JDialog {
 			JPanel InfoPane = new JPanel();
 			getContentPane().add(InfoPane, BorderLayout.CENTER);
 			GridBagLayout gbl_InfoPane = new GridBagLayout();
-			gbl_InfoPane.columnWidths = new int[]{30, 90, 0, 30, 0};
-			gbl_InfoPane.rowHeights = new int[]{25, 0, 0, 0, 0, 0, 0};
-			gbl_InfoPane.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-			gbl_InfoPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_InfoPane.columnWidths = new int[] { 30, 90, 0, 30, 0 };
+			gbl_InfoPane.rowHeights = new int[] { 25, 0, 0, 0, 0, 0, 0 };
+			gbl_InfoPane.columnWeights = new double[] { 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+			gbl_InfoPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 			InfoPane.setLayout(gbl_InfoPane);
 			{
 				errorInfoLabel = new JLabel("");
@@ -242,10 +259,10 @@ public class AddCustomerToSaleDialog extends JDialog {
 			contentPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 			getContentPane().add(contentPanel, BorderLayout.NORTH);
 			GridBagLayout gbl_contentPanel = new GridBagLayout();
-			gbl_contentPanel.columnWidths = new int[]{30, 90, 0, 0, 30, 0};
-			gbl_contentPanel.rowHeights = new int[]{15, 0, 0};
-			gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-			gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+			gbl_contentPanel.columnWidths = new int[] { 30, 90, 0, 0, 30, 0 };
+			gbl_contentPanel.rowHeights = new int[] { 15, 0, 0 };
+			gbl_contentPanel.columnWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
+			gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 			contentPanel.setLayout(gbl_contentPanel);
 			{
 				JLabel lblNewLabel = new JLabel("Indtast Kunde ID");
@@ -258,6 +275,17 @@ public class AddCustomerToSaleDialog extends JDialog {
 			}
 			{
 				customerIDInputField = new JTextField();
+				customerIDInputField.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyPressed(KeyEvent e) {
+						if (e.getKeyCode() != KeyEvent.VK_ENTER) {
+							customerIDInputFieldKeyAction();
+						} else {
+							customerIDInputFieldAction();
+						}
+					}
+				});
+
 				customerIDInputField.setColumns(10);
 				GridBagConstraints gbc_customerIDInputField = new GridBagConstraints();
 				gbc_customerIDInputField.fill = GridBagConstraints.HORIZONTAL;

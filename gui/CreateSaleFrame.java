@@ -140,9 +140,9 @@ public class CreateSaleFrame extends JFrame {
 	private void updateSubtotal() {
 			
 		double totalPrice = saleController.getCurrentSale().calculateTotalPrice();
-		subtotalField.setText(String.format("%.2f", totalPrice));
 		
-		
+		//String.format("%.2f", totalPrice) this method formats totalPrice to have 2 decimal spots
+		subtotalField.setText(String.format("%.2f", totalPrice));		
 	}
 	
 	
