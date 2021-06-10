@@ -12,6 +12,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+
+
 import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
@@ -19,7 +21,6 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
 
 public class AddProductToSaleDialog extends JDialog {
 	
@@ -29,7 +30,13 @@ public class AddProductToSaleDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField barcodeField;
 	private JTextField quantityField;
-	private JTextArea textArea;
+	private JLabel nameLabel;
+	private JLabel descriptionLabel;
+	private JLabel errorLabel;
+	
+	
+	
+	
 	
 	
 
@@ -61,7 +68,16 @@ public class AddProductToSaleDialog extends JDialog {
 	private void findProductByBarcode() {
 		
 		Product product = productController.findProductByBarcode(barcodeField.getText());
-		 textArea.setText(product.getName());	
+		if (product != null) {
+			
+			nameLabel.setText(product.getName());
+			descriptionLabel.setText(product.getDescription());
+			errorLabel.setText("");
+		}
+		else {
+			  errorLabel.setText("Fejl der blev ikke fundet nogen produkter med denne stregkode");
+		}
+		
 	}
 	
 
@@ -69,8 +85,8 @@ public class AddProductToSaleDialog extends JDialog {
 	private void addProductByBarcodeAndQuantity() {
 		
 		String parseText = quantityField.getText();
-		int quantityParse = Integer.parseInt(parseText);
-		saleController.addProductToSale(barcodeField.getText(), quantityParse);
+		int intParse = Integer.parseInt(parseText);
+		saleController.addProductToSale(barcodeField.getText(), intParse);
 	}
 	
 	private void createGUI() {
@@ -81,28 +97,28 @@ public class AddProductToSaleDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWidths = new int[]{53, 269, 57, 0};
+		gbl_contentPanel.rowHeights = new int[]{35, 23, 20, 0, 0, 0, 0};
+		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel barcodeLabel = new JLabel("Stregkode:");
-			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
-			gbc_lblNewLabel.gridx = 0;
-			gbc_lblNewLabel.gridy = 1;
-			contentPanel.add(barcodeLabel, gbc_lblNewLabel);
+			GridBagConstraints gbc_barcodeLabel = new GridBagConstraints();
+			gbc_barcodeLabel.anchor = GridBagConstraints.EAST;
+			gbc_barcodeLabel.insets = new Insets(0, 0, 5, 5);
+			gbc_barcodeLabel.gridx = 0;
+			gbc_barcodeLabel.gridy = 1;
+			contentPanel.add(barcodeLabel, gbc_barcodeLabel);
 		}
 		{
 			barcodeField = new JTextField();
-			GridBagConstraints gbc_txtStregkode = new GridBagConstraints();
-			gbc_txtStregkode.insets = new Insets(0, 0, 5, 5);
-			gbc_txtStregkode.fill = GridBagConstraints.HORIZONTAL;
-			gbc_txtStregkode.gridx = 1;
-			gbc_txtStregkode.gridy = 1;
-			contentPanel.add(barcodeField, gbc_txtStregkode);
+			GridBagConstraints gbc_barcodeField = new GridBagConstraints();
+			gbc_barcodeField.fill = GridBagConstraints.HORIZONTAL;
+			gbc_barcodeField.insets = new Insets(0, 0, 5, 5);
+			gbc_barcodeField.gridx = 1;
+			gbc_barcodeField.gridy = 1;
+			contentPanel.add(barcodeField, gbc_barcodeField);
 			barcodeField.setColumns(10);
 		}
 		{
@@ -113,41 +129,60 @@ public class AddProductToSaleDialog extends JDialog {
 					findProductByBarcode();
 				}
 			});
-			GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-			gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-			gbc_btnNewButton.gridx = 2;
-			gbc_btnNewButton.gridy = 1;
-			contentPanel.add(searchButton, gbc_btnNewButton);
+			GridBagConstraints gbc_searchButton = new GridBagConstraints();
+			gbc_searchButton.insets = new Insets(0, 0, 5, 0);
+			gbc_searchButton.gridx = 2;
+			gbc_searchButton.gridy = 1;
+			contentPanel.add(searchButton, gbc_searchButton);
 		}
 		{
 			JLabel quantityLabel = new JLabel("Antal:");
-			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
-			gbc_lblNewLabel_1.gridx = 0;
-			gbc_lblNewLabel_1.gridy = 2;
-			contentPanel.add(quantityLabel , gbc_lblNewLabel_1);
+			GridBagConstraints gbc_quantityLabel = new GridBagConstraints();
+			gbc_quantityLabel.anchor = GridBagConstraints.EAST;
+			gbc_quantityLabel.insets = new Insets(0, 0, 5, 5);
+			gbc_quantityLabel.gridx = 0;
+			gbc_quantityLabel.gridy = 2;
+			contentPanel.add(quantityLabel, gbc_quantityLabel);
 		}
 		{
 			quantityField = new JTextField();
-			GridBagConstraints gbc_txtAntal = new GridBagConstraints();
-			gbc_txtAntal.insets = new Insets(0, 0, 5, 5);
-			gbc_txtAntal.anchor = GridBagConstraints.ABOVE_BASELINE;
-			gbc_txtAntal.fill = GridBagConstraints.HORIZONTAL;
-			gbc_txtAntal.gridx = 1;
-			gbc_txtAntal.gridy = 2;
-			contentPanel.add(quantityField, gbc_txtAntal);
+			GridBagConstraints gbc_quantityField = new GridBagConstraints();
+			gbc_quantityField.anchor = GridBagConstraints.NORTH;
+			gbc_quantityField.fill = GridBagConstraints.HORIZONTAL;
+			gbc_quantityField.insets = new Insets(0, 0, 5, 5);
+			gbc_quantityField.gridx = 1;
+			gbc_quantityField.gridy = 2;
+			contentPanel.add(quantityField, gbc_quantityField);
 			quantityField.setColumns(10);
 		}
 		{
-			textArea = new JTextArea();
-			GridBagConstraints gbc_textArea = new GridBagConstraints();
-			gbc_textArea.insets = new Insets(0, 0, 0, 5);
-			gbc_textArea.fill = GridBagConstraints.BOTH;
-			gbc_textArea.gridx = 1;
-			gbc_textArea.gridy = 3;
-			contentPanel.add(textArea, gbc_textArea);
+			nameLabel = new JLabel("");
+			GridBagConstraints gbc_nameLabel = new GridBagConstraints();
+			gbc_nameLabel.insets = new Insets(0, 0, 5, 5);
+			gbc_nameLabel.gridx = 1;
+			gbc_nameLabel.gridy = 3;
+			contentPanel.add(nameLabel, gbc_nameLabel);
 		}
+		{
+			descriptionLabel = new JLabel("");
+			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+			gbc_lblNewLabel_1.gridx = 1;
+			gbc_lblNewLabel_1.gridy = 4;
+			contentPanel.add(descriptionLabel, gbc_lblNewLabel_1);
+		}
+		{
+			errorLabel = new JLabel("");
+			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+			gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
+			gbc_lblNewLabel.gridx = 1;
+			gbc_lblNewLabel.gridy = 5;
+			contentPanel.add(errorLabel, gbc_lblNewLabel);
+		}
+	
+	
+			
+		
 		
 		{
 			JPanel buttonPane = new JPanel();

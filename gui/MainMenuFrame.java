@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import control.SaleController;
 import gui.LoginDialog;
+import model.Employee;
 
 public class MainMenuFrame extends JFrame {
 
@@ -26,7 +28,7 @@ public class MainMenuFrame extends JFrame {
 	private SaleController saleController;
 	private JLabel employeeLabel;
 	private LoginDialog loginDialog;
-	private String employeeName;
+	private Employee currentEmployee;
 
 	/**
 	 * Launch the application.
@@ -45,9 +47,18 @@ public class MainMenuFrame extends JFrame {
 	}
 	
 	public MainMenuFrame() {
-		LoginDialog loginDialog = new LoginDialog();
+		new TryMe();
 		createGUI();
+		LoginDialog loginDialog = new LoginDialog(this);
+		loginDialog.setVisible(true);
+		
 
+	}
+	
+	public void setCurrentEmployee(Employee employee)
+	{
+		currentEmployee = employee;
+		employeeLabel.setText(currentEmployee.getName());
 	}
 	
 	private void startSaleButton() {
@@ -56,15 +67,10 @@ public class MainMenuFrame extends JFrame {
 	}
 	
 	private void logoutButton() {
-		LoginDialog loginDialog = new LoginDialog();
+		LoginDialog loginDialog = new LoginDialog(this);
 		loginDialog.setVisible(true);
 	}
-	
-	private void getEmployeeName()
-	{
-		employeeName = loginDialog.getEmployeeName();
-		employeeLabel.setText(employeeName);
-	}
+		
 
 	private void createGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
