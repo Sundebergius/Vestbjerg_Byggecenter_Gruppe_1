@@ -25,6 +25,7 @@ import javax.swing.border.TitledBorder;
 import control.SaleController;
 import model.Customer;
 import model.Employee;
+import model.Sale;
 import model.Customer;
 import model.SaleLineItem;
 
@@ -134,7 +135,19 @@ public class CreateSaleFrame extends JFrame {
 	}
 
 	private void removeProductButton() {
-		System.out.println("Not implemented yet");
+				
+		int[] selectedIndices = productList.getSelectedIndices();		
+		
+		Sale currentSale = saleController.getCurrentSale();
+		
+		for (int i = selectedIndices.length-1; i >= 0; i--) {
+			
+			currentSale.removeSaleLineItem(selectedIndices[i]);
+			
+		}
+		updateProductList();
+		
+		
 
 	}
 
