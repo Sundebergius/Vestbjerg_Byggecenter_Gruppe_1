@@ -246,7 +246,6 @@ public class AddProductToSaleDialog extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						
 						addProductByBarcodeAndQuantity();
-						dispose();
 					}
 				});
 				addButton.setActionCommand("OK");
