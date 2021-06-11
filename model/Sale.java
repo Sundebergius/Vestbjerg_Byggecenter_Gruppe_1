@@ -120,6 +120,10 @@ public class Sale
     	return dateTime;
     }
     
+    public void removeSaleLineItem(int index) {
+    	saleLines.remove(index);    
+    }
+    
     /**
      * Get method for sale ID. 
      * @return ID of sale. 

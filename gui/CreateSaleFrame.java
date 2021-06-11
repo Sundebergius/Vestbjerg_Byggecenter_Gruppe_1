@@ -25,6 +25,7 @@ import javax.swing.border.TitledBorder;
 import control.SaleController;
 import model.Customer;
 import model.Employee;
+import model.Sale;
 import model.Customer;
 import model.SaleLineItem;
 
@@ -49,7 +50,7 @@ public class CreateSaleFrame extends JFrame {
 	private JTextField deliveryAddressField;
 	private JTextField deliveryCityField;
 	private JTextField deliveryZipCodeField;
-	private JTextField textField;
+	private JTextField textField2;
 	private JTextField deliveryMobileNumberField;
 
 	/**
@@ -134,7 +135,19 @@ public class CreateSaleFrame extends JFrame {
 	}
 
 	private void removeProductButton() {
-		System.out.println("Not implemented yet");
+				
+		int[] selectedIndices = productList.getSelectedIndices();		
+		
+		Sale currentSale = saleController.getCurrentSale();
+		
+		for (int i = selectedIndices.length-1; i >= 0; i--) {
+			
+			currentSale.removeSaleLineItem(selectedIndices[i]);
+			
+		}
+		updateProductList();
+		
+		
 
 	}
 
@@ -219,13 +232,6 @@ public class CreateSaleFrame extends JFrame {
 		fl_productContentPanel.setAlignment(FlowLayout.RIGHT);
 		productControlPanel.add(productContentPanel, BorderLayout.NORTH);
 
-		JLabel lblNewLabel_7 = new JLabel("Moms");
-		productContentPanel.add(lblNewLabel_7);
-
-		textField = new JTextField();
-		textField.setEditable(false);
-		productContentPanel.add(textField);
-		textField.setColumns(10);
 
 		JLabel lblNewLabel_4 = new JLabel("Subtotal");
 		productContentPanel.add(lblNewLabel_4);
@@ -259,7 +265,7 @@ public class CreateSaleFrame extends JFrame {
 		JScrollPane productListPanel = new JScrollPane();
 		productPanel.add(productListPanel, BorderLayout.CENTER);
 
-		productList = new JList();
+		productList = new JList<>();
 		productListPanel.setViewportView(productList);
 
 		JPanel customerPanel = new JPanel();

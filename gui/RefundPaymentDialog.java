@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import control.SaleController;
 import gui.PaySaleDialog;
 
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -35,7 +34,7 @@ public class RefundPaymentDialog extends JDialog {
 	private JTextField refundTextField;
 	private SaleController saleController;
 	private PaySaleDialog paySaleDialog;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +53,10 @@ public class RefundPaymentDialog extends JDialog {
 	}
 
 	private void okButton() {
+		setVisible(false);
+
+		SaleReceiptDialog receiptDialog = new SaleReceiptDialog(saleController);
+		receiptDialog.setVisible(true);
 		dispose();
 	}
 
