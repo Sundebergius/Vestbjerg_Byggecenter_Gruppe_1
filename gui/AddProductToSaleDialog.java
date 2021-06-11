@@ -86,17 +86,16 @@ public class AddProductToSaleDialog extends JDialog {
 	private void addProductByBarcodeAndQuantity() {
 		  
 		String parseText = quantityField.getText();
-		//int intParsed = Integer.parseInt(parseText);
-		//saleController.addProductToSale(barcodeField.getText(), intParsed);
 		
-		if (parseText != null) {
+		
+		if  (parseText.isEmpty()) {
 			
-			
-			errorLabelQuantity.setText("Ingen fejl, antal fundet");
-			}
-		else {
 			errorLabelQuantity.setText("Fejl der blev ikke fundet et antal");
 			
+			}
+		else {
+			int intParsed = Integer.parseInt(parseText);
+			saleController.addProductToSale(barcodeField.getText(), intParsed);
 		}
 	}
 	
