@@ -52,7 +52,7 @@ public class PaySaleDialog extends JDialog {
 
 
 	
-	private void showRemainingPayment() {
+	public void showRemainingPayment() {
 		double remainingPayment = saleController.getCurrentSale().getRemainingPayment();
 		String remainingPaymentString = String.format("%.2f", remainingPayment);
 		subtotalTextField.setText(remainingPaymentString);
@@ -77,7 +77,7 @@ public class PaySaleDialog extends JDialog {
 			dispose();
 			
 		}else if(remainingPayment < 0){
-			RefundPaymentDialog refundPaymentDialog = new RefundPaymentDialog();
+			RefundPaymentDialog refundPaymentDialog = new RefundPaymentDialog(saleController);
 			refundPaymentDialog.setVisible(true);
 		}
 		
