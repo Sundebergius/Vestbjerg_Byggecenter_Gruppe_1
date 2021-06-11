@@ -46,6 +46,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 	private int postal;
 	private String city;
 	private String phoneNumber;
+	private JLabel contryLabel;
 
 	/**
 	 * Launch the application.
@@ -128,8 +129,8 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[] { 35, 127, 120, 0, 0 };
-		gbl_panel_1.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel_1.columnWidths = new int[] { 35, 127, 24, 120, 0, 0 };
+		gbl_panel_1.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
 		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_1.setLayout(gbl_panel_1);
 
@@ -146,7 +147,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_nameField.anchor = GridBagConstraints.SOUTH;
 		gbc_nameField.insets = new Insets(0, 0, 5, 5);
 		gbc_nameField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_nameField.gridx = 2;
+		gbc_nameField.gridx = 3;
 		gbc_nameField.gridy = 0;
 		panel_1.add(nameField, gbc_nameField);
 		nameField.setColumns(10);
@@ -164,7 +165,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_addressField.anchor = GridBagConstraints.SOUTH;
 		gbc_addressField.insets = new Insets(0, 0, 5, 5);
 		gbc_addressField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_addressField.gridx = 2;
+		gbc_addressField.gridx = 3;
 		gbc_addressField.gridy = 1;
 		panel_1.add(addressField, gbc_addressField);
 		addressField.setColumns(10);
@@ -191,11 +192,19 @@ public class AddDeliveryToSaleDialog extends JDialog {
 				}
 		}
 		});
+		
+		contryLabel = new JLabel("+45");
+		GridBagConstraints gbc_contryLabel = new GridBagConstraints();
+		gbc_contryLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_contryLabel.anchor = GridBagConstraints.EAST;
+		gbc_contryLabel.gridx = 2;
+		gbc_contryLabel.gridy = 2;
+		panel_1.add(contryLabel, gbc_contryLabel);
 		GridBagConstraints gbc_postalField = new GridBagConstraints();
 		gbc_postalField.anchor = GridBagConstraints.SOUTH;
 		gbc_postalField.insets = new Insets(0, 0, 5, 5);
 		gbc_postalField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_postalField.gridx = 2;
+		gbc_postalField.gridx = 3;
 		gbc_postalField.gridy = 2;
 		panel_1.add(postalField, gbc_postalField);
 		postalField.setColumns(10);
@@ -212,7 +221,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		GridBagConstraints gbc_MobileNumber = new GridBagConstraints();
 		gbc_MobileNumber.insets = new Insets(0, 0, 5, 5);
 		gbc_MobileNumber.fill = GridBagConstraints.HORIZONTAL;
-		gbc_MobileNumber.gridx = 2;
+		gbc_MobileNumber.gridx = 3;
 		gbc_MobileNumber.gridy = 3;
 		panel_1.add(mobileNumber, gbc_MobileNumber);
 		mobileNumber.setColumns(10);
@@ -230,7 +239,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_cityField.anchor = GridBagConstraints.SOUTH;
 		gbc_cityField.insets = new Insets(0, 0, 0, 5);
 		gbc_cityField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_cityField.gridx = 2;
+		gbc_cityField.gridx = 3;
 		gbc_cityField.gridy = 4;
 		panel_1.add(cityField, gbc_cityField);
 		cityField.setColumns(10);
