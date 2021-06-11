@@ -62,7 +62,7 @@ public class MainMenuFrame extends JFrame {
 	}
 	
 	private void startSaleButton() {
-		CreateSaleFrame createSaleFrame = new CreateSaleFrame();
+		CreateSaleFrame createSaleFrame = new CreateSaleFrame(currentEmployee);
 		createSaleFrame.setVisible(true);
 	}
 	
