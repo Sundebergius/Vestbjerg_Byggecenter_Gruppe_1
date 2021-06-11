@@ -25,6 +25,9 @@ public class Sale
     private int postal;
     private String phoneNumber;
     private String city;
+    private boolean addedCustomer;
+    private boolean addedDelivery;
+    
 
     /**
      * Constructor for objects of class Sale. 
@@ -37,6 +40,8 @@ public class Sale
         this.employee = employee;
         deliveryAddress = "";
         dateTime = new Date();
+        addedCustomer = false;
+        addedDelivery = false;
     }
     
     /**
@@ -55,6 +60,7 @@ public class Sale
     public void addCustomerToSale(Customer customer)
     {
        this.customer = customer;
+       addedCustomer = true;
     }
     
     /**
@@ -65,6 +71,7 @@ public class Sale
     public void addDeliveryAddressToSale(String deliveryAddress)
     {
         this.deliveryAddress = deliveryAddress;
+        addedDelivery = true;
     }
     
     public void addDeliveryNameToSale(String deliveryName)
@@ -99,6 +106,18 @@ public class Sale
     public String getDeliveryCity()
     {
     	return city;
+    }
+    
+    public boolean hasCustomer() {
+    	return addedCustomer;
+    }
+    
+    public boolean hasDelivery() {
+    	return addedDelivery;
+    }
+    
+    public Date getSaleDate() {
+    	return dateTime;
     }
     
     /**
