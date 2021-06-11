@@ -123,6 +123,7 @@ public class CreateSaleFrame extends JFrame {
 	}
 
 	private void payButton() {
+		saleController.setCurrentSaleID();
 		PaySaleDialog paySaleDialog = new PaySaleDialog(saleController);
 		paySaleDialog.setVisible(true);
 
