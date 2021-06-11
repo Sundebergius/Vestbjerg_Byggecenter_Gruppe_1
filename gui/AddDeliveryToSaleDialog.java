@@ -31,7 +31,7 @@ import java.awt.event.KeyEvent;
 public class AddDeliveryToSaleDialog extends JDialog {
 	private SaleController saleController;
 
-	private final JButton closeButton = new JButton("Luk");
+	private final JButton closeButton = new JButton("Annuller");
 	private JTextField addressField;
 	private JTextField nameField;
 	private JTextField postalField;
@@ -114,6 +114,8 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		setBounds(100, 100, 395, 257);
 
 		panel = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+		flowLayout.setAlignment(FlowLayout.RIGHT);
 		getContentPane().add(panel, BorderLayout.SOUTH);
 
 		addButton = new JButton("Tilf\u00F8j");

@@ -72,8 +72,12 @@ public class PaySaleDialog extends JDialog {
 			lblOutput.setText(amountPayedString + " DKK blev tilføjet til salget, der mangler stadig " + remainingPaymentString + " DKK");
 			
 		}else if(remainingPayment == 0) {
-			//open receipt dialog box
-			System.out.println("Transaction is complete");
+			
+			setVisible(false);
+			
+			SaleReceiptDialog receiptDialog = new SaleReceiptDialog(saleController);
+			receiptDialog.setVisible(true);
+			
 			dispose();
 			
 		}else if(remainingPayment < 0){
