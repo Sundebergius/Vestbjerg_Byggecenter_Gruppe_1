@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
+import java.awt.Component;
 
 public class AddProductToSaleDialog extends JDialog {
 	
@@ -32,8 +33,8 @@ public class AddProductToSaleDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField barcodeField;
 	private JTextField quantityField;
-	private JLabel nameLabel;
-	private JLabel descriptionLabel;
+	private JLabel nameLabel2;
+	private JLabel descriptionLabel2;
 	private JLabel errorLabelBarcode;
 	private JLabel errorLabelQuantity;
 	
@@ -73,8 +74,8 @@ public class AddProductToSaleDialog extends JDialog {
 		Product product = productController.findProductByBarcode(barcodeField.getText());
 		if (product != null) {
 			
-			nameLabel.setText(product.getName());
-			descriptionLabel.setText(product.getDescription());
+			nameLabel2.setText(product.getName());
+			descriptionLabel2.setText(product.getDescription());
 			errorLabelBarcode.setText("");
 		}
 		else {
@@ -109,10 +110,10 @@ public class AddProductToSaleDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{53, 269, 57, 0};
-		gbl_contentPanel.rowHeights = new int[]{35, 23, 20, 0, 0, 0, 0, 0};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWidths = new int[]{53, 0, 269, 57, 0};
+		gbl_contentPanel.rowHeights = new int[]{35, 23, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel barcodeLabel = new JLabel("Stregkode:");
@@ -128,7 +129,7 @@ public class AddProductToSaleDialog extends JDialog {
 			GridBagConstraints gbc_barcodeField = new GridBagConstraints();
 			gbc_barcodeField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_barcodeField.insets = new Insets(0, 0, 5, 5);
-			gbc_barcodeField.gridx = 1;
+			gbc_barcodeField.gridx = 2;
 			gbc_barcodeField.gridy = 1;
 			contentPanel.add(barcodeField, gbc_barcodeField);
 			barcodeField.setColumns(10);
@@ -143,7 +144,7 @@ public class AddProductToSaleDialog extends JDialog {
 			});
 			GridBagConstraints gbc_searchButton = new GridBagConstraints();
 			gbc_searchButton.insets = new Insets(0, 0, 5, 0);
-			gbc_searchButton.gridx = 2;
+			gbc_searchButton.gridx = 3;
 			gbc_searchButton.gridy = 1;
 			contentPanel.add(searchButton, gbc_searchButton);
 		}
@@ -165,7 +166,7 @@ public class AddProductToSaleDialog extends JDialog {
 			gbc_quantityField.anchor = GridBagConstraints.NORTH;
 			gbc_quantityField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_quantityField.insets = new Insets(0, 0, 5, 5);
-			gbc_quantityField.gridx = 1;
+			gbc_quantityField.gridx = 2;
 			gbc_quantityField.gridy = 2;
 			contentPanel.add(quantityField, gbc_quantityField);
 			quantityField.setColumns(10);
@@ -183,35 +184,51 @@ public class AddProductToSaleDialog extends JDialog {
 			});
 		}
 		{
-			nameLabel = new JLabel("");
-			GridBagConstraints gbc_nameLabel = new GridBagConstraints();
-			gbc_nameLabel.insets = new Insets(0, 0, 5, 5);
-			gbc_nameLabel.gridx = 1;
-			gbc_nameLabel.gridy = 3;
-			contentPanel.add(nameLabel, gbc_nameLabel);
+			JLabel nameLabel1 = new JLabel("Name:");
+			GridBagConstraints gbc_nameLabel1 = new GridBagConstraints();
+			gbc_nameLabel1.insets = new Insets(0, 0, 5, 5);
+			gbc_nameLabel1.gridx = 0;
+			gbc_nameLabel1.gridy = 3;
+			contentPanel.add(nameLabel1, gbc_nameLabel1);
 		}
 		{
-			descriptionLabel = new JLabel("");
-			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNewLabel_1.gridx = 1;
-			gbc_lblNewLabel_1.gridy = 4;
-			contentPanel.add(descriptionLabel, gbc_lblNewLabel_1);
+			nameLabel2 = new JLabel("");
+			GridBagConstraints gbc_nameLabel2 = new GridBagConstraints();
+			gbc_nameLabel2.insets = new Insets(0, 0, 5, 5);
+			gbc_nameLabel2.gridx = 2;
+			gbc_nameLabel2.gridy = 3;
+			contentPanel.add(nameLabel2, gbc_nameLabel2);
+		}
+		{
+			JLabel descriptionLabel1 = new JLabel("Description:");
+			GridBagConstraints gbc_descriptionLabel1 = new GridBagConstraints();
+			gbc_descriptionLabel1.insets = new Insets(0, 0, 5, 5);
+			gbc_descriptionLabel1.gridx = 0;
+			gbc_descriptionLabel1.gridy = 4;
+			contentPanel.add(descriptionLabel1, gbc_descriptionLabel1);
+		}
+		{
+			descriptionLabel2 = new JLabel("");
+			GridBagConstraints gbc_descriptionLabel2 = new GridBagConstraints();
+			gbc_descriptionLabel2.insets = new Insets(0, 0, 5, 5);
+			gbc_descriptionLabel2.gridx = 2;
+			gbc_descriptionLabel2.gridy = 4;
+			contentPanel.add(descriptionLabel2, gbc_descriptionLabel2);
 		}
 		{
 			errorLabelBarcode = new JLabel("");
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNewLabel.gridx = 1;
-			gbc_lblNewLabel.gridy = 5;
+			gbc_lblNewLabel.gridx = 2;
+			gbc_lblNewLabel.gridy = 12;
 			contentPanel.add(errorLabelBarcode, gbc_lblNewLabel);
 		}
 		{
 			errorLabelQuantity = new JLabel("");
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 			gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
-			gbc_lblNewLabel.gridx = 1;
-			gbc_lblNewLabel.gridy = 6;
+			gbc_lblNewLabel.gridx = 2;
+			gbc_lblNewLabel.gridy = 13;
 			contentPanel.add(errorLabelQuantity, gbc_lblNewLabel);
 		}
 	
@@ -229,6 +246,7 @@ public class AddProductToSaleDialog extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						
 						addProductByBarcodeAndQuantity();
+						dispose();
 					}
 				});
 				addButton.setActionCommand("OK");
