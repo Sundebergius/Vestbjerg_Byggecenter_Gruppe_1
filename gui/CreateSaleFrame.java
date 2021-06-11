@@ -84,8 +84,7 @@ public class CreateSaleFrame extends JFrame {
 	private void addProductButton() {
 		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog(saleController);
 		productToSaleDialog.setVisible(true);
-		updateProductList();
-		updateSubtotal();
+		updateProductList();		
 	}
 
 	private void addCustomerButton() {
@@ -163,6 +162,8 @@ public class CreateSaleFrame extends JFrame {
 			listRepresentation.addElement(saleLineItem);
 		}
 		productList.setModel(listRepresentation);
+		
+		updateSubtotal();
 	}
 
 	private void updateSubtotal() {
