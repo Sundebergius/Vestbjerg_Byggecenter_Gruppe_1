@@ -162,9 +162,9 @@ public class SaleReceiptDialog extends JDialog {
 				gbc_panel.gridy = 1;
 				ReceiptTopPane.add(panel, gbc_panel);
 				GridBagLayout gbl_panel = new GridBagLayout();
-				gbl_panel.columnWidths = new int[] { 0, 0, 0, 0, 0 };
+				gbl_panel.columnWidths = new int[] { 20, 0, 0, 0, 0, 20, 0 };
 				gbl_panel.rowHeights = new int[] { 0, 0, 0, 0 };
-				gbl_panel.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+				gbl_panel.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 				gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
 				panel.setLayout(gbl_panel);
 				{
@@ -173,7 +173,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 					gbc_lblNewLabel_1.fill = GridBagConstraints.HORIZONTAL;
 					gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-					gbc_lblNewLabel_1.gridx = 0;
+					gbc_lblNewLabel_1.gridx = 1;
 					gbc_lblNewLabel_1.gridy = 0;
 					panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 				}
@@ -183,7 +183,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_saleEmployeeLabel = new GridBagConstraints();
 					gbc_saleEmployeeLabel.fill = GridBagConstraints.HORIZONTAL;
 					gbc_saleEmployeeLabel.insets = new Insets(0, 0, 5, 5);
-					gbc_saleEmployeeLabel.gridx = 1;
+					gbc_saleEmployeeLabel.gridx = 2;
 					gbc_saleEmployeeLabel.gridy = 0;
 					panel.add(saleEmployeeLabel, gbc_saleEmployeeLabel);
 				}
@@ -193,7 +193,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 					gbc_lblNewLabel_3.fill = GridBagConstraints.HORIZONTAL;
 					gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-					gbc_lblNewLabel_3.gridx = 2;
+					gbc_lblNewLabel_3.gridx = 3;
 					gbc_lblNewLabel_3.gridy = 0;
 					panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
 				}
@@ -202,8 +202,8 @@ public class SaleReceiptDialog extends JDialog {
 					saleIDLabel.setHorizontalAlignment(SwingConstants.LEFT);
 					GridBagConstraints gbc_saleIDLabel = new GridBagConstraints();
 					gbc_saleIDLabel.fill = GridBagConstraints.HORIZONTAL;
-					gbc_saleIDLabel.insets = new Insets(0, 0, 5, 0);
-					gbc_saleIDLabel.gridx = 3;
+					gbc_saleIDLabel.insets = new Insets(0, 0, 5, 5);
+					gbc_saleIDLabel.gridx = 4;
 					gbc_saleIDLabel.gridy = 0;
 					panel.add(saleIDLabel, gbc_saleIDLabel);
 				}
@@ -213,7 +213,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 					gbc_lblNewLabel_2.fill = GridBagConstraints.HORIZONTAL;
 					gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-					gbc_lblNewLabel_2.gridx = 0;
+					gbc_lblNewLabel_2.gridx = 1;
 					gbc_lblNewLabel_2.gridy = 1;
 					panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
 				}
@@ -223,7 +223,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_saleDateLabel = new GridBagConstraints();
 					gbc_saleDateLabel.fill = GridBagConstraints.HORIZONTAL;
 					gbc_saleDateLabel.insets = new Insets(0, 0, 5, 5);
-					gbc_saleDateLabel.gridx = 1;
+					gbc_saleDateLabel.gridx = 2;
 					gbc_saleDateLabel.gridy = 1;
 					panel.add(saleDateLabel, gbc_saleDateLabel);
 				}
@@ -233,7 +233,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 					gbc_lblNewLabel_4.fill = GridBagConstraints.HORIZONTAL;
 					gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
-					gbc_lblNewLabel_4.gridx = 2;
+					gbc_lblNewLabel_4.gridx = 3;
 					gbc_lblNewLabel_4.gridy = 1;
 					panel.add(lblNewLabel_4, gbc_lblNewLabel_4);
 				}
@@ -241,9 +241,9 @@ public class SaleReceiptDialog extends JDialog {
 					saleTimeLabel = new JLabel("New label");
 					saleTimeLabel.setHorizontalAlignment(SwingConstants.LEFT);
 					GridBagConstraints gbc_saleTimeLabel = new GridBagConstraints();
-					gbc_saleTimeLabel.insets = new Insets(0, 0, 5, 0);
+					gbc_saleTimeLabel.insets = new Insets(0, 0, 5, 5);
 					gbc_saleTimeLabel.fill = GridBagConstraints.HORIZONTAL;
-					gbc_saleTimeLabel.gridx = 3;
+					gbc_saleTimeLabel.gridx = 4;
 					gbc_saleTimeLabel.gridy = 1;
 					panel.add(saleTimeLabel, gbc_saleTimeLabel);
 				}
@@ -270,9 +270,9 @@ public class SaleReceiptDialog extends JDialog {
 				gbc_panel.gridy = 3;
 				ReceiptTopPane.add(panel, gbc_panel);
 				GridBagLayout gbl_panel = new GridBagLayout();
-				gbl_panel.columnWidths = new int[] { 0, 0, 0 };
+				gbl_panel.columnWidths = new int[] { 20, 0, 0, 20, 0 };
 				gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0 };
-				gbl_panel.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
+				gbl_panel.columnWeights = new double[] { 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 				gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 				panel.setLayout(gbl_panel);
 				{
@@ -281,7 +281,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 					gbc_lblNewLabel_5.fill = GridBagConstraints.HORIZONTAL;
 					gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-					gbc_lblNewLabel_5.gridx = 0;
+					gbc_lblNewLabel_5.gridx = 1;
 					gbc_lblNewLabel_5.gridy = 0;
 					panel.add(lblNewLabel_5, gbc_lblNewLabel_5);
 				}
@@ -290,8 +290,8 @@ public class SaleReceiptDialog extends JDialog {
 					totalWithoutTaxLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 					GridBagConstraints gbc_totalWithoutTaxLabel = new GridBagConstraints();
 					gbc_totalWithoutTaxLabel.fill = GridBagConstraints.HORIZONTAL;
-					gbc_totalWithoutTaxLabel.insets = new Insets(0, 0, 5, 0);
-					gbc_totalWithoutTaxLabel.gridx = 1;
+					gbc_totalWithoutTaxLabel.insets = new Insets(0, 0, 5, 5);
+					gbc_totalWithoutTaxLabel.gridx = 2;
 					gbc_totalWithoutTaxLabel.gridy = 0;
 					panel.add(totalWithoutTaxLabel, gbc_totalWithoutTaxLabel);
 				}
@@ -301,7 +301,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 					gbc_lblNewLabel_6.fill = GridBagConstraints.HORIZONTAL;
 					gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
-					gbc_lblNewLabel_6.gridx = 0;
+					gbc_lblNewLabel_6.gridx = 1;
 					gbc_lblNewLabel_6.gridy = 1;
 					panel.add(lblNewLabel_6, gbc_lblNewLabel_6);
 				}
@@ -310,8 +310,8 @@ public class SaleReceiptDialog extends JDialog {
 					taxLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 					GridBagConstraints gbc_taxLabel = new GridBagConstraints();
 					gbc_taxLabel.fill = GridBagConstraints.HORIZONTAL;
-					gbc_taxLabel.insets = new Insets(0, 0, 5, 0);
-					gbc_taxLabel.gridx = 1;
+					gbc_taxLabel.insets = new Insets(0, 0, 5, 5);
+					gbc_taxLabel.gridx = 2;
 					gbc_taxLabel.gridy = 1;
 					panel.add(taxLabel, gbc_taxLabel);
 				}
@@ -321,7 +321,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
 					gbc_lblNewLabel_7.fill = GridBagConstraints.HORIZONTAL;
 					gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
-					gbc_lblNewLabel_7.gridx = 0;
+					gbc_lblNewLabel_7.gridx = 1;
 					gbc_lblNewLabel_7.gridy = 2;
 					panel.add(lblNewLabel_7, gbc_lblNewLabel_7);
 				}
@@ -330,8 +330,8 @@ public class SaleReceiptDialog extends JDialog {
 					totalLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 					GridBagConstraints gbc_totalLabel = new GridBagConstraints();
 					gbc_totalLabel.fill = GridBagConstraints.HORIZONTAL;
-					gbc_totalLabel.insets = new Insets(0, 0, 5, 0);
-					gbc_totalLabel.gridx = 1;
+					gbc_totalLabel.insets = new Insets(0, 0, 5, 5);
+					gbc_totalLabel.gridx = 2;
 					gbc_totalLabel.gridy = 2;
 					panel.add(totalLabel, gbc_totalLabel);
 				}
@@ -341,7 +341,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_lblNewLabel_11 = new GridBagConstraints();
 					gbc_lblNewLabel_11.fill = GridBagConstraints.HORIZONTAL;
 					gbc_lblNewLabel_11.insets = new Insets(0, 0, 5, 5);
-					gbc_lblNewLabel_11.gridx = 0;
+					gbc_lblNewLabel_11.gridx = 1;
 					gbc_lblNewLabel_11.gridy = 4;
 					panel.add(lblNewLabel_11, gbc_lblNewLabel_11);
 				}
@@ -350,8 +350,8 @@ public class SaleReceiptDialog extends JDialog {
 					receivedLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 					GridBagConstraints gbc_receivedLabel = new GridBagConstraints();
 					gbc_receivedLabel.fill = GridBagConstraints.HORIZONTAL;
-					gbc_receivedLabel.insets = new Insets(0, 0, 5, 0);
-					gbc_receivedLabel.gridx = 1;
+					gbc_receivedLabel.insets = new Insets(0, 0, 5, 5);
+					gbc_receivedLabel.gridx = 2;
 					gbc_receivedLabel.gridy = 4;
 					panel.add(receivedLabel, gbc_receivedLabel);
 				}
@@ -361,7 +361,7 @@ public class SaleReceiptDialog extends JDialog {
 					GridBagConstraints gbc_lblNewLabel_13 = new GridBagConstraints();
 					gbc_lblNewLabel_13.fill = GridBagConstraints.HORIZONTAL;
 					gbc_lblNewLabel_13.insets = new Insets(0, 0, 0, 5);
-					gbc_lblNewLabel_13.gridx = 0;
+					gbc_lblNewLabel_13.gridx = 1;
 					gbc_lblNewLabel_13.gridy = 5;
 					panel.add(lblNewLabel_13, gbc_lblNewLabel_13);
 				}
@@ -369,8 +369,9 @@ public class SaleReceiptDialog extends JDialog {
 					returnedLabel = new JLabel("New label");
 					returnedLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 					GridBagConstraints gbc_returnedLabel = new GridBagConstraints();
+					gbc_returnedLabel.insets = new Insets(0, 0, 0, 5);
 					gbc_returnedLabel.fill = GridBagConstraints.HORIZONTAL;
-					gbc_returnedLabel.gridx = 1;
+					gbc_returnedLabel.gridx = 2;
 					gbc_returnedLabel.gridy = 5;
 					panel.add(returnedLabel, gbc_returnedLabel);
 				}
