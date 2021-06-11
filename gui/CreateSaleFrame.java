@@ -49,7 +49,7 @@ public class CreateSaleFrame extends JFrame {
 	private JTextField deliveryAddressField;
 	private JTextField deliveryCityField;
 	private JTextField deliveryZipCodeField;
-	private JTextField textField;
+	private JTextField textField2;
 	private JTextField deliveryMobileNumberField;
 
 	/**
@@ -219,13 +219,6 @@ public class CreateSaleFrame extends JFrame {
 		fl_productContentPanel.setAlignment(FlowLayout.RIGHT);
 		productControlPanel.add(productContentPanel, BorderLayout.NORTH);
 
-		JLabel lblNewLabel_7 = new JLabel("Moms");
-		productContentPanel.add(lblNewLabel_7);
-
-		textField = new JTextField();
-		textField.setEditable(false);
-		productContentPanel.add(textField);
-		textField.setColumns(10);
 
 		JLabel lblNewLabel_4 = new JLabel("Subtotal");
 		productContentPanel.add(lblNewLabel_4);

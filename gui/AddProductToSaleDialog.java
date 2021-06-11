@@ -20,6 +20,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 
 public class AddProductToSaleDialog extends JDialog {
@@ -154,6 +156,9 @@ public class AddProductToSaleDialog extends JDialog {
 			gbc_quantityLabel.gridy = 2;
 			contentPanel.add(quantityLabel, gbc_quantityLabel);
 		}
+		
+		
+		
 		{
 			quantityField = new JTextField();
 			GridBagConstraints gbc_quantityField = new GridBagConstraints();
@@ -164,6 +169,18 @@ public class AddProductToSaleDialog extends JDialog {
 			gbc_quantityField.gridy = 2;
 			contentPanel.add(quantityField, gbc_quantityField);
 			quantityField.setColumns(10);
+			// Method that removes character if it's not a digit
+			quantityField.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e)
+			{
+					char c = e.getKeyChar();
+					if (!Character.isDigit(c))
+					{
+						e.consume();
+					}
+			}
+			});
 		}
 		{
 			nameLabel = new JLabel("");
