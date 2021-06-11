@@ -35,8 +35,7 @@ public class AddProductToSaleDialog extends JDialog {
 	private JTextField quantityField;
 	private JLabel nameLabel2;
 	private JLabel descriptionLabel2;
-	private JLabel errorLabelBarcode;
-	private JLabel errorLabelQuantity;
+	private JLabel errorLabel;
 	
 	
 	
@@ -76,10 +75,10 @@ public class AddProductToSaleDialog extends JDialog {
 			
 			nameLabel2.setText(product.getName());
 			descriptionLabel2.setText(product.getDescription());
-			errorLabelBarcode.setText("");
+			errorLabel.setText("");
 		}
 		else {
-			  errorLabelBarcode.setText("Fejl der blev ikke fundet nogen produkter med denne stregkode");
+			errorLabel.setText("Fejl der blev ikke fundet nogen produkter med denne stregkode");
 		}
 		
 	}
@@ -93,27 +92,41 @@ public class AddProductToSaleDialog extends JDialog {
 		
 		if  (parseText.isEmpty()) {
 			
-			errorLabelQuantity.setText("Fejl der blev ikke fundet et antal");
+			errorLabel.setText("Fejl der blev ikke fundet et antal");
 			
 			}
 		else {
 			int intParsed = Integer.parseInt(parseText);
 			saleController.addProductToSale(barcodeField.getText(), intParsed);
+			errorLabel.setText("Vare er blevet tilføjet");
+			
 		}
+	}
+	
+	private void addButton() {
+		addProductByBarcodeAndQuantity();	
+	}
+	
+	private void finishedButton() {
+		dispose();
+	}
+	
+	private void searchButton() {
+		findProductByBarcode();
 	}
 	
 	private void createGUI() {
 		
 		setTitle("Varer");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 385);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{53, 0, 269, 57, 0};
-		gbl_contentPanel.rowHeights = new int[]{35, 23, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPanel.rowHeights = new int[]{35, 23, 20, 0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JLabel barcodeLabel = new JLabel("Stregkode:");
@@ -139,7 +152,7 @@ public class AddProductToSaleDialog extends JDialog {
 			searchButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					findProductByBarcode();
+					searchButton();
 				}
 			});
 			GridBagConstraints gbc_searchButton = new GridBagConstraints();
@@ -184,11 +197,19 @@ public class AddProductToSaleDialog extends JDialog {
 			});
 		}
 		{
+			errorLabel = new JLabel("");
+			GridBagConstraints gbc_errorLabel = new GridBagConstraints();
+			gbc_errorLabel.insets = new Insets(0, 0, 5, 5);
+			gbc_errorLabel.gridx = 2;
+			gbc_errorLabel.gridy = 3;
+			contentPanel.add(errorLabel, gbc_errorLabel);
+		}
+		{
 			JLabel nameLabel1 = new JLabel("Name:");
 			GridBagConstraints gbc_nameLabel1 = new GridBagConstraints();
 			gbc_nameLabel1.insets = new Insets(0, 0, 5, 5);
 			gbc_nameLabel1.gridx = 0;
-			gbc_nameLabel1.gridy = 3;
+			gbc_nameLabel1.gridy = 4;
 			contentPanel.add(nameLabel1, gbc_nameLabel1);
 		}
 		{
@@ -196,40 +217,24 @@ public class AddProductToSaleDialog extends JDialog {
 			GridBagConstraints gbc_nameLabel2 = new GridBagConstraints();
 			gbc_nameLabel2.insets = new Insets(0, 0, 5, 5);
 			gbc_nameLabel2.gridx = 2;
-			gbc_nameLabel2.gridy = 3;
+			gbc_nameLabel2.gridy = 4;
 			contentPanel.add(nameLabel2, gbc_nameLabel2);
 		}
 		{
 			JLabel descriptionLabel1 = new JLabel("Description:");
 			GridBagConstraints gbc_descriptionLabel1 = new GridBagConstraints();
-			gbc_descriptionLabel1.insets = new Insets(0, 0, 5, 5);
+			gbc_descriptionLabel1.insets = new Insets(0, 0, 0, 5);
 			gbc_descriptionLabel1.gridx = 0;
-			gbc_descriptionLabel1.gridy = 4;
+			gbc_descriptionLabel1.gridy = 5;
 			contentPanel.add(descriptionLabel1, gbc_descriptionLabel1);
 		}
 		{
 			descriptionLabel2 = new JLabel("");
 			GridBagConstraints gbc_descriptionLabel2 = new GridBagConstraints();
-			gbc_descriptionLabel2.insets = new Insets(0, 0, 5, 5);
+			gbc_descriptionLabel2.insets = new Insets(0, 0, 0, 5);
 			gbc_descriptionLabel2.gridx = 2;
-			gbc_descriptionLabel2.gridy = 4;
+			gbc_descriptionLabel2.gridy = 5;
 			contentPanel.add(descriptionLabel2, gbc_descriptionLabel2);
-		}
-		{
-			errorLabelBarcode = new JLabel("");
-			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNewLabel.gridx = 2;
-			gbc_lblNewLabel.gridy = 12;
-			contentPanel.add(errorLabelBarcode, gbc_lblNewLabel);
-		}
-		{
-			errorLabelQuantity = new JLabel("");
-			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
-			gbc_lblNewLabel.gridx = 2;
-			gbc_lblNewLabel.gridy = 13;
-			contentPanel.add(errorLabelQuantity, gbc_lblNewLabel);
 		}
 	
 	
@@ -245,7 +250,8 @@ public class AddProductToSaleDialog extends JDialog {
 				addButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						addProductByBarcodeAndQuantity();
+						addButton();
+						
 					}
 				});
 				addButton.setActionCommand("OK");
@@ -256,7 +262,8 @@ public class AddProductToSaleDialog extends JDialog {
 				JButton doneButton = new JButton("Faerdig");
 				doneButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						dispose();
+						finishedButton();
+						
 					}
 				
 				});

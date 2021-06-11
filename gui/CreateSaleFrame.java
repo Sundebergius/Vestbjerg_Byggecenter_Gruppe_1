@@ -164,6 +164,7 @@ public class CreateSaleFrame extends JFrame {
 		productList.setModel(listRepresentation);
 		
 		updateSubtotal();
+		
 	}
 
 	private void updateSubtotal() {

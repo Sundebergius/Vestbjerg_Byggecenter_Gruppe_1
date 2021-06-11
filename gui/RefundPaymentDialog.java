@@ -58,6 +58,7 @@ public class RefundPaymentDialog extends JDialog {
 		
 		SaleReceiptDialog receiptDialog = new SaleReceiptDialog(saleController);
 		receiptDialog.setVisible(true);
+		
 
 	}
 
