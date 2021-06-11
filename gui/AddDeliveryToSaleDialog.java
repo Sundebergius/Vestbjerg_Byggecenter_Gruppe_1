@@ -24,7 +24,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 public class AddDeliveryToSaleDialog extends JDialog {
 	private SaleController saleController;
@@ -74,7 +76,6 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		address = addressField.getText();
 		city = cityField.getText();
 		phoneNumber = mobileNumber.getText();
-		
 	}
 		private void addAddressButton()
 		{
@@ -106,7 +107,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		{
 
 			saleController.addDeliveryCityToSale(city);
-		}
+		}		
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);
@@ -179,6 +180,17 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		panel_1.add(postalLabel, gbc_postalLabel);
 
 		postalField = new JTextField();
+		postalField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e)
+		{
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c))
+				{
+					e.consume();
+				}
+		}
+		});
 		GridBagConstraints gbc_postalField = new GridBagConstraints();
 		gbc_postalField.anchor = GridBagConstraints.SOUTH;
 		gbc_postalField.insets = new Insets(0, 0, 5, 5);
