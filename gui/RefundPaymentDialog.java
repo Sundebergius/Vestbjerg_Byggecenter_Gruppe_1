@@ -54,7 +54,7 @@ public class RefundPaymentDialog extends JDialog {
 	}
 
 	private void okButton() {
-
+		dispose();
 	}
 
 	private void calRefund() {
