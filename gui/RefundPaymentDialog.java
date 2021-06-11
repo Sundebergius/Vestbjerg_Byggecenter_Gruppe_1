@@ -53,7 +53,11 @@ public class RefundPaymentDialog extends JDialog {
 		dispose();
 	}
 
-	private void okButton() {
+	private void okButton() {		
+		setVisible(false);
+		
+		SaleReceiptDialog receiptDialog = new SaleReceiptDialog(saleController);
+		receiptDialog.setVisible(true);
 
 	}
 
@@ -134,7 +138,7 @@ public class RefundPaymentDialog extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-
+						okButton();
 					}
 				});
 				okButton.setActionCommand("OK");

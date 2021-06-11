@@ -259,7 +259,7 @@ public class CreateSaleFrame extends JFrame {
 		JScrollPane productListPanel = new JScrollPane();
 		productPanel.add(productListPanel, BorderLayout.CENTER);
 
-		productList = new JList();
+		productList = new JList<>();
 		productListPanel.setViewportView(productList);
 
 		JPanel customerPanel = new JPanel();

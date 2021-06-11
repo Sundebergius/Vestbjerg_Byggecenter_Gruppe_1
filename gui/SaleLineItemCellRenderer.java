@@ -47,6 +47,7 @@ public class SaleLineItemCellRenderer implements ListCellRenderer<SaleLineItem> 
 			productNameLabel.setForeground(Color.WHITE);
 			productBarcodeLabel.setForeground(Color.WHITE);
 			amountAndPriceLabel.setForeground(Color.WHITE);
+			totalPriceLabel.setForeground(Color.WHITE);
 			
 		}
 		
