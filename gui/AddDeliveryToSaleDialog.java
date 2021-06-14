@@ -108,7 +108,8 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		{
 
 			saleController.addDeliveryCityToSale(city);
-		}		
+		}
+		
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);
@@ -133,7 +134,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[] { 35, 127, 24, 120, 0, 0 };
 		gbl_panel_1.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
-		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_1.setLayout(gbl_panel_1);
 
 		JLabel nameLabel = new JLabel("Navn :");
@@ -194,14 +195,6 @@ public class AddDeliveryToSaleDialog extends JDialog {
 				}
 		}
 		});
-		
-		contryLabel = new JLabel("+45");
-		GridBagConstraints gbc_contryLabel = new GridBagConstraints();
-		gbc_contryLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_contryLabel.anchor = GridBagConstraints.EAST;
-		gbc_contryLabel.gridx = 2;
-		gbc_contryLabel.gridy = 2;
-		panel_1.add(contryLabel, gbc_contryLabel);
 		GridBagConstraints gbc_postalField = new GridBagConstraints();
 		gbc_postalField.anchor = GridBagConstraints.SOUTH;
 		gbc_postalField.insets = new Insets(0, 0, 5, 5);
@@ -218,6 +211,14 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_mobileNumberLabel.gridx = 1;
 		gbc_mobileNumberLabel.gridy = 3;
 		panel_1.add(mobileNumberLabel, gbc_mobileNumberLabel);
+		
+		contryLabel = new JLabel("+45");
+		GridBagConstraints gbc_contryLabel = new GridBagConstraints();
+		gbc_contryLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_contryLabel.anchor = GridBagConstraints.EAST;
+		gbc_contryLabel.gridx = 2;
+		gbc_contryLabel.gridy = 3;
+		panel_1.add(contryLabel, gbc_contryLabel);
 
 		mobileNumber = new JTextField();
 		GridBagConstraints gbc_MobileNumber = new GridBagConstraints();
@@ -231,7 +232,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		JLabel cityLabel = new JLabel("By :");
 		GridBagConstraints gbc_cityLabel = new GridBagConstraints();
 		gbc_cityLabel.anchor = GridBagConstraints.WEST;
-		gbc_cityLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_cityLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_cityLabel.gridx = 1;
 		gbc_cityLabel.gridy = 4;
 		panel_1.add(cityLabel, gbc_cityLabel);
@@ -239,7 +240,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		cityField = new JTextField();
 		GridBagConstraints gbc_cityField = new GridBagConstraints();
 		gbc_cityField.anchor = GridBagConstraints.SOUTH;
-		gbc_cityField.insets = new Insets(0, 0, 0, 5);
+		gbc_cityField.insets = new Insets(0, 0, 5, 5);
 		gbc_cityField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cityField.gridx = 3;
 		gbc_cityField.gridy = 4;
