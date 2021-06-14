@@ -36,10 +36,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 	private JTextField nameField;
 	private JTextField postalField;
 	private JTextField cityField;
-	private JPanel panel;
 	private JButton addButton;
-	private JPanel panel_1;
-	private JLabel mobileNumberLabel;
 	private JTextField mobileNumber;
 	private String name;
 	private String address;
@@ -148,18 +145,23 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		{
 
 			saleController.addDeliveryCityToSale(city);
+<<<<<<< HEAD
 		}		
 		
 		private void cancelButton() {
 			dispose();
 		}
+=======
+		}
+		
+>>>>>>> branch 'gui-branch' of https://github.com/Sundebergius/Vestbjerg_Byggecenter_Gruppe_1.git
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);
 
-		panel = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-		flowLayout.setAlignment(FlowLayout.RIGHT);
+		JPanel panel = new JPanel();
+		FlowLayout fl_panel = (FlowLayout) panel.getLayout();
+		fl_panel.setAlignment(FlowLayout.RIGHT);
 		getContentPane().add(panel, BorderLayout.SOUTH);
 
 		addButton = new JButton("Tilf\u00F8j");
@@ -177,12 +179,12 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		closeButton.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(closeButton);
 
-		panel_1 = new JPanel();
+		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[] { 35, 127, 24, 120, 0, 0 };
 		gbl_panel_1.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
-		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_1.setLayout(gbl_panel_1);
 
 		JLabel nameLabel = new JLabel("Navn :");
@@ -252,7 +254,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		panel_1.add(postalField, gbc_postalField);
 		postalField.setColumns(10);
 
-		mobileNumberLabel = new JLabel("Telefon nummer :");
+		JLabel mobileNumberLabel = new JLabel("Telefon nummer :");
 		GridBagConstraints gbc_mobileNumberLabel = new GridBagConstraints();
 		gbc_mobileNumberLabel.anchor = GridBagConstraints.WEST;
 		gbc_mobileNumberLabel.insets = new Insets(0, 0, 5, 5);
@@ -280,7 +282,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		JLabel cityLabel = new JLabel("By :");
 		GridBagConstraints gbc_cityLabel = new GridBagConstraints();
 		gbc_cityLabel.anchor = GridBagConstraints.WEST;
-		gbc_cityLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_cityLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_cityLabel.gridx = 1;
 		gbc_cityLabel.gridy = 4;
 		panel_1.add(cityLabel, gbc_cityLabel);
@@ -288,7 +290,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		cityField = new JTextField();
 		GridBagConstraints gbc_cityField = new GridBagConstraints();
 		gbc_cityField.anchor = GridBagConstraints.SOUTH;
-		gbc_cityField.insets = new Insets(0, 0, 0, 5);
+		gbc_cityField.insets = new Insets(0, 0, 5, 5);
 		gbc_cityField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cityField.gridx = 3;
 		gbc_cityField.gridy = 4;
