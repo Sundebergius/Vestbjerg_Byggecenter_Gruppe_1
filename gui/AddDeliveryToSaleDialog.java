@@ -145,16 +145,13 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		{
 
 			saleController.addDeliveryCityToSale(city);
-<<<<<<< HEAD
+
 		}		
 		
 		private void cancelButton() {
 			dispose();
 		}
-=======
-		}
-		
->>>>>>> branch 'gui-branch' of https://github.com/Sundebergius/Vestbjerg_Byggecenter_Gruppe_1.git
+
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);
