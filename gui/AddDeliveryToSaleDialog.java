@@ -85,9 +85,14 @@ public class AddDeliveryToSaleDialog extends JDialog {
 			addCity();
 			dispose();
 		}
-		private void addDeliveryAddress()
-		{
-			saleController.addDeliveryAddressToSale(address);
+	}
+
+	private boolean isValidInput() {
+
+		boolean error = false;
+
+		if (name.isEmpty()) {
+			error = true;
 		}
 		private void addName()
 		{

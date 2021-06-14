@@ -24,10 +24,7 @@ import model.Employee;
 public class MainMenuFrame extends JFrame {
 
 	private JPanel contentPane;
-	private CreateSaleFrame createSaleFrame;
-	private SaleController saleController;
 	private JLabel employeeLabel;
-	private LoginDialog loginDialog;
 	private Employee currentEmployee;
 
 	/**
@@ -50,8 +47,7 @@ public class MainMenuFrame extends JFrame {
 		new TryMe();
 		createGUI();
 		LoginDialog loginDialog = new LoginDialog(this);
-		loginDialog.setVisible(true);
-		
+		loginDialog.setVisible(true);	
 
 	}
 	
@@ -59,6 +55,7 @@ public class MainMenuFrame extends JFrame {
 	{
 		currentEmployee = employee;
 		employeeLabel.setText(currentEmployee.getName());
+		setVisible(true);
 	}
 	
 	private void startSaleButton() {
@@ -67,8 +64,11 @@ public class MainMenuFrame extends JFrame {
 	}
 	
 	private void logoutButton() {
+		currentEmployee = null;
+		setVisible(false);
 		LoginDialog loginDialog = new LoginDialog(this);
 		loginDialog.setVisible(true);
+		
 	}
 		
 

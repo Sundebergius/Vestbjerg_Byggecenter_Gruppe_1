@@ -54,18 +54,20 @@ public class LoginDialog extends JDialog {
 			mainMenu.setCurrentEmployee(employee);
 			dispose();
 		}else {
-			errorLabel.setText("Denne medarbejder findes ikke i systemet. Prøv igen. ");
+			errorLabel.setText("Denne medarbejder findes ikke i systemet. Prï¿½v igen. ");
 		}
 	}
 
 	private void cancelButton() {
 		dispose();
+		mainMenu.dispose();
 	}
 
 	/**
 	 * Create the dialog.
 	 */
 	public LoginDialog(MainMenuFrame mainMenu) {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		createGUI();
 		this.mainMenu = mainMenu;
 
@@ -112,6 +114,7 @@ public class LoginDialog extends JDialog {
 		bodyPanel.add(employeeIDField, gbc_employeeIDField);
 
 		JLabel passwordLabel = new JLabel("Kodeord:");
+		passwordLabel.setEnabled(false);
 		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
 		gbc_passwordLabel.anchor = GridBagConstraints.EAST;
 		gbc_passwordLabel.insets = new Insets(0, 0, 5, 5);
@@ -120,6 +123,7 @@ public class LoginDialog extends JDialog {
 		bodyPanel.add(passwordLabel, gbc_passwordLabel);
 
 		passwordField = new JPasswordField();
+		passwordField.setEnabled(false);
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
