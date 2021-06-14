@@ -40,6 +40,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 	private String city;
 	private String phoneNumber;
 	private JLabel contryLabel;
+	private JLabel errorLabel;
 
 	/**
 	 * Launch the application.
@@ -69,7 +70,10 @@ public class AddDeliveryToSaleDialog extends JDialog {
 
 		address = addressField.getText();
 
-		postal = Integer.parseInt(postalField.getText());
+		try {
+			postal = Integer.parseInt(postalField.getText());
+		} catch (Exception e) {
+		}
 
 		city = cityField.getText();
 
@@ -84,31 +88,44 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		if (validInput) {
 			addDeliveryInformationToSale();
 			dispose();
+		}else {
+			
 		}
 	}
 
 	private boolean isValidInput() {
-
+		
+		String errorMessage = "Fejl: ";
+		
 		boolean error = false;
 
 		if (name.isEmpty()) {
 			error = true;
+			errorMessage += "Navnet ";
 		}
 
 		if (address.isEmpty()) {
 			error = true;
+			errorMessage += "Adressen ";
 		}
 
 		if (postal == 0) {
 			error = true;
+			errorMessage += "Postnummeret ";
 		}
 
 		if (city.isEmpty()) {
 			error = true;
+			errorMessage += "Byen ";
 		}
 
 		if (phoneNumber.isEmpty()) {
 			error = true;
+			errorMessage += "Telefonnummeret ";
+		}
+		
+		if(error) {
+			errorLabel.setText(errorMessage + "er ugyldig");			
 		}
 
 		return !error;
@@ -129,7 +146,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
-		setBounds(100, 100, 395, 257);
+		setBounds(100, 100, 501, 257);
 
 		JPanel panel = new JPanel();
 		FlowLayout fl_panel = (FlowLayout) panel.getLayout();
@@ -155,8 +172,8 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		getContentPane().add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[] { 35, 0, 24, 120, 0, 0 };
-		gbl_panel_1.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
-		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gbl_panel_1.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_1.setLayout(gbl_panel_1);
 
 		JLabel nameLabel = new JLabel("Navn :");
@@ -275,6 +292,14 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_cityField.gridy = 4;
 		panel_1.add(cityField, gbc_cityField);
 		cityField.setColumns(10);
+		
+		errorLabel = new JLabel("");
+		GridBagConstraints gbc_errorLabel = new GridBagConstraints();
+		gbc_errorLabel.gridwidth = 5;
+		gbc_errorLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_errorLabel.gridx = 0;
+		gbc_errorLabel.gridy = 5;
+		panel_1.add(errorLabel, gbc_errorLabel);
 	}
 
 }
