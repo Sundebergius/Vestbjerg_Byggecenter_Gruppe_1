@@ -154,7 +154,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 				InfoPane.add(errorInfoLabel, gbc_errorInfoLabel);
 			}
 			{
-				JLabel lblNewLabel_1 = new JLabel("Kunde Navn");
+				JLabel lblNewLabel_1 = new JLabel("Navn:");
 				GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 				gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 				gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
@@ -174,7 +174,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 				customerNameField.setColumns(10);
 			}
 			{
-				JLabel lblNewLabel_2 = new JLabel("Adresse");
+				JLabel lblNewLabel_2 = new JLabel("Adresse:");
 				GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 				gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
 				gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
@@ -194,7 +194,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 				InfoPane.add(customerAddressField, gbc_customerAddressField);
 			}
 			{
-				JLabel lblNewLabel_2 = new JLabel("Postnummer");
+				JLabel lblNewLabel_2 = new JLabel("Postnummer:");
 				GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 				gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 				gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
@@ -214,7 +214,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 				InfoPane.add(customerZipcodeField, gbc_customerZipcodeField);
 			}
 			{
-				JLabel lblNewLabel_2 = new JLabel("By");
+				JLabel lblNewLabel_2 = new JLabel("By:");
 				GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 				gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 				gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
@@ -234,7 +234,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 				InfoPane.add(customerCityField, gbc_customerCityField);
 			}
 			{
-				JLabel lblNewLabel_2 = new JLabel("Telefon Nummer");
+				JLabel lblNewLabel_2 = new JLabel("Telefonnummer:");
 				GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 				gbc_lblNewLabel_2.insets = new Insets(0, 0, 0, 5);
 				gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
@@ -265,7 +265,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 			gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 			contentPanel.setLayout(gbl_contentPanel);
 			{
-				JLabel lblNewLabel = new JLabel("Indtast Kunde ID");
+				JLabel lblNewLabel = new JLabel("Kunde ID:");
 				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 				gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 				gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
