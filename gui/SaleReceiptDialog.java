@@ -94,12 +94,17 @@ public class SaleReceiptDialog extends JDialog {
 		
 		saleIDLabel.setText(currentSale.getSaleID());
 		
-		Date saleDate = currentSale.getSaleDate();		
-		saleTimeLabel.setText(saleDate.getHours() + ":" + saleDate.getMinutes());;		
+		Date saleDate = currentSale.getSaleDate();
+		if(saleDate.getMinutes() < 10) {
+		saleTimeLabel.setText(saleDate.getHours() + ":" + "0" + saleDate.getMinutes());
+		}else {
+		saleTimeLabel.setText(saleDate.getHours() + ":" + saleDate.getMinutes());
+		}
+		
 		saleDateLabel.setText((saleDate.getYear() + 1900) + "-" + (saleDate.getMonth() + 1) + "-" + saleDate.getDate());
 		
 		saleEmployeeLabel.setText(currentSale.getEmployee().getName());
-	
+		
 	}
 	
 	public void printButton()
@@ -109,6 +114,7 @@ public class SaleReceiptDialog extends JDialog {
 	
 	public void cancelButton()
 	{
+		
 		dispose();
 	}
 

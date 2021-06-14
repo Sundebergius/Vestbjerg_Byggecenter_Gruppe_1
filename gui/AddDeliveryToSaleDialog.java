@@ -194,14 +194,6 @@ public class AddDeliveryToSaleDialog extends JDialog {
 				}
 		}
 		});
-		
-		contryLabel = new JLabel("+45");
-		GridBagConstraints gbc_contryLabel = new GridBagConstraints();
-		gbc_contryLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_contryLabel.anchor = GridBagConstraints.EAST;
-		gbc_contryLabel.gridx = 2;
-		gbc_contryLabel.gridy = 2;
-		panel_1.add(contryLabel, gbc_contryLabel);
 		GridBagConstraints gbc_postalField = new GridBagConstraints();
 		gbc_postalField.anchor = GridBagConstraints.SOUTH;
 		gbc_postalField.insets = new Insets(0, 0, 5, 5);
@@ -218,6 +210,14 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_mobileNumberLabel.gridx = 1;
 		gbc_mobileNumberLabel.gridy = 3;
 		panel_1.add(mobileNumberLabel, gbc_mobileNumberLabel);
+		
+		contryLabel = new JLabel("+45");
+		GridBagConstraints gbc_contryLabel = new GridBagConstraints();
+		gbc_contryLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_contryLabel.anchor = GridBagConstraints.EAST;
+		gbc_contryLabel.gridx = 2;
+		gbc_contryLabel.gridy = 3;
+		panel_1.add(contryLabel, gbc_contryLabel);
 
 		mobileNumber = new JTextField();
 		GridBagConstraints gbc_MobileNumber = new GridBagConstraints();
