@@ -105,7 +105,8 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		{
 
 			saleController.addDeliveryCityToSale(city);
-		}		
+		}
+		
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);
@@ -130,7 +131,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[] { 35, 127, 24, 120, 0, 0 };
 		gbl_panel_1.columnWeights = new double[] { 0.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
-		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gbl_panel_1.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panel_1.setLayout(gbl_panel_1);
 
 		JLabel nameLabel = new JLabel("Navn :");
@@ -228,7 +229,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		JLabel cityLabel = new JLabel("By :");
 		GridBagConstraints gbc_cityLabel = new GridBagConstraints();
 		gbc_cityLabel.anchor = GridBagConstraints.WEST;
-		gbc_cityLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_cityLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_cityLabel.gridx = 1;
 		gbc_cityLabel.gridy = 4;
 		panel_1.add(cityLabel, gbc_cityLabel);
@@ -236,7 +237,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		cityField = new JTextField();
 		GridBagConstraints gbc_cityField = new GridBagConstraints();
 		gbc_cityField.anchor = GridBagConstraints.SOUTH;
-		gbc_cityField.insets = new Insets(0, 0, 0, 5);
+		gbc_cityField.insets = new Insets(0, 0, 5, 5);
 		gbc_cityField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cityField.gridx = 3;
 		gbc_cityField.gridy = 4;
