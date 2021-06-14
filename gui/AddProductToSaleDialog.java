@@ -69,7 +69,7 @@ public class AddProductToSaleDialog extends JDialog {
 
 			nameLabel2.setText(product.getName());
 			descriptionLabel2.setText(product.getDescription());
-			priceLabel.setText(product.getPrice() + " DDK");
+			priceLabel.setText(String.format("%.2f",product.getPrice()) + " DDK");
 			errorLabel.setText("");
 			return true;
 		} else {
@@ -131,7 +131,7 @@ public class AddProductToSaleDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[] { 53, 0, 269, 57, 0 };
+		gbl_contentPanel.columnWidths = new int[] { 0, 53, 269, 57, 0 };
 		gbl_contentPanel.rowHeights = new int[] { 35, 23, 25, 25, 0, 0, 0, 0 };
 		gbl_contentPanel.columnWeights = new double[] { 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
@@ -141,7 +141,7 @@ public class AddProductToSaleDialog extends JDialog {
 			GridBagConstraints gbc_barcodeLabel = new GridBagConstraints();
 			gbc_barcodeLabel.anchor = GridBagConstraints.EAST;
 			gbc_barcodeLabel.insets = new Insets(0, 0, 5, 5);
-			gbc_barcodeLabel.gridx = 0;
+			gbc_barcodeLabel.gridx = 1;
 			gbc_barcodeLabel.gridy = 1;
 			contentPanel.add(barcodeLabel, gbc_barcodeLabel);
 		}
@@ -156,7 +156,7 @@ public class AddProductToSaleDialog extends JDialog {
 			barcodeField.setColumns(10);
 		}
 		{
-			JButton searchButton = new JButton("Soeg");
+			JButton searchButton = new JButton("Søg");
 			searchButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
@@ -174,7 +174,7 @@ public class AddProductToSaleDialog extends JDialog {
 			GridBagConstraints gbc_quantityLabel = new GridBagConstraints();
 			gbc_quantityLabel.anchor = GridBagConstraints.EAST;
 			gbc_quantityLabel.insets = new Insets(0, 0, 5, 5);
-			gbc_quantityLabel.gridx = 0;
+			gbc_quantityLabel.gridx = 1;
 			gbc_quantityLabel.gridy = 2;
 			contentPanel.add(quantityLabel, gbc_quantityLabel);
 		}
@@ -215,7 +215,7 @@ public class AddProductToSaleDialog extends JDialog {
 			GridBagConstraints gbc_nameLabel1 = new GridBagConstraints();
 			gbc_nameLabel1.anchor = GridBagConstraints.EAST;
 			gbc_nameLabel1.insets = new Insets(0, 0, 5, 5);
-			gbc_nameLabel1.gridx = 0;
+			gbc_nameLabel1.gridx = 1;
 			gbc_nameLabel1.gridy = 4;
 			contentPanel.add(nameLabel1, gbc_nameLabel1);
 		}
@@ -235,7 +235,7 @@ public class AddProductToSaleDialog extends JDialog {
 			GridBagConstraints gbc_descriptionLabel1 = new GridBagConstraints();
 			gbc_descriptionLabel1.anchor = GridBagConstraints.EAST;
 			gbc_descriptionLabel1.insets = new Insets(0, 0, 5, 5);
-			gbc_descriptionLabel1.gridx = 0;
+			gbc_descriptionLabel1.gridx = 1;
 			gbc_descriptionLabel1.gridy = 5;
 			contentPanel.add(descriptionLabel1, gbc_descriptionLabel1);
 		}
@@ -255,7 +255,7 @@ public class AddProductToSaleDialog extends JDialog {
 			GridBagConstraints gbc_price = new GridBagConstraints();
 			gbc_price.anchor = GridBagConstraints.EAST;
 			gbc_price.insets = new Insets(0, 0, 0, 5);
-			gbc_price.gridx = 0;
+			gbc_price.gridx = 1;
 			gbc_price.gridy = 6;
 			contentPanel.add(price, gbc_price);
 		}
@@ -275,7 +275,7 @@ public class AddProductToSaleDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton addButton = new JButton("Tilfoej");
+				JButton addButton = new JButton("Tilføj");
 				addButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 
@@ -288,7 +288,7 @@ public class AddProductToSaleDialog extends JDialog {
 				getRootPane().setDefaultButton(addButton);
 			}
 			{
-				JButton doneButton = new JButton("Faerdig");
+				JButton doneButton = new JButton("Færdig");
 				doneButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						finishedButton();
