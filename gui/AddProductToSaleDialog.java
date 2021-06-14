@@ -137,7 +137,7 @@ public class AddProductToSaleDialog extends JDialog {
 		gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPanel.setLayout(gbl_contentPanel);
 		{
-			JLabel barcodeLabel = new JLabel("Stregkode:");
+			JLabel barcodeLabel = new JLabel("Stregkode :");
 			GridBagConstraints gbc_barcodeLabel = new GridBagConstraints();
 			gbc_barcodeLabel.anchor = GridBagConstraints.EAST;
 			gbc_barcodeLabel.insets = new Insets(0, 0, 5, 5);
@@ -170,7 +170,7 @@ public class AddProductToSaleDialog extends JDialog {
 			contentPanel.add(searchButton, gbc_searchButton);
 		}
 		{
-			JLabel quantityLabel = new JLabel("Antal:");
+			JLabel quantityLabel = new JLabel("Antal :");
 			GridBagConstraints gbc_quantityLabel = new GridBagConstraints();
 			gbc_quantityLabel.anchor = GridBagConstraints.EAST;
 			gbc_quantityLabel.insets = new Insets(0, 0, 5, 5);
@@ -210,7 +210,7 @@ public class AddProductToSaleDialog extends JDialog {
 			contentPanel.add(errorLabel, gbc_errorLabel);
 		}
 		{
-			JLabel nameLabel1 = new JLabel("Navn:");
+			JLabel nameLabel1 = new JLabel("Navn :");
 			nameLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 			GridBagConstraints gbc_nameLabel1 = new GridBagConstraints();
 			gbc_nameLabel1.anchor = GridBagConstraints.EAST;
@@ -230,7 +230,7 @@ public class AddProductToSaleDialog extends JDialog {
 			contentPanel.add(nameLabel2, gbc_nameLabel2);
 		}
 		{
-			JLabel descriptionLabel1 = new JLabel("Beskrivelse:");
+			JLabel descriptionLabel1 = new JLabel("Beskrivelse :");
 			descriptionLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 			GridBagConstraints gbc_descriptionLabel1 = new GridBagConstraints();
 			gbc_descriptionLabel1.anchor = GridBagConstraints.EAST;
@@ -250,7 +250,7 @@ public class AddProductToSaleDialog extends JDialog {
 			contentPanel.add(descriptionLabel2, gbc_descriptionLabel2);
 		}
 		{
-			JLabel price = new JLabel(":");
+			JLabel price = new JLabel("Pris :");
 			price.setHorizontalAlignment(SwingConstants.RIGHT);
 			GridBagConstraints gbc_price = new GridBagConstraints();
 			gbc_price.anchor = GridBagConstraints.EAST;
