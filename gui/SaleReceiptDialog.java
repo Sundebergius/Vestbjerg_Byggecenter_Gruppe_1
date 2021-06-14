@@ -28,6 +28,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JSeparator;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SaleReceiptDialog extends JDialog {
 
@@ -99,6 +101,16 @@ public class SaleReceiptDialog extends JDialog {
 		saleEmployeeLabel.setText(currentSale.getEmployee().getName());
 	
 	}
+	
+	private void printButton() {
+		
+		saleController.logSale();
+	}
+	
+	private void finishButton() {
+		
+		saleController.logSale();
+	}
 
 	/**
 	 * Create the dialog.
@@ -120,12 +132,22 @@ public class SaleReceiptDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton printReceiptButton = new JButton("Print");
+				printReceiptButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						printButton();
+					}
+				});
 				printReceiptButton.setActionCommand("OK");
 				buttonPane.add(printReceiptButton);
 				getRootPane().setDefaultButton(printReceiptButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						finishButton();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
