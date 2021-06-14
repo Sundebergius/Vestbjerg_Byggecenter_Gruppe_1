@@ -59,8 +59,8 @@ public class LoginDialog extends JDialog {
 	}
 
 	private void cancelButton() {
-		dispose();
 		mainMenu.dispose();
+		dispose();
 	}
 
 	/**

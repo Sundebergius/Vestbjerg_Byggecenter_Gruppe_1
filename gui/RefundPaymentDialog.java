@@ -170,6 +170,7 @@ public class RefundPaymentDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public RefundPaymentDialog(SaleController saleController) {
+		setModal(true);
 		createGUI();
 		this.saleController = saleController;
 		calRefund();

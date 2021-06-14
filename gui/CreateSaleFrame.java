@@ -50,7 +50,6 @@ public class CreateSaleFrame extends JFrame {
 	private JTextField deliveryAddressField;
 	private JTextField deliveryCityField;
 	private JTextField deliveryZipCodeField;
-	private JTextField textField2;
 	private JTextField deliveryMobileNumberField;
 
 	/**
@@ -115,7 +114,7 @@ public class CreateSaleFrame extends JFrame {
 			deliveryZipCodeField.setText("" + deliveryPostal);
 
 			String deliveryPhoneNumber = saleController.getCurrentSale().getPhoneNumber();
-			deliveryMobileNumberField.setText(deliveryPhoneNumber);
+			deliveryMobileNumberField.setText("" + deliveryPhoneNumber);
 
 			String deliveryCity = saleController.getCurrentSale().getDeliveryCity();
 			deliveryCityField.setText(deliveryCity);
@@ -126,6 +125,12 @@ public class CreateSaleFrame extends JFrame {
 		saleController.setCurrentSaleID();
 		PaySaleDialog paySaleDialog = new PaySaleDialog(saleController);
 		paySaleDialog.setVisible(true);
+		
+		
+		if(saleController.getCurrentSale() == null) {
+			System.out.println("Sale is finished. ");
+			dispose();
+		}
 
 	}
 

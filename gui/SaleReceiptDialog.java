@@ -110,6 +110,8 @@ public class SaleReceiptDialog extends JDialog {
 
 		saleController.logSale();
 		dispose();
+		//CreateSaleFrame createSaleFrame = new CreateSaleFrame();
+		//createSaleFrame.setVisible(true);
 	}
 
 	private void finishButton() {

@@ -27,7 +27,6 @@ public class PaySaleDialog extends JDialog {
 	private JTextField payAmountTextField;
 	private JLabel lblOutput;
 
-	
 	private SaleController saleController;
 	private JLabel lblIndbetalt;
 
@@ -45,49 +44,98 @@ public class PaySaleDialog extends JDialog {
 	}
 
 	public PaySaleDialog(SaleController saleController) {
+		setModal(true);
 		this.saleController = saleController;
-		createGUI();		
+		createGUI();
 		showRemainingPayment();
+		//checkIfRefund();		
+		
 	}
-
-
 	
+	//doesn't work
+	/*
+	private void checkIfRefund() {
+		
+		double remainingPayment = saleController.getCurrentSale().getRemainingPayment();
+		
+		if(remainingPayment < 0) {
+			
+			setVisible(false);
+			
+			RefundPaymentDialog refundPaymentDialog = new RefundPaymentDialog(saleController);
+			refundPaymentDialog.setVisible(true);
+			
+			dispose();
+			
+		}else if(remainingPayment == 0){
+			
+			
+			
+			setVisible(false);
+
+			SaleReceiptDialog receiptDialog = new SaleReceiptDialog(saleController);
+			receiptDialog.setVisible(true);
+
+			dispose();			
+		}
+		
+	}
+	*/
+	
+
 	public void showRemainingPayment() {
 		double remainingPayment = saleController.getCurrentSale().getRemainingPayment();
 		String remainingPaymentString = String.format("%.2f", remainingPayment);
 		subtotalTextField.setText(remainingPaymentString);
 	}
-	
+
 	private void payButton() {
 		
-		double amountPayed = Double.parseDouble(payAmountTextField.getText());
-		double remainingPayment = saleController.pay(amountPayed);
+		double amountPayed = 0;
 		
-		if(remainingPayment > 0) {
-			showRemainingPayment();
-			
-			String amountPayedString = String.format("%.2f", amountPayed);
-			String remainingPaymentString = String.format("%.2f", saleController.getCurrentSale().getRemainingPayment());			
-			
-			lblOutput.setText(amountPayedString + " DKK blev tilføjet til salget, der mangler stadig " + remainingPaymentString + " DKK");
-			
-		}else if(remainingPayment == 0) {
-			
-			setVisible(false);
-			
-			SaleReceiptDialog receiptDialog = new SaleReceiptDialog(saleController);
-			receiptDialog.setVisible(true);
-			
-			dispose();
-			
-		}else if(remainingPayment < 0){
-			RefundPaymentDialog refundPaymentDialog = new RefundPaymentDialog(saleController);
-			refundPaymentDialog.setVisible(true);
+		try {
+			amountPayed = Double.parseDouble(payAmountTextField.getText());
+		} catch (NumberFormatException e) {			
 		}
 		
-	
+		
+		
+		double remainingPayment = saleController.pay(amountPayed);
+		if (amountPayed > 0) {
+			if (remainingPayment > 0) {
+				showRemainingPayment();
+
+				String amountPayedString = String.format("%.2f", amountPayed);
+				String remainingPaymentString = String.format("%.2f",
+						saleController.getCurrentSale().getRemainingPayment());
+
+				lblOutput.setText(amountPayedString + " DKK blev tilføjet til salget, der mangler stadig "
+						+ remainingPaymentString + " DKK");
+
+			} else if (remainingPayment == 0) {
+
+				setVisible(false);
+
+				SaleReceiptDialog receiptDialog = new SaleReceiptDialog(saleController);
+				receiptDialog.setVisible(true);
+
+				dispose();
+
+			} else if (remainingPayment < 0) {
+				
+				setVisible(false);
+				
+				RefundPaymentDialog refundPaymentDialog = new RefundPaymentDialog(saleController);
+				refundPaymentDialog.setVisible(true);
+				
+				dispose();
+			}
+		} else {
+			lblOutput.setText("Skriv en positiv v�rdi. ");
+		}
+
 	}
-	
+
 	private void createGUI() {
 
 		setTitle("Betalings vindue");
