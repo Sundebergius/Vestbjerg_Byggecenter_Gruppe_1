@@ -210,7 +210,7 @@ public class AddProductToSaleDialog extends JDialog {
 			contentPanel.add(errorLabel, gbc_errorLabel);
 		}
 		{
-			JLabel nameLabel1 = new JLabel("Navn");
+			JLabel nameLabel1 = new JLabel("Navn:");
 			nameLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 			GridBagConstraints gbc_nameLabel1 = new GridBagConstraints();
 			gbc_nameLabel1.anchor = GridBagConstraints.EAST;
@@ -230,7 +230,7 @@ public class AddProductToSaleDialog extends JDialog {
 			contentPanel.add(nameLabel2, gbc_nameLabel2);
 		}
 		{
-			JLabel descriptionLabel1 = new JLabel("Beskrivelse");
+			JLabel descriptionLabel1 = new JLabel("Beskrivelse:");
 			descriptionLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
 			GridBagConstraints gbc_descriptionLabel1 = new GridBagConstraints();
 			gbc_descriptionLabel1.anchor = GridBagConstraints.EAST;
@@ -250,7 +250,7 @@ public class AddProductToSaleDialog extends JDialog {
 			contentPanel.add(descriptionLabel2, gbc_descriptionLabel2);
 		}
 		{
-			JLabel price = new JLabel("Pris");
+			JLabel price = new JLabel(":");
 			price.setHorizontalAlignment(SwingConstants.RIGHT);
 			GridBagConstraints gbc_price = new GridBagConstraints();
 			gbc_price.anchor = GridBagConstraints.EAST;
