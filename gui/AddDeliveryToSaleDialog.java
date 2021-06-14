@@ -7,10 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
-
 import control.SaleController;
-
-
 
 import java.awt.GridBagLayout;
 
@@ -18,7 +15,6 @@ import java.awt.GridBagConstraints;
 
 import java.awt.Insets;
 import javax.swing.JLabel;
-
 
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -67,90 +63,69 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		this.saleController = saleController;
 		createUI();
 	}
-	private void input()
-	{
+
+	private void getInput() {
 		name = nameField.getText();
+
 		address = addressField.getText();
-		
-		try {
-			postal = Integer.parseInt(postalField.getText());
-		} catch (NumberFormatException e) {
-			postalField.setText("Fejl indtast et tal");
-		}
-		
+
+		postal = Integer.parseInt(postalField.getText());
+
 		city = cityField.getText();
+
 		phoneNumber = mobileNumber.getText();
 	}
-		private void addAddressButton()
-		{
-			input();
-			
-			boolean error = false;
-			
-			if (name.isEmpty()) {
-				error = true;
-			}
-			else {
-				addName();
-			}
-			
-			if (address.isEmpty()) {
-				error = true;
-			}
-			else {
-				addDeliveryAddress();
-			}
-			
-				addPostal();
-			
-			
-			if (city.isEmpty()) {
-				error = true;
-			}
-			else {
-				addCity();
-			}
-			
-			if (phoneNumber.isEmpty()) {
-				error = true;
-			}
-			else {
-				addPhoneNumber();
-			}
 
-	        if (!error) {
-	        	dispose();
-			}	
-			
-		}
-		
-		
-		private void addDeliveryAddress()
-		{
-			saleController.addDeliveryAddressToSale(address);
-		}
-		private void addName()
-		{
-			saleController.addDeliveryNameToSale(name);
-		}
-		private void addPostal()
-		{
-			saleController.addPostalToSale(postal);
-		}
-		private void addPhoneNumber()
-		{
-			saleController.addPhoneNumberToSale(phoneNumber);
-		}
-		private void addCity()
-		{
+	private void addAddressButton() {
+		getInput();
 
-			saleController.addDeliveryCityToSale(city);
+		boolean validInput = isValidInput();
 
-		}		
-		
-		private void cancelButton() {
+		if (validInput) {
+			addDeliveryInformationToSale();
 			dispose();
 		}
+	}
+
+	private boolean isValidInput() {
+
+		boolean error = false;
+
+		if (name.isEmpty()) {
+			error = true;
+		}
+
+		if (address.isEmpty()) {
+			error = true;
+		}
+
+		if (postal == 0) {
+			error = true;
+		}
+
+		if (city.isEmpty()) {
+			error = true;
+		}
+
+		if (phoneNumber.isEmpty()) {
+			error = true;
+		}
+
+		return !error;
+	}
+
+	private void addDeliveryInformationToSale() {
+
+		saleController.addDeliveryAddressToSale(address);
+		saleController.addDeliveryNameToSale(name);
+		saleController.addPostalToSale(postal);
+		saleController.addPhoneNumberToSale(phoneNumber);
+		saleController.addDeliveryCityToSale(city);
+	}
+
+	private void cancelButton() {
+		dispose();
+	}
 
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
@@ -233,14 +208,12 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		postalField = new JTextField();
 		postalField.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e)
-		{
+			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c))
-				{
+				if (!Character.isDigit(c)) {
 					e.consume();
 				}
-		}
+			}
 		});
 		GridBagConstraints gbc_postalField = new GridBagConstraints();
 		gbc_postalField.anchor = GridBagConstraints.SOUTH;
@@ -258,7 +231,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_mobileNumberLabel.gridx = 1;
 		gbc_mobileNumberLabel.gridy = 3;
 		panel_1.add(mobileNumberLabel, gbc_mobileNumberLabel);
-		
+
 		contryLabel = new JLabel("+45");
 		GridBagConstraints gbc_contryLabel = new GridBagConstraints();
 		gbc_contryLabel.insets = new Insets(0, 0, 5, 5);
