@@ -6,23 +6,19 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import control.SaleController;
-import control.PersonController;
-import model.Person;
 
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+
 import java.awt.GridBagConstraints;
-import javax.swing.BoxLayout;
+
 import java.awt.Insets;
 import javax.swing.JLabel;
-import javax.swing.JTextPane;
-import javax.swing.JToolBar;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import java.awt.Toolkit;
+
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
@@ -67,22 +63,26 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		this.saleController = saleController;
 		createUI();
 	}
-	private void input()
-	{
-		postal = Integer.parseInt(postalField.getText());
+
+	private void getInput() {
 		name = nameField.getText();
+
 		address = addressField.getText();
+
+		postal = Integer.parseInt(postalField.getText());
+
 		city = cityField.getText();
+
 		phoneNumber = mobileNumber.getText();
 	}
-		private void addAddressButton()
-		{
-			input();
-			addName();
-			addDeliveryAddress();
-			addPostal();
-			addPhoneNumber();
-			addCity();
+
+	private void addAddressButton() {
+		getInput();
+
+		boolean validInput = isValidInput();
+
+		if (validInput) {
+			addDeliveryInformationToSale();
 			dispose();
 		}
 	}
@@ -94,24 +94,39 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		if (name.isEmpty()) {
 			error = true;
 		}
-		private void addName()
-		{
-			saleController.addDeliveryNameToSale(name);
-		}
-		private void addPostal()
-		{
-			saleController.addPostalToSale(postal);
-		}
-		private void addPhoneNumber()
-		{
-			saleController.addPhoneNumberToSale(phoneNumber);
-		}
-		private void addCity()
-		{
 
-			saleController.addDeliveryCityToSale(city);
+		if (address.isEmpty()) {
+			error = true;
 		}
-		
+
+		if (postal == 0) {
+			error = true;
+		}
+
+		if (city.isEmpty()) {
+			error = true;
+		}
+
+		if (phoneNumber.isEmpty()) {
+			error = true;
+		}
+
+		return !error;
+	}
+
+	private void addDeliveryInformationToSale() {
+
+		saleController.addDeliveryAddressToSale(address);
+		saleController.addDeliveryNameToSale(name);
+		saleController.addPostalToSale(postal);
+		saleController.addPhoneNumberToSale(phoneNumber);
+		saleController.addDeliveryCityToSale(city);
+	}
+
+	private void cancelButton() {
+		dispose();
+	}
+
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);
@@ -128,6 +143,11 @@ public class AddDeliveryToSaleDialog extends JDialog {
 			}
 		});
 		panel.add(addButton);
+		closeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cancelButton();
+			}
+		});
 		closeButton.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(closeButton);
 
@@ -188,15 +208,12 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		postalField = new JTextField();
 		postalField.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent e)
-		{
+			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c))
-				{
+				if (!Character.isDigit(c)) {
 					e.consume();
 				}
-		}
-			
+			}
 		});
 		GridBagConstraints gbc_postalField = new GridBagConstraints();
 		gbc_postalField.anchor = GridBagConstraints.SOUTH;
@@ -214,7 +231,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_mobileNumberLabel.gridx = 1;
 		gbc_mobileNumberLabel.gridy = 3;
 		panel_1.add(mobileNumberLabel, gbc_mobileNumberLabel);
-		
+
 		contryLabel = new JLabel("+45");
 		GridBagConstraints gbc_contryLabel = new GridBagConstraints();
 		gbc_contryLabel.insets = new Insets(0, 0, 5, 5);
@@ -231,19 +248,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_MobileNumber.gridy = 3;
 		panel_1.add(mobileNumber, gbc_MobileNumber);
 		mobileNumber.setColumns(10);
-		
-		mobileNumber = new JTextField();
-		mobileNumber.addKeyListener(new KeyAdapter()
-		{
-			public void keyTyped(KeyEvent e)
-			{
-				char c = e.getKeyChar();
-				if (!Character.isDigit(c))
-				{
-					e.consume();
-				}
-			}
-		});
+
 		JLabel cityLabel = new JLabel("By :");
 		GridBagConstraints gbc_cityLabel = new GridBagConstraints();
 		gbc_cityLabel.anchor = GridBagConstraints.WEST;
