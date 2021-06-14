@@ -211,6 +211,7 @@ public class Sale
     public double pay(double money)
     {
         moneyReceived += money;
+        dateTime = new Date();
         
         return getRemainingPayment();
     }
@@ -222,4 +223,7 @@ public class Sale
     public void setSaleID(String saleID){
         this.saleID = saleID;
     }
+    
+
+    
 }

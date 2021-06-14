@@ -125,7 +125,8 @@ public class CreateSaleFrame extends JFrame {
 		saleController.setCurrentSaleID();
 		PaySaleDialog paySaleDialog = new PaySaleDialog(saleController);
 		paySaleDialog.setVisible(true);
-		System.out.println(saleController.getCurrentSale());
+		
+		
 		if(saleController.getCurrentSale() == null) {
 			System.out.println("Sale is finished. ");
 			dispose();
