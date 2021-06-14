@@ -79,37 +79,43 @@ public class SaleReceiptDialog extends JDialog {
 	@SuppressWarnings("deprecation")
 	private void fillReceipt() {
 		Sale currentSale = saleController.getCurrentSale();
-		
+
 		double totalRefund = saleController.getCurrentSale().getRemainingPayment();
 		totalRefund = Math.abs(totalRefund);
 		returnedLabel.setText(String.format("%.2f", totalRefund));
-		
+
 		totalWithoutTaxLabel.setText(String.format("%.2f", currentSale.calculateTotalPrice() * 0.75));
-		
+
 		taxLabel.setText(String.format("%.2f", currentSale.calculateTotalPrice() * 0.25));
-		
+
 		totalLabel.setText(String.format("%.2f", currentSale.calculateTotalPrice()));
-		
+
 		receivedLabel.setText(String.format("%.2f", currentSale.getMoneyReceived()));
-		
+
 		saleIDLabel.setText(currentSale.getSaleID());
-		
-		Date saleDate = currentSale.getSaleDate();		
-		saleTimeLabel.setText(saleDate.getHours() + ":" + saleDate.getMinutes());;		
+
+		Date saleDate = currentSale.getSaleDate();
+		if (saleDate.getMinutes() < 10) {
+			saleTimeLabel.setText(saleDate.getHours() + ":" + "0" + saleDate.getMinutes());
+		} else {
+			saleTimeLabel.setText(saleDate.getHours() + ":" + saleDate.getMinutes());
+		}
 		saleDateLabel.setText((saleDate.getYear() + 1900) + "-" + (saleDate.getMonth() + 1) + "-" + saleDate.getDate());
-		
+
 		saleEmployeeLabel.setText(currentSale.getEmployee().getName());
-	
+
 	}
-	
+
 	private void printButton() {
-		
+
 		saleController.logSale();
+		dispose();
 	}
-	
+
 	private void finishButton() {
-		
+
 		saleController.logSale();
+		dispose();
 	}
 
 	/**
