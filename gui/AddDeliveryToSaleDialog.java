@@ -6,23 +6,23 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+
 
 import control.SaleController;
-import control.PersonController;
-import model.Person;
+
+
 
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+
 import java.awt.GridBagConstraints;
-import javax.swing.BoxLayout;
+
 import java.awt.Insets;
 import javax.swing.JLabel;
-import javax.swing.JTextPane;
-import javax.swing.JToolBar;
+
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import java.awt.Toolkit;
+
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
@@ -72,22 +72,62 @@ public class AddDeliveryToSaleDialog extends JDialog {
 	}
 	private void input()
 	{
-		postal = Integer.parseInt(postalField.getText());
 		name = nameField.getText();
 		address = addressField.getText();
+		
+		try {
+			postal = Integer.parseInt(postalField.getText());
+		} catch (NumberFormatException e) {
+			postalField.setText("Fejl indtast et tal");
+		}
+		
 		city = cityField.getText();
 		phoneNumber = mobileNumber.getText();
 	}
 		private void addAddressButton()
 		{
 			input();
-			addName();
-			addDeliveryAddress();
-			addPostal();
-			addPhoneNumber();
-			addCity();
-			dispose();
+			
+			boolean error = false;
+			
+			if (name.isEmpty()) {
+				error = true;
+			}
+			else {
+				addName();
+			}
+			
+			if (address.isEmpty()) {
+				error = true;
+			}
+			else {
+				addDeliveryAddress();
+			}
+			
+				addPostal();
+			
+			
+			if (city.isEmpty()) {
+				error = true;
+			}
+			else {
+				addCity();
+			}
+			
+			if (phoneNumber.isEmpty()) {
+				error = true;
+			}
+			else {
+				addPhoneNumber();
+			}
+
+	        if (!error) {
+	        	dispose();
+			}	
+			
 		}
+		
+		
 		private void addDeliveryAddress()
 		{
 			saleController.addDeliveryAddressToSale(address);
@@ -109,6 +149,10 @@ public class AddDeliveryToSaleDialog extends JDialog {
 
 			saleController.addDeliveryCityToSale(city);
 		}		
+		
+		private void cancelButton() {
+			dispose();
+		}
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 395, 257);
@@ -125,6 +169,11 @@ public class AddDeliveryToSaleDialog extends JDialog {
 			}
 		});
 		panel.add(addButton);
+		closeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cancelButton();
+			}
+		});
 		closeButton.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(closeButton);
 
