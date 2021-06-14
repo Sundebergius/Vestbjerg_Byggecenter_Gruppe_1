@@ -191,6 +191,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 					e.consume();
 				}
 		}
+			
 		});
 		GridBagConstraints gbc_postalField = new GridBagConstraints();
 		gbc_postalField.anchor = GridBagConstraints.SOUTH;
@@ -225,7 +226,19 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_MobileNumber.gridy = 3;
 		panel_1.add(mobileNumber, gbc_MobileNumber);
 		mobileNumber.setColumns(10);
-
+		
+		mobileNumber = new JTextField();
+		mobileNumber.addKeyListener(new KeyAdapter()
+		{
+			public void keyTyped(KeyEvent e)
+			{
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c))
+				{
+					e.consume();
+				}
+			}
+		});
 		JLabel cityLabel = new JLabel("By :");
 		GridBagConstraints gbc_cityLabel = new GridBagConstraints();
 		gbc_cityLabel.anchor = GridBagConstraints.WEST;
