@@ -73,7 +73,7 @@ public class AddProductToSaleDialog extends JDialog {
 			errorLabel.setText("");
 			return true;
 		} else {
-			errorLabel.setText("Fejl der blev ikke fundet nogen produkter med denne stregkode");
+			errorLabel.setText("Ugyldig stregkode");
 			return false;
 		}
 	}
@@ -110,6 +110,8 @@ public class AddProductToSaleDialog extends JDialog {
 			errorLabel.setText("Vare er blevet tilføjet");
 		}
 	}
+	
+	
 
 	private void addButton() {
 		addProductByBarcodeAndQuantity();
@@ -118,9 +120,13 @@ public class AddProductToSaleDialog extends JDialog {
 	private void finishedButton() {
 		dispose();
 	}
-
-	private void searchButton() {
+	
+	private void productIDKeyReleased() {
+		nameLabel2.setText("");
+		descriptionLabel2.setText("");			
+		priceLabel.setText("");
 		findProductByBarcode();
+		
 	}
 
 	private void createGUI() {
@@ -147,6 +153,12 @@ public class AddProductToSaleDialog extends JDialog {
 		}
 		{
 			barcodeField = new JTextField();
+			barcodeField.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					productIDKeyReleased();
+				}
+			});
 			GridBagConstraints gbc_barcodeField = new GridBagConstraints();
 			gbc_barcodeField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_barcodeField.insets = new Insets(0, 0, 5, 5);
@@ -154,20 +166,6 @@ public class AddProductToSaleDialog extends JDialog {
 			gbc_barcodeField.gridy = 1;
 			contentPanel.add(barcodeField, gbc_barcodeField);
 			barcodeField.setColumns(10);
-		}
-		{
-			JButton searchButton = new JButton("Søg");
-			searchButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-
-					searchButton();
-				}
-			});
-			GridBagConstraints gbc_searchButton = new GridBagConstraints();
-			gbc_searchButton.insets = new Insets(0, 0, 5, 0);
-			gbc_searchButton.gridx = 3;
-			gbc_searchButton.gridy = 1;
-			contentPanel.add(searchButton, gbc_searchButton);
 		}
 		{
 			JLabel quantityLabel = new JLabel("Antal :");
