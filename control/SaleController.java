@@ -48,6 +48,11 @@ public class SaleController
         return customer;
     }
     
+    public void removeCustomerFromSale()
+    {
+    	currentSale.removeCustomer();
+    }
+    
     public String addDeliveryAddressToSale(String address)
     {
         currentSale.addDeliveryAddressToSale(address);
@@ -72,6 +77,11 @@ public class SaleController
     {
     	currentSale.addDeliveryCity(city);
     	return city;
+    }
+    
+    public void removeDelivery()
+    {
+    	currentSale.removeDeliveryFromSale();
     }
     
     public double pay(double money)

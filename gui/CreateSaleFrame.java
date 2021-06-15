@@ -54,6 +54,8 @@ public class CreateSaleFrame extends JFrame {
 	private JTextField deliveryMobileNumberField;
 	private JLabel removeErrorLabel;
 	private JLabel productErrorLabel;
+	private JButton addCustomerButton;
+	private JButton addDeliveryButton;
 
 	/**
 	 * Launch the application.
@@ -91,11 +93,10 @@ public class CreateSaleFrame extends JFrame {
 		updateProductList();
 	}
 
-	private void setProductErrorLabelNull()
-	{
+	private void setProductErrorLabelNull() {
 		productErrorLabel.setText("");
 	}
-	
+
 	private void addCustomerButton() {
 		AddCustomerToSaleDialog customerToSaleDialog = new AddCustomerToSaleDialog(saleController);
 		customerToSaleDialog.setVisible(true);
@@ -105,6 +106,22 @@ public class CreateSaleFrame extends JFrame {
 		if (saleController.getCurrentSale().hasCustomer()) {
 			customerIDField.setText(currentCustomer.getCustomerID());
 			customerNameField.setText(currentCustomer.getName());
+		}
+		changeNameCustomerButton();
+	}
+
+	private void removeCustomerButton() {
+		saleController.removeCustomerFromSale();
+		customerIDField.setText("");
+		customerNameField.setText("");
+		changeNameCustomerButton();
+	}
+
+	private void changeNameCustomerButton() {
+		if (saleController.getCurrentSale().hasCustomer()) {
+			addCustomerButton.setText("Ændre kunde");
+		}else {
+			addCustomerButton.setText("Tilføj kunde");
 		}
 	}
 
@@ -129,11 +146,32 @@ public class CreateSaleFrame extends JFrame {
 			String deliveryCity = saleController.getCurrentSale().getDeliveryCity();
 			deliveryCityField.setText(deliveryCity);
 		}
+		changeNameDeliveryButton();
 	}
-/*
- * Method for the pay button. 
- * Will open the receipt dialog if the price = 0, and pay dialog if the price > 0. 
- */
+
+	private void removeDeliveryButton() {
+		saleController.removeDelivery();
+		deliveryAddressField.setText("");
+		recieverField.setText("");
+		deliveryZipCodeField.setText("");
+		deliveryMobileNumberField.setText("");
+		deliveryCityField.setText("");
+		changeNameDeliveryButton();
+	}
+	
+	private void changeNameDeliveryButton()
+	{
+		if (saleController.getCurrentSale().hasDelivery()) {
+			addDeliveryButton.setText("Ændre levering");
+		}else {
+			addDeliveryButton.setText("Tilføj levering");
+		}
+	}
+
+	/*
+	 * Method for the pay button. Will open the receipt dialog if the price = 0, and
+	 * pay dialog if the price > 0.
+	 */
 	private void payButton() {
 		if (saleController.getCurrentSale().getSaleLineItems().length != 0) {
 			if (saleController.getCurrentSale().calculateTotalPrice() == 0) {
@@ -148,7 +186,7 @@ public class CreateSaleFrame extends JFrame {
 				System.out.println("Sale is finished. ");
 				dispose();
 			}
-		}else {
+		} else {
 			productErrorLabel.setText("Der skal tilføjes et produkt før betalingen kan gennemføres. ");
 		}
 
@@ -223,7 +261,7 @@ public class CreateSaleFrame extends JFrame {
 				payButton();
 			}
 		});
-		
+
 		productErrorLabel = new JLabel("");
 		productErrorLabel.setForeground(Color.RED);
 		saleConfirmationPanel.add(productErrorLabel);
@@ -366,14 +404,19 @@ public class CreateSaleFrame extends JFrame {
 		fl_customerButtonPanel.setAlignment(FlowLayout.RIGHT);
 		customerPanel.add(customerButtonPanel, BorderLayout.SOUTH);
 
-		JButton addCustomerButton = new JButton("Tilføj kunde");
+		addCustomerButton = new JButton("Tilføj kunde");
 		addCustomerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addCustomerButton();
 			}
 		});
-		
+
 		JButton removeCustomerButton = new JButton("Fjern kunde");
+		removeCustomerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removeCustomerButton();
+			}
+		});
 		customerButtonPanel.add(removeCustomerButton);
 		customerButtonPanel.add(addCustomerButton);
 
@@ -441,14 +484,19 @@ public class CreateSaleFrame extends JFrame {
 		fl_deliveryButtonPanel.setAlignment(FlowLayout.RIGHT);
 		deliveryPanel.add(deliveryButtonPanel, BorderLayout.SOUTH);
 
-		JButton addDeliveryButton = new JButton("Tilf\u00F8j levering");
+		addDeliveryButton = new JButton("Tilf\u00F8j levering");
 		addDeliveryButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addDeliveryButton();
 			}
 		});
-		
+
 		JButton removeDeliveryButton = new JButton("Fjern levering");
+		removeDeliveryButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removeDeliveryButton();
+			}
+		});
 		deliveryButtonPanel.add(removeDeliveryButton);
 		deliveryButtonPanel.add(addDeliveryButton);
 
