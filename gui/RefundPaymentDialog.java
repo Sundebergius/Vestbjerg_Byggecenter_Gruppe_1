@@ -26,6 +26,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class RefundPaymentDialog extends JDialog {
 
@@ -47,10 +48,6 @@ public class RefundPaymentDialog extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	private void cancelButton() {
-		dispose();
 	}
 
 	private void okButton() {		
@@ -93,11 +90,12 @@ public class RefundPaymentDialog extends JDialog {
 			contentPanel.add(panel, gbc_panel);
 			{
 				JLabel lblRefundHeadline = new JLabel("Kunden skal have penge tilbage");
+				lblRefundHeadline.setFont(new Font("Tahoma", Font.PLAIN, 25));
 				panel.add(lblRefundHeadline);
 			}
 		}
 		{
-			JLabel lblRefundAmount = new JLabel("Bel\u00F8bet som skal gives retur til kunden: ");
+			JLabel lblRefundAmount = new JLabel("Retur beløb: ");
 			lblRefundAmount.setHorizontalAlignment(SwingConstants.CENTER);
 			GridBagConstraints gbc_lblRefundAmount = new GridBagConstraints();
 			gbc_lblRefundAmount.anchor = GridBagConstraints.EAST;
@@ -127,7 +125,7 @@ public class RefundPaymentDialog extends JDialog {
 			contentPanel.add(panel, gbc_panel);
 			{
 				JLabel lblConfirmation = new JLabel(
-						"Bekr\u00E6ft med OK-knappen n\u00E5r det overskydende bel\u00F8b er givet tilbage. ");
+						"Bekræft med Færdig-knappen når det overskydende beløb er givet tilbage. ");
 				panel.add(lblConfirmation);
 			}
 		}
@@ -136,26 +134,15 @@ public class RefundPaymentDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
+				JButton doneButton = new JButton("Færdig");
+				doneButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						okButton();
 					}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-
-						cancelButton();
-					}
-				});
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				doneButton.setActionCommand("OK");
+				buttonPane.add(doneButton);
+				getRootPane().setDefaultButton(doneButton);
 			}
 		}
 	}
@@ -170,6 +157,7 @@ public class RefundPaymentDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public RefundPaymentDialog(SaleController saleController) {
+		setTitle("Retur ");
 		setModal(true);
 		createGUI();
 		this.saleController = saleController;

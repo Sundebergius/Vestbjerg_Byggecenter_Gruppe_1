@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.Color;
 
 public class AddDeliveryToSaleDialog extends JDialog {
 	private SaleController saleController;
@@ -294,6 +295,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		cityField.setColumns(10);
 		
 		errorLabel = new JLabel("");
+		errorLabel.setForeground(Color.RED);
 		GridBagConstraints gbc_errorLabel = new GridBagConstraints();
 		gbc_errorLabel.gridwidth = 5;
 		gbc_errorLabel.insets = new Insets(0, 0, 0, 5);
