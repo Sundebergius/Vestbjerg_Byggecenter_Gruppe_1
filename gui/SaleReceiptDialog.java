@@ -292,6 +292,54 @@ public class SaleReceiptDialog extends JDialog {
 					productList = new JList();
 					scrollPane.setViewportView(productList);
 				}
+				{
+					JPanel panel = new JPanel();
+					scrollPane.setColumnHeaderView(panel);
+					GridBagLayout gbl_panel = new GridBagLayout();
+					gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0};
+					gbl_panel.rowHeights = new int[]{14, 0};
+					gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+					gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+					panel.setLayout(gbl_panel);
+					{
+						JLabel productHeadlineName = new JLabel("Navn:");
+						GridBagConstraints gbc_productHeadlineName = new GridBagConstraints();
+						gbc_productHeadlineName.fill = GridBagConstraints.HORIZONTAL;
+						gbc_productHeadlineName.anchor = GridBagConstraints.NORTH;
+						gbc_productHeadlineName.insets = new Insets(0, 0, 0, 5);
+						gbc_productHeadlineName.gridx = 0;
+						gbc_productHeadlineName.gridy = 0;
+						panel.add(productHeadlineName, gbc_productHeadlineName);
+					}
+					{
+						JLabel productHeadlineIndividualPrice = new JLabel("Stk. pris: ");
+						GridBagConstraints gbc_productHeadlineIndividualPrice = new GridBagConstraints();
+						gbc_productHeadlineIndividualPrice.fill = GridBagConstraints.HORIZONTAL;
+						gbc_productHeadlineIndividualPrice.anchor = GridBagConstraints.NORTH;
+						gbc_productHeadlineIndividualPrice.insets = new Insets(0, 0, 0, 5);
+						gbc_productHeadlineIndividualPrice.gridx = 1;
+						gbc_productHeadlineIndividualPrice.gridy = 0;
+						panel.add(productHeadlineIndividualPrice, gbc_productHeadlineIndividualPrice);
+					}
+					{
+						JLabel productHeadlineID = new JLabel("Product ID: ");
+						GridBagConstraints gbc_productHeadlineID = new GridBagConstraints();
+						gbc_productHeadlineID.fill = GridBagConstraints.BOTH;
+						gbc_productHeadlineID.insets = new Insets(0, 0, 0, 5);
+						gbc_productHeadlineID.gridx = 2;
+						gbc_productHeadlineID.gridy = 0;
+						panel.add(productHeadlineID, gbc_productHeadlineID);
+					}
+					{
+						JLabel productHeadlineTotal = new JLabel("Total: ");
+						productHeadlineTotal.setHorizontalAlignment(SwingConstants.RIGHT);
+						GridBagConstraints gbc_productHeadlineTotal = new GridBagConstraints();
+						gbc_productHeadlineTotal.fill = GridBagConstraints.HORIZONTAL;
+						gbc_productHeadlineTotal.gridx = 3;
+						gbc_productHeadlineTotal.gridy = 0;
+						panel.add(productHeadlineTotal, gbc_productHeadlineTotal);
+					}
+				}
 			}
 			{
 				JPanel panel = new JPanel();

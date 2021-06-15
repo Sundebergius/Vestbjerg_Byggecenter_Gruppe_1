@@ -53,6 +53,7 @@ public class CreateSaleFrame extends JFrame {
 	private JTextField deliveryZipCodeField;
 	private JTextField deliveryMobileNumberField;
 	private JLabel removeErrorLabel;
+	private JLabel productErrorLabel;
 
 	/**
 	 * Launch the application.
@@ -84,11 +85,17 @@ public class CreateSaleFrame extends JFrame {
 	}
 
 	private void addProductButton() {
+		setProductErrorLabelNull();
 		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog(saleController);
 		productToSaleDialog.setVisible(true);
-		updateProductList();		
+		updateProductList();
 	}
 
+	private void setProductErrorLabelNull()
+	{
+		productErrorLabel.setText("");
+	}
+	
 	private void addCustomerButton() {
 		AddCustomerToSaleDialog customerToSaleDialog = new AddCustomerToSaleDialog(saleController);
 		customerToSaleDialog.setVisible(true);
@@ -123,16 +130,26 @@ public class CreateSaleFrame extends JFrame {
 			deliveryCityField.setText(deliveryCity);
 		}
 	}
-
+/*
+ * Method for the pay button. 
+ * Will open the receipt dialog if the price = 0, and pay dialog if the price > 0. 
+ */
 	private void payButton() {
-		saleController.setCurrentSaleID();
-		PaySaleDialog paySaleDialog = new PaySaleDialog(saleController);
-		paySaleDialog.setVisible(true);
-		
-		
-		if(saleController.getCurrentSale() == null) {
-			System.out.println("Sale is finished. ");
-			dispose();
+		if (saleController.getCurrentSale().getSaleLineItems().length != 0) {
+			if (saleController.getCurrentSale().calculateTotalPrice() == 0) {
+				SaleReceiptDialog saleReceiptDialog = new SaleReceiptDialog(saleController);
+				saleReceiptDialog.setVisible(true);
+			} else {
+				saleController.setCurrentSaleID();
+				PaySaleDialog paySaleDialog = new PaySaleDialog(saleController);
+				paySaleDialog.setVisible(true);
+			}
+			if (saleController.getCurrentSale() == null) {
+				System.out.println("Sale is finished. ");
+				dispose();
+			}
+		}else {
+			productErrorLabel.setText("Der skal tilføjes et produkt før betalingen kan gennemføres. ");
 		}
 
 	}
@@ -143,28 +160,24 @@ public class CreateSaleFrame extends JFrame {
 	}
 
 	private void removeProductButton() {
-				
-		int[] selectedIndices = productList.getSelectedIndices();		
-		
+
+		int[] selectedIndices = productList.getSelectedIndices();
+
 		Sale currentSale = saleController.getCurrentSale();
-		
-		for (int i = selectedIndices.length-1; i >= 0; i--) {
-			
+
+		for (int i = selectedIndices.length - 1; i >= 0; i--) {
+
 			currentSale.removeSaleLineItem(selectedIndices[i]);
-			
+
 		}
 		updateProductList();
-		if(selectedIndices.length == 0) {
+		if (selectedIndices.length == 0) {
 			removeErrorLabel.setText("Klik på den vare som du ønsker at fjerne først. ");
-		}
-		else {
+		} else {
 			removeErrorLabel.setText("");
 		}
-		
-		
 
 	}
-	
 
 	private void updateProductList() {
 		SaleLineItemCellRenderer cellRenderer = new SaleLineItemCellRenderer();
@@ -178,9 +191,9 @@ public class CreateSaleFrame extends JFrame {
 			listRepresentation.addElement(saleLineItem);
 		}
 		productList.setModel(listRepresentation);
-		
+
 		updateSubtotal();
-		
+
 	}
 
 	private void updateSubtotal() {
@@ -210,6 +223,10 @@ public class CreateSaleFrame extends JFrame {
 				payButton();
 			}
 		});
+		
+		productErrorLabel = new JLabel("");
+		productErrorLabel.setForeground(Color.RED);
+		saleConfirmationPanel.add(productErrorLabel);
 		saleConfirmationPanel.add(startPaymentButton);
 
 		JButton cancelButton = new JButton("Annuller salg");
@@ -250,7 +267,6 @@ public class CreateSaleFrame extends JFrame {
 		fl_productContentPanel.setAlignment(FlowLayout.RIGHT);
 		productControlPanel.add(productContentPanel, BorderLayout.NORTH);
 
-
 		JLabel lblNewLabel_4 = new JLabel("Subtotal");
 		productContentPanel.add(lblNewLabel_4);
 
@@ -270,7 +286,7 @@ public class CreateSaleFrame extends JFrame {
 				removeProductButton();
 			}
 		});
-		
+
 		removeErrorLabel = new JLabel("");
 		removeErrorLabel.setForeground(Color.RED);
 		productButtonPanel.add(removeErrorLabel);
@@ -289,16 +305,16 @@ public class CreateSaleFrame extends JFrame {
 
 		productList = new JList<>();
 		productListPanel.setViewportView(productList);
-		
+
 		JPanel panel = new JPanel();
 		productPanel.add(panel, BorderLayout.NORTH);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{14, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 14, 0 };
+		gbl_panel.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel productHeadlineName = new JLabel("Navn:");
 		GridBagConstraints gbc_productHeadlineName = new GridBagConstraints();
 		gbc_productHeadlineName.fill = GridBagConstraints.HORIZONTAL;
@@ -307,7 +323,7 @@ public class CreateSaleFrame extends JFrame {
 		gbc_productHeadlineName.gridx = 0;
 		gbc_productHeadlineName.gridy = 0;
 		panel.add(productHeadlineName, gbc_productHeadlineName);
-		
+
 		JLabel productHeadlineIndividualPrice = new JLabel("Stk. pris: ");
 		GridBagConstraints gbc_productHeadlineIndividualPrice = new GridBagConstraints();
 		gbc_productHeadlineIndividualPrice.fill = GridBagConstraints.HORIZONTAL;
@@ -316,7 +332,7 @@ public class CreateSaleFrame extends JFrame {
 		gbc_productHeadlineIndividualPrice.gridx = 1;
 		gbc_productHeadlineIndividualPrice.gridy = 0;
 		panel.add(productHeadlineIndividualPrice, gbc_productHeadlineIndividualPrice);
-		
+
 		JLabel productHeadlineID = new JLabel("Product ID: ");
 		GridBagConstraints gbc_productHeadlineID = new GridBagConstraints();
 		gbc_productHeadlineID.insets = new Insets(0, 0, 0, 5);
@@ -324,7 +340,7 @@ public class CreateSaleFrame extends JFrame {
 		gbc_productHeadlineID.gridx = 2;
 		gbc_productHeadlineID.gridy = 0;
 		panel.add(productHeadlineID, gbc_productHeadlineID);
-		
+
 		JLabel productHeadlineTotal = new JLabel("Total: ");
 		productHeadlineTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_productHeadlineTotal = new GridBagConstraints();
@@ -356,6 +372,9 @@ public class CreateSaleFrame extends JFrame {
 				addCustomerButton();
 			}
 		});
+		
+		JButton removeCustomerButton = new JButton("Fjern kunde");
+		customerButtonPanel.add(removeCustomerButton);
 		customerButtonPanel.add(addCustomerButton);
 
 		JPanel customerContentPanel = new JPanel();
@@ -428,6 +447,9 @@ public class CreateSaleFrame extends JFrame {
 				addDeliveryButton();
 			}
 		});
+		
+		JButton removeDeliveryButton = new JButton("Fjern levering");
+		deliveryButtonPanel.add(removeDeliveryButton);
 		deliveryButtonPanel.add(addDeliveryButton);
 
 		JPanel deliveryContentPanel = new JPanel();
