@@ -124,6 +124,7 @@ public class SaleReceiptDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public SaleReceiptDialog(SaleController saleController) {
+		setTitle("Kvittering");
 		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.saleController = saleController;
 		createGUI();
