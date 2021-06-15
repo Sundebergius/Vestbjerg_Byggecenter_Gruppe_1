@@ -130,8 +130,10 @@ public class PaySaleDialog extends JDialog {
 				
 				dispose();
 			}
-		} else {
-			lblOutput.setText("Skriv en positiv v�rdi. ");
+		} else if(amountPayed <= 0) {
+			amountPayed = 0; 
+			lblOutput.setText("Skriv en positiv værdi. ");
+			 
 		}
 
 	}
