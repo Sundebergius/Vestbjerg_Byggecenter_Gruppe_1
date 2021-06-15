@@ -133,6 +133,17 @@ public class Sale
         return saleID;
     }
     
+    public void removeDeliveryFromSale()
+    {
+    	deliveryAddress = "";
+    	deliveryName = "";
+    	postal = 0; 
+    	phoneNumber = "";
+    	city = "";
+    	addedDelivery = false; 
+    	
+    }
+    
     /**
      * Get method for the delivery address of the sale of the customer. 
      * @return delivery address of the customer. 
@@ -140,6 +151,12 @@ public class Sale
     public String getDeliveryAddress()
     {
         return deliveryAddress;
+    }
+    
+    public void removeCustomer()
+    {
+    	customer = null; 
+    	addedCustomer = false;
     }
     
     /**
