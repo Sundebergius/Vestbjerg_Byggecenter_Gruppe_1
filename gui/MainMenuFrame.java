@@ -42,35 +42,37 @@ public class MainMenuFrame extends JFrame {
 			}
 		});
 	}
-	
+
 	public MainMenuFrame() {
 		new TryMe();
 		createGUI();
-		LoginDialog loginDialog = new LoginDialog(this);
-		loginDialog.setVisible(true);	
+		startLoginDialog();
 
 	}
-	
-	public void setCurrentEmployee(Employee employee)
-	{
+
+	public void setCurrentEmployee(Employee employee) {
 		currentEmployee = employee;
 		employeeLabel.setText(currentEmployee.getName());
 		setVisible(true);
 	}
-	
+
 	private void startSaleButton() {
 		CreateSaleFrame createSaleFrame = new CreateSaleFrame(currentEmployee);
 		createSaleFrame.setVisible(true);
 	}
-	
-	private void logoutButton() {
+
+	private void startLoginDialog() {
 		currentEmployee = null;
 		setVisible(false);
 		LoginDialog loginDialog = new LoginDialog(this);
 		loginDialog.setVisible(true);
-		
+
 	}
-		
+
+	private void logoutButton() {
+
+		startLoginDialog();
+	}
 
 	private void createGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -137,28 +139,27 @@ public class MainMenuFrame extends JFrame {
 		gbc_guidePanel.gridx = 0;
 		gbc_guidePanel.gridy = 4;
 		bodyPanel.add(guidePanel, gbc_guidePanel);
-		
+
 		JLabel employeeInfoLabel = new JLabel("Du er logget ind som: ");
 		employeeInfoLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		guidePanel.add(employeeInfoLabel);
-				
-				employeeLabel = new JLabel("");
-				employeeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				GridBagConstraints gbc_employeeLabel = new GridBagConstraints();
-				gbc_employeeLabel.insets = new Insets(0, 0, 5, 0);
-				gbc_employeeLabel.gridx = 4;
-				gbc_employeeLabel.gridy = 4;
-				bodyPanel.add(employeeLabel, gbc_employeeLabel);
-		
-				JLabel guideLabel = new JLabel(
-						"P\u00E5begynd et nyt salg ved at trykke p\u00E5 \"Opret et salg\" nedenunder. ");
-				GridBagConstraints gbc_guideLabel = new GridBagConstraints();
-				gbc_guideLabel.gridwidth = 5;
-				gbc_guideLabel.gridx = 0;
-				gbc_guideLabel.gridy = 6;
-				bodyPanel.add(guideLabel, gbc_guideLabel);
-				guideLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+		employeeLabel = new JLabel("");
+		employeeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		GridBagConstraints gbc_employeeLabel = new GridBagConstraints();
+		gbc_employeeLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_employeeLabel.gridx = 4;
+		gbc_employeeLabel.gridy = 4;
+		bodyPanel.add(employeeLabel, gbc_employeeLabel);
+
+		JLabel guideLabel = new JLabel(
+				"P\u00E5begynd et nyt salg ved at trykke p\u00E5 \"Opret et salg\" nedenunder. ");
+		GridBagConstraints gbc_guideLabel = new GridBagConstraints();
+		gbc_guideLabel.gridwidth = 5;
+		gbc_guideLabel.gridx = 0;
+		gbc_guideLabel.gridy = 6;
+		bodyPanel.add(guideLabel, gbc_guideLabel);
+		guideLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 	}
 
-	
 }
