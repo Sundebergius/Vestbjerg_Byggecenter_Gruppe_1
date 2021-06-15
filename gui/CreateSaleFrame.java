@@ -56,6 +56,7 @@ public class CreateSaleFrame extends JFrame {
 	private JLabel productErrorLabel;
 	private JButton addCustomerButton;
 	private JButton addDeliveryButton;
+	private MainMenuFrame mainMenuFrame;
 
 	/**
 	 * Launch the application.
@@ -66,10 +67,11 @@ public class CreateSaleFrame extends JFrame {
 				try {
 					new TryMe();
 					Employee employee = new Employee("title", "title", "title", "title", 1, "title", "title");
-					CreateSaleFrame frame = new CreateSaleFrame(employee);
+					CreateSaleFrame frame = new CreateSaleFrame(employee, new MainMenuFrame());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+
 				}
 			}
 		});
@@ -78,11 +80,12 @@ public class CreateSaleFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CreateSaleFrame(Employee employee) {
+	public CreateSaleFrame(Employee employee, MainMenuFrame frame) {
 		setTitle("Oprettelse af salg");
 		createGUI();
 		saleController = new SaleController();
 		saleController.createSale(employee);
+		mainMenuFrame = frame;
 
 	}
 
@@ -120,7 +123,7 @@ public class CreateSaleFrame extends JFrame {
 	private void changeNameCustomerButton() {
 		if (saleController.getCurrentSale().hasCustomer()) {
 			addCustomerButton.setText("Ændre kunde");
-		}else {
+		} else {
 			addCustomerButton.setText("Tilføj kunde");
 		}
 	}
@@ -158,12 +161,11 @@ public class CreateSaleFrame extends JFrame {
 		deliveryCityField.setText("");
 		changeNameDeliveryButton();
 	}
-	
-	private void changeNameDeliveryButton()
-	{
+
+	private void changeNameDeliveryButton() {
 		if (saleController.getCurrentSale().hasDelivery()) {
 			addDeliveryButton.setText("Ændre levering");
-		}else {
+		} else {
 			addDeliveryButton.setText("Tilføj levering");
 		}
 	}
@@ -195,6 +197,7 @@ public class CreateSaleFrame extends JFrame {
 	private void cancelButton() {
 		// ask for confirmation
 		dispose();
+		mainMenuFrame.openMainMenuFrame();
 	}
 
 	private void removeProductButton() {

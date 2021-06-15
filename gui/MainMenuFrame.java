@@ -50,6 +50,10 @@ public class MainMenuFrame extends JFrame {
 		startLoginDialog();
 
 	}
+	
+	public void openMainMenuFrame() {
+		setVisible(true);
+	}
 
 	public void setCurrentEmployee(Employee employee) {
 		currentEmployee = employee;
@@ -58,7 +62,7 @@ public class MainMenuFrame extends JFrame {
 	}
 
 	private void startSaleButton() {
-		CreateSaleFrame createSaleFrame = new CreateSaleFrame(currentEmployee);
+		CreateSaleFrame createSaleFrame = new CreateSaleFrame(currentEmployee, this);
 		createSaleFrame.setVisible(true);
 		setVisible(false);
 		
