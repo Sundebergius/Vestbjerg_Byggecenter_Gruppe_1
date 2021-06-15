@@ -272,6 +272,7 @@ public class CreateSaleFrame extends JFrame {
 		});
 		
 		removeErrorLabel = new JLabel("");
+		removeErrorLabel.setForeground(Color.RED);
 		productButtonPanel.add(removeErrorLabel);
 		productButtonPanel.add(removeProductButton);
 
