@@ -92,14 +92,19 @@ public class AddCustomerToSaleDialog extends JDialog {
 		dispose();
 	}
 
-	private void customerIDInputFieldAction() {
-
-		searchButton();
-	}
-
 	private void customerIDInputFieldKeyAction() {
 		errorInfoLabel.setText("");
-		customerIDInputField.grabFocus();
+	}
+	
+	private void customerIDKeyReleased() {
+		
+		customerNameField.setText("");
+		customerAddressField.setText("");
+		customerZipcodeField.setText("");
+		customerCityField.setText("");
+		customerPhoneNoField.setText("");
+		
+		searchButton();
 	}
 
 	private void createGUI() {
@@ -259,13 +264,13 @@ public class AddCustomerToSaleDialog extends JDialog {
 			contentPanel.setBorder(new EmptyBorder(0, 0, 0, 0));
 			getContentPane().add(contentPanel, BorderLayout.NORTH);
 			GridBagLayout gbl_contentPanel = new GridBagLayout();
-			gbl_contentPanel.columnWidths = new int[] { 30, 90, 0, 0, 30, 0 };
+			gbl_contentPanel.columnWidths = new int[] { 30, 101, 0, 30, 0 };
 			gbl_contentPanel.rowHeights = new int[] { 15, 0, 0 };
-			gbl_contentPanel.columnWeights = new double[] { 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
+			gbl_contentPanel.columnWeights = new double[] { 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 			gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 			contentPanel.setLayout(gbl_contentPanel);
 			{
-				JLabel lblNewLabel = new JLabel("Kunde ID:");
+				JLabel lblNewLabel = new JLabel("Kunde ID :");
 				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 				gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 				gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
@@ -280,9 +285,11 @@ public class AddCustomerToSaleDialog extends JDialog {
 					public void keyPressed(KeyEvent e) {
 						if (e.getKeyCode() != KeyEvent.VK_ENTER) {
 							customerIDInputFieldKeyAction();
-						} else {
-							customerIDInputFieldAction();
 						}
+					}
+					@Override
+					public void keyReleased(KeyEvent e) {
+						customerIDKeyReleased();
 					}
 				});
 
@@ -293,19 +300,6 @@ public class AddCustomerToSaleDialog extends JDialog {
 				gbc_customerIDInputField.gridx = 2;
 				gbc_customerIDInputField.gridy = 1;
 				contentPanel.add(customerIDInputField, gbc_customerIDInputField);
-			}
-			{
-				JButton searchButton = new JButton("Søg");
-				searchButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						searchButton();
-					}
-				});
-				GridBagConstraints gbc_searchButton = new GridBagConstraints();
-				gbc_searchButton.insets = new Insets(0, 0, 0, 5);
-				gbc_searchButton.gridx = 3;
-				gbc_searchButton.gridy = 1;
-				contentPanel.add(searchButton, gbc_searchButton);
 			}
 		}
 	}
