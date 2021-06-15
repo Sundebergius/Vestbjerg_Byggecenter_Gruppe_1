@@ -107,6 +107,12 @@ public class CreateSaleFrame extends JFrame {
 			customerNameField.setText(currentCustomer.getName());
 		}
 	}
+	
+	private void removeCustomerButton() {
+		saleController.removeCustomerFromSale();
+		customerIDField.setText("");
+		customerNameField.setText("");
+	}
 
 	private void addDeliveryButton() {
 		AddDeliveryToSaleDialog deliveryToSaleDialog = new AddDeliveryToSaleDialog(saleController);
@@ -129,6 +135,16 @@ public class CreateSaleFrame extends JFrame {
 			String deliveryCity = saleController.getCurrentSale().getDeliveryCity();
 			deliveryCityField.setText(deliveryCity);
 		}
+	}
+	
+	private void removeDeliveryButton()
+	{
+		saleController.removeDelivery();
+		deliveryAddressField.setText("");
+		recieverField.setText("");
+		deliveryZipCodeField.setText("");
+		deliveryMobileNumberField.setText("");
+		deliveryCityField.setText("");
 	}
 /*
  * Method for the pay button. 
@@ -374,6 +390,11 @@ public class CreateSaleFrame extends JFrame {
 		});
 		
 		JButton removeCustomerButton = new JButton("Fjern kunde");
+		removeCustomerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removeCustomerButton();
+			}
+		});
 		customerButtonPanel.add(removeCustomerButton);
 		customerButtonPanel.add(addCustomerButton);
 
@@ -449,6 +470,11 @@ public class CreateSaleFrame extends JFrame {
 		});
 		
 		JButton removeDeliveryButton = new JButton("Fjern levering");
+		removeDeliveryButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removeDeliveryButton();
+			}
+		});
 		deliveryButtonPanel.add(removeDeliveryButton);
 		deliveryButtonPanel.add(addDeliveryButton);
 
