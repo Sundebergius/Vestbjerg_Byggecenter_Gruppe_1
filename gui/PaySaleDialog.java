@@ -100,8 +100,9 @@ public class PaySaleDialog extends JDialog {
 		
 		
 		
-		double remainingPayment = saleController.pay(amountPayed);
+		
 		if (amountPayed > 0) {
+			double remainingPayment = saleController.pay(amountPayed);
 			if (remainingPayment > 0) {
 				showRemainingPayment();
 
@@ -130,8 +131,7 @@ public class PaySaleDialog extends JDialog {
 				
 				dispose();
 			}
-		} else if(amountPayed <= 0) {
-			amountPayed = 0; 
+		} else {
 			lblOutput.setText("Skriv en positiv værdi. ");
 			 
 		}
