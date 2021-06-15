@@ -24,8 +24,8 @@ import model.Employee;
 public class MainMenuFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JLabel employeeLabel;
 	private Employee currentEmployee;
+	private JLabel employeeLabel;
 
 	/**
 	 * Launch the application.
@@ -42,35 +42,38 @@ public class MainMenuFrame extends JFrame {
 			}
 		});
 	}
-	
+
 	public MainMenuFrame() {
+		setTitle("Hovedmenu");
 		new TryMe();
 		createGUI();
-		LoginDialog loginDialog = new LoginDialog(this);
-		loginDialog.setVisible(true);	
+		startLoginDialog();
 
 	}
-	
-	public void setCurrentEmployee(Employee employee)
-	{
+
+	public void setCurrentEmployee(Employee employee) {
 		currentEmployee = employee;
 		employeeLabel.setText(currentEmployee.getName());
 		setVisible(true);
 	}
-	
+
 	private void startSaleButton() {
 		CreateSaleFrame createSaleFrame = new CreateSaleFrame(currentEmployee);
 		createSaleFrame.setVisible(true);
 	}
-	
-	private void logoutButton() {
+
+	private void startLoginDialog() {
 		currentEmployee = null;
 		setVisible(false);
 		LoginDialog loginDialog = new LoginDialog(this);
 		loginDialog.setVisible(true);
-		
+
 	}
-		
+
+	private void logoutButton() {
+
+		startLoginDialog();
+	}
 
 	private void createGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +88,7 @@ public class MainMenuFrame extends JFrame {
 		fl_buttonPanel.setAlignment(FlowLayout.RIGHT);
 		contentPane.add(buttonPanel, BorderLayout.SOUTH);
 
-		JButton createSaleButton = new JButton("Opret et salg");
+		JButton createSaleButton = new JButton("Opret salg");
 		createSaleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				startSaleButton();
@@ -94,31 +97,50 @@ public class MainMenuFrame extends JFrame {
 		});
 		buttonPanel.add(createSaleButton);
 
-		JButton logoutButton = new JButton("Logout");
-		logoutButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				logoutButton();
-			}
-		});
-		buttonPanel.add(logoutButton);
-
-		JLabel mainMenuLabel = new JLabel("Main Menu");
-		mainMenuLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		mainMenuLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(mainMenuLabel, BorderLayout.NORTH);
-
 		JPanel bodyPanel = new JPanel();
 		contentPane.add(bodyPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_bodyPanel = new GridBagLayout();
-		gbl_bodyPanel.columnWidths = new int[] { 0, 28, 0, 439, 0, 0 };
+		gbl_bodyPanel.columnWidths = new int[] { 0, 28, 0, 439, 0, 0, 0 };
 		gbl_bodyPanel.rowHeights = new int[] { 30, 30, 27, 30, 30, 30, 0, 0 };
-		gbl_bodyPanel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_bodyPanel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		gbl_bodyPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		bodyPanel.setLayout(gbl_bodyPanel);
+				
+						JPanel guidePanel = new JPanel();
+						GridBagConstraints gbc_guidePanel = new GridBagConstraints();
+						gbc_guidePanel.insets = new Insets(0, 0, 5, 5);
+						gbc_guidePanel.fill = GridBagConstraints.BOTH;
+						gbc_guidePanel.gridx = 3;
+						gbc_guidePanel.gridy = 0;
+						bodyPanel.add(guidePanel, gbc_guidePanel);
+						
+								JLabel employeeInfoLabel = new JLabel("Du er logget ind som: ");
+								employeeInfoLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+								guidePanel.add(employeeInfoLabel);
+				
+				employeeLabel = new JLabel("");
+				employeeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				GridBagConstraints gbc_employeeLabel = new GridBagConstraints();
+				gbc_employeeLabel.insets = new Insets(0, 0, 5, 5);
+				gbc_employeeLabel.gridx = 4;
+				gbc_employeeLabel.gridy = 0;
+				bodyPanel.add(employeeLabel, gbc_employeeLabel);
+		
+				JButton logoutButton = new JButton("Log af");
+				GridBagConstraints gbc_logoutButton = new GridBagConstraints();
+				gbc_logoutButton.insets = new Insets(0, 0, 5, 0);
+				gbc_logoutButton.gridx = 5;
+				gbc_logoutButton.gridy = 0;
+				bodyPanel.add(logoutButton, gbc_logoutButton);
+				logoutButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						logoutButton();
+					}
+				});
 
 		JPanel welcomePanel = new JPanel();
 		GridBagConstraints gbc_welcomePanel = new GridBagConstraints();
-		gbc_welcomePanel.gridwidth = 5;
+		gbc_welcomePanel.gridwidth = 6;
 		gbc_welcomePanel.insets = new Insets(0, 0, 5, 0);
 		gbc_welcomePanel.fill = GridBagConstraints.BOTH;
 		gbc_welcomePanel.gridx = 0;
@@ -128,37 +150,6 @@ public class MainMenuFrame extends JFrame {
 		JLabel welcomeLabel = new JLabel("Velkommen til Vestbjerg Byggecenter A/S");
 		welcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		welcomePanel.add(welcomeLabel);
-
-		JPanel guidePanel = new JPanel();
-		GridBagConstraints gbc_guidePanel = new GridBagConstraints();
-		gbc_guidePanel.gridwidth = 4;
-		gbc_guidePanel.insets = new Insets(0, 0, 5, 5);
-		gbc_guidePanel.fill = GridBagConstraints.BOTH;
-		gbc_guidePanel.gridx = 0;
-		gbc_guidePanel.gridy = 4;
-		bodyPanel.add(guidePanel, gbc_guidePanel);
-		
-		JLabel employeeInfoLabel = new JLabel("Du er logget ind som: ");
-		employeeInfoLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		guidePanel.add(employeeInfoLabel);
-				
-				employeeLabel = new JLabel("");
-				employeeLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				GridBagConstraints gbc_employeeLabel = new GridBagConstraints();
-				gbc_employeeLabel.insets = new Insets(0, 0, 5, 0);
-				gbc_employeeLabel.gridx = 4;
-				gbc_employeeLabel.gridy = 4;
-				bodyPanel.add(employeeLabel, gbc_employeeLabel);
-		
-				JLabel guideLabel = new JLabel(
-						"P\u00E5begynd et nyt salg ved at trykke p\u00E5 \"Opret et salg\" nedenunder. ");
-				GridBagConstraints gbc_guideLabel = new GridBagConstraints();
-				gbc_guideLabel.gridwidth = 5;
-				gbc_guideLabel.gridx = 0;
-				gbc_guideLabel.gridy = 6;
-				bodyPanel.add(guideLabel, gbc_guideLabel);
-				guideLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 	}
 
-	
 }

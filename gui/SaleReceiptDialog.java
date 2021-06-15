@@ -124,6 +124,7 @@ public class SaleReceiptDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public SaleReceiptDialog(SaleController saleController) {
+		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		this.saleController = saleController;
 		createGUI();
 		updateProductList();
@@ -150,7 +151,7 @@ public class SaleReceiptDialog extends JDialog {
 				getRootPane().setDefaultButton(printReceiptButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Færdig");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						finishButton();

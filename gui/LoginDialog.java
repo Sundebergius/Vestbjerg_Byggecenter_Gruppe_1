@@ -54,7 +54,7 @@ public class LoginDialog extends JDialog {
 			mainMenu.setCurrentEmployee(employee);
 			dispose();
 		}else {
-			errorLabel.setText("Denne medarbejder findes ikke i systemet. Pr�v igen. ");
+			errorLabel.setText("Denne medarbejder findes ikke i systemet. Prøv igen. ");
 		}
 	}
 
@@ -67,6 +67,7 @@ public class LoginDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public LoginDialog(MainMenuFrame mainMenu) {
+		setTitle("Medarbejder Login");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		createGUI();
 		this.mainMenu = mainMenu;
@@ -81,11 +82,6 @@ public class LoginDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
-
-		JLabel headlineLabel = new JLabel("Medarbejder Login");
-		headlineLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		headlineLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPanel.add(headlineLabel, BorderLayout.NORTH);
 
 		JPanel bodyPanel = new JPanel();
 		contentPanel.add(bodyPanel, BorderLayout.CENTER);
@@ -145,15 +141,14 @@ public class LoginDialog extends JDialog {
 		contentPanel.add(panel_1, BorderLayout.SOUTH);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[] { 0, 0 };
-		gbl_panel_1.rowHeights = new int[] { 0, 20, 0 };
+		gbl_panel_1.rowHeights = new int[] { 0, 0 };
 		gbl_panel_1.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-		gbl_panel_1.rowWeights = new double[] { 1.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_1.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 		panel_1.setLayout(gbl_panel_1);
 
 		JPanel buttonPanel = new JPanel();
 		GridBagConstraints gbc_buttonPanel = new GridBagConstraints();
 		gbc_buttonPanel.fill = GridBagConstraints.BOTH;
-		gbc_buttonPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_buttonPanel.gridx = 0;
 		gbc_buttonPanel.gridy = 0;
 		panel_1.add(buttonPanel, gbc_buttonPanel);
@@ -166,7 +161,7 @@ public class LoginDialog extends JDialog {
 		});
 		buttonPanel.add(btnNewButton);
 
-		JButton btnCacel = new JButton("Cancel");
+		JButton btnCacel = new JButton("Afslut");
 		btnCacel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cancelButton();
