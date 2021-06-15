@@ -61,6 +61,7 @@ public class MainMenuFrame extends JFrame {
 		CreateSaleFrame createSaleFrame = new CreateSaleFrame(currentEmployee);
 		createSaleFrame.setVisible(true);
 		setVisible(false);
+		
 	}
 
 	private void startLoginDialog() {
