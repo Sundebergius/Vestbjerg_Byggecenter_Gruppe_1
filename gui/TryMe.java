@@ -31,6 +31,9 @@ public class TryMe
         addProducts();        
     }
     
+    /*
+     * Method that adds a product to the product container
+     */
     private void addProducts()
     {        
         Product screws = new ColiProduct("Skrue001", "Phillips skruer", "En æske med 200 phillips skruer", 60);
@@ -44,13 +47,18 @@ public class TryMe
     	
     }
     
+    /*
+     * Method that adds a customer to the person container
+     */
     private void addCustomers()
     {
         Customer jensPetersen = new Customer("Privat001", 0.05, "Jens Petersen", "Sankt Peter vej 5", 9000, "Aalborg", "+4542069420");
         
         personContainer.addCustomer(jensPetersen);              
     }
-    
+    /*
+     * Method that adds an employee to the person container
+     */
     private void addEmployee()
     {
         Employee kurtKristensen = new Employee("SalgsAss001", "Salgsassistent", "Kurt Kristensen", "Jernbanegade 5", 9000, "Aalborg", "+4500000001");
