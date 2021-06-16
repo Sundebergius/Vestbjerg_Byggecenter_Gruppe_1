@@ -66,6 +66,10 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		createUI();
 	}
 
+	/*
+	 * A get method for the name of the customer as well as the address field. 
+	 * Postal is in a parse
+	 */
 	private void getInput() {
 		name = nameField.getText();
 
