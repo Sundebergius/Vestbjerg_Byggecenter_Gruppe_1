@@ -61,6 +61,10 @@ public class AddProductToSaleDialog extends JDialog {
 		createGUI();
 
 	}
+	/*
+	 * Finding product by barcode.
+	 * using an if statement to get name, description and price for the product.
+	 */
 
 	private boolean findProductByBarcode() {
 
@@ -77,7 +81,11 @@ public class AddProductToSaleDialog extends JDialog {
 			return false;
 		}
 	}
-
+	
+	/*
+	 * Adding product by barcode and quantity
+	 * Using if statements to sending error message for 0 quantity, or if there is a quantity, adding the information
+	 */
 	private void addProductByBarcodeAndQuantity() {
 
 		String quantityString = quantityField.getText();
@@ -112,15 +120,22 @@ public class AddProductToSaleDialog extends JDialog {
 	}
 	
 	
-
+	/*
+	 * A button using the method addProductByBarcodeAndQuantity
+	 */
 	private void addButton() {
 		addProductByBarcodeAndQuantity();
 	}
-
+	/*
+	 * A button that close the window by using dispose.
+	 */
 	private void finishedButton() {
 		dispose();
 	}
-	
+	/*
+	 * Setting text on labels for name, description and price.
+	 * Using the method findProductByBarcode
+	 */
 	private void productIDKeyReleased() {
 		nameLabel2.setText("");
 		descriptionLabel2.setText("");			

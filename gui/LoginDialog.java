@@ -46,7 +46,10 @@ public class LoginDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
+	/*
+	 * A button who can get an employee logged in.
+	 * using an if statement to check if the employee is in the system, otherwise it gives an error message
+	 */
 	private void loginButton() {
 		PersonController personController = new PersonController();
 		Employee employee = personController.findEmployeeByEmployeeID(employeeIDField.getText());
@@ -57,7 +60,9 @@ public class LoginDialog extends JDialog {
 			errorLabel.setText("Denne medarbejder findes ikke i systemet. Prøv igen. ");
 		}
 	}
-
+	/*
+	 * A button to close the window by using dispose
+	 */
 	private void cancelButton() {
 		mainMenu.dispose();
 		dispose();
