@@ -6,8 +6,8 @@ public class CompositeProduct extends Product {
 	
 	private ArrayList<CompositeLine> compositeLines;
 
-	public CompositeProduct(String barcode, String name, String description, double price) {
-		super(barcode, name, description, price);
+	public CompositeProduct(String barcode, String name, String description) {
+		super(barcode, name, description, 0);
 		
 		compositeLines = new ArrayList<>();
 		
@@ -22,6 +22,22 @@ public class CompositeProduct extends Product {
 	
 	public ArrayList<CompositeLine> getProductComposition(){
 		return compositeLines;
+	}
+	
+	@Override
+	public double getPrice() {
+		
+		return calculatePrice();
+	}
+	
+	private double calculatePrice() {
+		double total = 0;
+		
+		for (CompositeLine compositeLine : compositeLines) {
+			total += compositeLine.getTotalPrice();
+		}		
+		
+		return total;
 	}
 	
 	
