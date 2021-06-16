@@ -91,6 +91,8 @@ public class MainMenuFrame extends JFrame {
 
 		startLoginDialog();
 	}
+	
+	
 
 	private void createGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -118,9 +120,9 @@ public class MainMenuFrame extends JFrame {
 		contentPane.add(bodyPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_bodyPanel = new GridBagLayout();
 		gbl_bodyPanel.columnWidths = new int[] { 0, 28, 0, 439, 0, 0, 0 };
-		gbl_bodyPanel.rowHeights = new int[] { 30, 30, 27, 30, 30, 30, 0, 0 };
-		gbl_bodyPanel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
-		gbl_bodyPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_bodyPanel.rowHeights = new int[] { 30, 30, 27, 30, 98, 0, 0 };
+		gbl_bodyPanel.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
+		gbl_bodyPanel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		bodyPanel.setLayout(gbl_bodyPanel);
 				
 						JPanel guidePanel = new JPanel();
@@ -167,6 +169,18 @@ public class MainMenuFrame extends JFrame {
 		JLabel welcomeLabel = new JLabel("Velkommen til Vestbjerg Byggecenter A/S");
 		welcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		welcomePanel.add(welcomeLabel);
+		
+		JPanel panel = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 9;
+		gbc_panel.insets = new Insets(0, 0, 5, 0);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 4;
+		bodyPanel.add(panel, gbc_panel);
+		
+		JPanel logoVestbjergPanel = new JPanel();
+		panel.add(logoVestbjergPanel);
 	}
 
 }
