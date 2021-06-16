@@ -62,6 +62,9 @@ public class SaleReceiptDialog extends JDialog {
 		}
 	}
 
+	/*
+	 * Updates the JList in the CreateSaleFrame with the individual products in the SaleLineItem ArrayList 
+	 */
 	private void updateProductList() {
 		SaleLineItemCellRenderer cellRenderer = new SaleLineItemCellRenderer();
 		productList.setCellRenderer(cellRenderer);
@@ -77,6 +80,10 @@ public class SaleReceiptDialog extends JDialog {
 	}
 
 	@SuppressWarnings("deprecation")
+	/*
+	 * A method to fill the receipt with the necessary information. 
+	 * The saleDate adds the date as well as the current time to the receipt. 
+	 */
 	private void fillReceipt() {
 		Sale currentSale = saleController.getCurrentSale();
 
@@ -106,6 +113,10 @@ public class SaleReceiptDialog extends JDialog {
 
 	}
 
+	/*
+	 * A method for the print button which logs the sale in the SaleController
+	 * Disposes the window upon ending. 
+	 */
 	private void printButton() {
 
 		saleController.logSale();
@@ -114,6 +125,10 @@ public class SaleReceiptDialog extends JDialog {
 		//createSaleFrame.setVisible(true);
 	}
 
+	/*
+	 * A method for the finish button which logs the sale in the SaleController
+	 * Disposes the window upon ending. 
+	 */
 	private void finishButton() {
 
 		saleController.logSale();
@@ -132,6 +147,9 @@ public class SaleReceiptDialog extends JDialog {
 		fillReceipt();
 	}
 
+	/*
+	 * Creates the Graphical User Interface
+	 */
 	private void createGUI() {
 		setModal(true);
 		setBounds(100, 100, 645, 1002);
