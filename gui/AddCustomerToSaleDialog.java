@@ -60,7 +60,11 @@ public class AddCustomerToSaleDialog extends JDialog {
 		personController = new PersonController();
 		createGUI();
 	}
-
+	/*
+	 * A function used to search for the customer already in the system. 
+	 * The information stored is then added to the required fields. 
+	 * If the boolean foundCustomer is null, print error message. 
+	 */
 	private void searchButton() {
 		String customerID = customerIDInputField.getText();
 		foundCustomer = personController.findCustomerByCustomerID(customerID);
@@ -79,6 +83,10 @@ public class AddCustomerToSaleDialog extends JDialog {
 
 	}
 
+	/*
+	 * The button to add the found customer to the sale controller. 
+	 * As the final action this event disposes this window. 
+	 */
 	private void addCustomerButton() {
 		if (foundCustomer != null) {
 			saleController.addCustomerToSale(foundCustomer.getCustomerID());
@@ -87,15 +95,24 @@ public class AddCustomerToSaleDialog extends JDialog {
 			errorInfoLabel.setText("Fejl der er ikke blevet fundet en kunde endnu");
 		}
 	}
-
+	
+	/*
+	 * Cancels the event and disposes the current window. 
+	 */
 	private void cancelButton() {
 		dispose();
 	}
 
+	/*
+	 * 
+	 */
 	private void customerIDInputFieldKeyAction() {
 		errorInfoLabel.setText("");
 	}
 	
+	/*
+	 * 
+	 */
 	private void customerIDKeyReleased() {
 		
 		customerNameField.setText("");
@@ -107,6 +124,9 @@ public class AddCustomerToSaleDialog extends JDialog {
 		searchButton();
 	}
 
+	/*
+	 * Create the GUI. 
+	 */
 	private void createGUI() {
 		setTitle("Tilføj kunde til salget");
 		setModal(true);

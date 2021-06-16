@@ -50,24 +50,33 @@ public class MainMenuFrame extends JFrame {
 		startLoginDialog();
 
 	}
-	
+	/*
+	 * method to open main menu frame by using setVisiable, and set it to true.
+	 */
 	public void openMainMenuFrame() {
 		setVisible(true);
 	}
-
+	/*
+	 * A set method to show the employee
+	 */
 	public void setCurrentEmployee(Employee employee) {
 		currentEmployee = employee;
 		employeeLabel.setText(currentEmployee.getName());
 		setVisible(true);
 	}
-
+	/*
+	 * A button to start a sale
+	 * Pressing the button will show a new window
+	 */
 	private void startSaleButton() {
 		CreateSaleFrame createSaleFrame = new CreateSaleFrame(currentEmployee, this);
 		createSaleFrame.setVisible(true);
 		setVisible(false);
 		
 	}
-
+	/*
+	 * method shows a new window
+	 */
 	private void startLoginDialog() {
 		currentEmployee = null;
 		setVisible(false);
@@ -75,7 +84,9 @@ public class MainMenuFrame extends JFrame {
 		loginDialog.setVisible(true);
 
 	}
-
+	/*
+	 * A button using the method startLoginDialog
+	 */
 	private void logoutButton() {
 
 		startLoginDialog();

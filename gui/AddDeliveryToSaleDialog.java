@@ -66,6 +66,10 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		createUI();
 	}
 
+	/*
+	 * A get method for the required fields of the delivery. 
+	 * Int postal is parsed into a String, in order to use the getText method. 
+	 */
 	private void getInput() {
 		name = nameField.getText();
 
@@ -81,6 +85,10 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		phoneNumber = mobileNumber.getText();
 	}
 
+	/*
+	 * A method for the add address button. 
+	 * Takes the input from the getInput() method and starts the addDelivery...() method, as long as input is valid. 
+	 */
 	private void addAddressButton() {
 		getInput();
 
@@ -94,6 +102,10 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		}
 	}
 
+	/*
+	 * Method to check if input is valid. 
+	 * Prints a String error message with individual errors when not valid. 
+	 */
 	private boolean isValidInput() {
 		
 		String errorMessage = "Fejl: ";
@@ -132,6 +144,9 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		return !error;
 	}
 
+	/*
+	 * Method to add delivery information stored to the sale in the saleController. 
+	 */
 	private void addDeliveryInformationToSale() {
 
 		saleController.addDeliveryAddressToSale(address);
@@ -141,10 +156,16 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		saleController.addDeliveryCityToSale(city);
 	}
 
+	/*
+	 * Dispose method for the cancel button. 
+	 */
 	private void cancelButton() {
 		dispose();
 	}
 
+	/*
+	 * The creation of the Graphical Interface. 
+	 */
 	private void createUI() {
 		setTitle("Tilf\u00F8j leverings addresse");
 		setBounds(100, 100, 501, 257);
