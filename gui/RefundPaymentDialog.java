@@ -71,8 +71,9 @@ public class RefundPaymentDialog extends JDialog {
 	private void calRefund() {
 		totalRefund = saleController.getCurrentSale().getRemainingPayment();
 		totalRefund = Math.abs(totalRefund);
+		String totalRefundString = String.format("%.2f", totalRefund);
 		if (totalRefund > 0) {
-			refundTextField.setText("" + totalRefund);
+			refundTextField.setText(totalRefundString);
 		}
 	}
 	
