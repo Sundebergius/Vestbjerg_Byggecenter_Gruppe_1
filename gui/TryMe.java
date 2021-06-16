@@ -40,6 +40,10 @@ public class TryMe
         productContainer.addProduct(screws1);                 
     }
     
+    private void addCompositeProduct() {
+    	
+    }
+    
     private void addCustomers()
     {
         Customer jensPetersen = new Customer("Privat001", 0.05, "Jens Petersen", "Sankt Peter vej 5", 9000, "Aalborg", "+4542069420");
