@@ -63,6 +63,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 	/*
 	 * A function used to search for the customer already in the system. 
 	 * The information stored is then added to the required fields. 
+	 * If the boolean foundCustomer is null, print error message. 
 	 */
 	private void searchButton() {
 		String customerID = customerIDInputField.getText();

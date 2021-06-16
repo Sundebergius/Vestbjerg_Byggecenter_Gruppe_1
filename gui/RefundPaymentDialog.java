@@ -50,6 +50,11 @@ public class RefundPaymentDialog extends JDialog {
 		}
 	}
 
+	
+	/**
+	 * 	 The done button
+	 * When pressed the receipt window opens and the payment windows is closed
+	 */
 	private void okButton() {		
 		setVisible(false);
 		
@@ -58,13 +63,28 @@ public class RefundPaymentDialog extends JDialog {
 		dispose();
 
 	}
-
+	
+	/**
+	 * The method that calculates refund
+	 * If tolalRefund is higher than zero totalRefund is set in the refund text field
+	 */
 	private void calRefund() {
 		totalRefund = saleController.getCurrentSale().getRemainingPayment();
 		totalRefund = Math.abs(totalRefund);
 		if (totalRefund > 0) {
 			refundTextField.setText("" + totalRefund);
 		}
+	}
+	
+	/**
+	 * Create the dialog.
+	 */
+	public RefundPaymentDialog(SaleController saleController) {
+		setTitle("Retur ");
+		setModal(true);
+		createGUI();
+		this.saleController = saleController;
+		calRefund();
 	}
 
 	private void createGUI() {
@@ -145,23 +165,5 @@ public class RefundPaymentDialog extends JDialog {
 				getRootPane().setDefaultButton(doneButton);
 			}
 		}
-	}
-
-	/*
-	 * public void calRefund() { calculateRefund = new PaymentTransaction();
-	 * totalRefund = calculateRefund.customerRefund();
-	 * txtRefund.setText(totalRefund); }
-	 */
-
-	/**
-	 * Create the dialog.
-	 */
-	public RefundPaymentDialog(SaleController saleController) {
-		setTitle("Retur ");
-		setModal(true);
-		createGUI();
-		this.saleController = saleController;
-		calRefund();
-	}
-
+	}	
 }

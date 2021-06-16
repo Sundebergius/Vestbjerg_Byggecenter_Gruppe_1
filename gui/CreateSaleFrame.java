@@ -89,6 +89,11 @@ public class CreateSaleFrame extends JFrame {
 
 	}
 
+	/*
+	 * Method for the add button for products. 
+	 * Sets the error label to null, after a failed removal of products. 
+	 * Opens the AddProductToSaleDialog window, and updates the list of products. 
+	 */
 	private void addProductButton() {
 		setProductErrorLabelNull();
 		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog(saleController);
@@ -96,10 +101,19 @@ public class CreateSaleFrame extends JFrame {
 		updateProductList();
 	}
 
+	/*
+	 * Method to reset the error label for failed removal of products. 
+	 */
 	private void setProductErrorLabelNull() {
 		productErrorLabel.setText("");
 	}
 
+	/*
+	 * Method for the add button for customer. 
+	 * Opens the AddCustomerToSaleDialog window, adding the input in the saleController. 
+	 * If the boolean hasCustomer() method is true, adds the fields from customer through a get method to the text fields in the customer section of this class. 
+	 * Changes the name of the button. 
+	 */
 	private void addCustomerButton() {
 		AddCustomerToSaleDialog customerToSaleDialog = new AddCustomerToSaleDialog(saleController);
 		customerToSaleDialog.setVisible(true);
@@ -113,6 +127,11 @@ public class CreateSaleFrame extends JFrame {
 		changeNameCustomerButton();
 	}
 
+	/*
+	 * A method to set the text fields in the customer section to an empty String. 
+	 * Also removes the current customer from the saleController. 
+	 * Changes the name of the button. 
+	 */
 	private void removeCustomerButton() {
 		saleController.removeCustomerFromSale();
 		customerIDField.setText("");
@@ -120,6 +139,9 @@ public class CreateSaleFrame extends JFrame {
 		changeNameCustomerButton();
 	}
 
+	/*
+	 * A method to change the name of the add customer button to edit customer. 
+	 */
 	private void changeNameCustomerButton() {
 		if (saleController.getCurrentSale().hasCustomer()) {
 			addCustomerButton.setText("Ændre kunde");
@@ -128,6 +150,12 @@ public class CreateSaleFrame extends JFrame {
 		}
 	}
 
+	/*
+	 * A method for the add button for delivery in the delivery section. 
+	 * Opens an instance of the AddDeliveryToSaleDialog window through the saleController
+	 * If the boolean hasDelivery is true, adds the delivery information stored in the current text fields. 
+	 * Changes the name of the button. 
+	 */
 	private void addDeliveryButton() {
 		AddDeliveryToSaleDialog deliveryToSaleDialog = new AddDeliveryToSaleDialog(saleController);
 		deliveryToSaleDialog.setVisible(true);
@@ -152,6 +180,11 @@ public class CreateSaleFrame extends JFrame {
 		changeNameDeliveryButton();
 	}
 
+	/*
+	 * A method to set the text fields in the delivery section of CreateSaleFrame to an empty String. 
+	 * Removes the information stored about the delivery in the saleController
+	 * Changes the name of the button. 
+	 */
 	private void removeDeliveryButton() {
 		saleController.removeDelivery();
 		deliveryAddressField.setText("");
@@ -162,6 +195,10 @@ public class CreateSaleFrame extends JFrame {
 		changeNameDeliveryButton();
 	}
 
+	/*
+	 * A method to change the name of the delivery button
+	 * Depends on whether or not the boolean hasDelivery is true or false. 
+	 */
 	private void changeNameDeliveryButton() {
 		if (saleController.getCurrentSale().hasDelivery()) {
 			addDeliveryButton.setText("Ændre levering");
@@ -194,12 +231,21 @@ public class CreateSaleFrame extends JFrame {
 
 	}
 
+	/*
+	 * A method for the cancel button. 
+	 * Disposes the current window. 
+	 */
 	private void cancelButton() {
 		// ask for confirmation
 		dispose();
 		mainMenuFrame.openMainMenuFrame();
 	}
 
+	/*
+	 * A method for the remove button in the product section. 
+	 * Through a for loop, a selected indice is able to be removed if selected. 
+	 * If no indecies is selected, a error message is printed. 
+	 */
 	private void removeProductButton() {
 
 		int[] selectedIndices = productList.getSelectedIndices();
@@ -220,6 +266,9 @@ public class CreateSaleFrame extends JFrame {
 
 	}
 
+	/*
+	 * Updates the JList in the CreateSaleFrame with the individual products in the SaleLineItem ArrayList 
+	 */
 	private void updateProductList() {
 		SaleLineItemCellRenderer cellRenderer = new SaleLineItemCellRenderer();
 		productList.setCellRenderer(cellRenderer);
@@ -237,6 +286,9 @@ public class CreateSaleFrame extends JFrame {
 
 	}
 
+	/*
+	 * Updates the subtotal field in the createSaleFrame window, with all the prices from the currentSale in the SaleController. 
+	 */
 	private void updateSubtotal() {
 
 		double totalPrice = saleController.getCurrentSale().calculateTotalPrice();
@@ -246,6 +298,9 @@ public class CreateSaleFrame extends JFrame {
 		subtotalField.setText(String.format("%.2f", totalPrice));
 	}
 
+	/*
+	 * Creates the Graphical User Interface 
+	 */
 	private void createGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 649, 659);
