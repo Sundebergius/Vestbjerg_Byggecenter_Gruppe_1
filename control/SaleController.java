@@ -24,7 +24,7 @@ public class SaleController
     {
         productController = new ProductController();
         personController = new PersonController(); 
-        saleContainer = saleContainer.getInstance();
+        saleContainer = SaleContainer.getInstance();
     }
     
     public Sale createSale(Employee currentEmployee)
@@ -39,6 +39,12 @@ public class SaleController
         SaleLineItem saleLineItem = new SaleLineItem(product, quantity);
         currentSale.addSaleLineItem(saleLineItem);
         return product;
+    }
+    
+    public Product addProductToSale(String barcode, String serialNo) {
+    	Product product = productController.findProductByBarcode(barcode);
+    	
+    	return product;
     }
     
     public Customer addCustomerToSale(String customerID)

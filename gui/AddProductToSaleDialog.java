@@ -110,6 +110,7 @@ public class AddProductToSaleDialog extends JDialog {
 			}
 
 			saleController.addProductToSale(barcode, quantity);
+			
 			barcodeField.setText("");
 			quantityField.setText("");
 			nameLabel2.setText("");
