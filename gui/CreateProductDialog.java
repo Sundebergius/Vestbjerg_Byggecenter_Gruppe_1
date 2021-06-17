@@ -63,7 +63,7 @@ public class CreateProductDialog extends JDialog {
 		createGUI();
 	}
 
-	private void okButton() {
+	private void addButton() {
 		setProductInfo();
 		boolean validInput = isValidInput();
 		if (validInput) {
@@ -229,16 +229,16 @@ public class CreateProductDialog extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
+				JButton addButton = new JButton("Tilføj produkt");
+				addButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						okButton();
+						addButton();
 
 					}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				addButton.setActionCommand("OK");
+				buttonPane.add(addButton);
+				getRootPane().setDefaultButton(addButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
