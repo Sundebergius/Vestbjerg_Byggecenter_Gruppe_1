@@ -56,6 +56,17 @@ public class TryMe {
 		Product cabinetHandleProduct = new ColiProduct("skabshåndtag001", "Skabshåndtag", "Et guldbelagt skabshåndtag", 50);
 		productContainer.addProduct(cabinetHandleProduct);
 		
+		//SpecificProduct
+		
+		SpecificProduct wife = new SpecificProduct("opvaskemaskine001", "Opvaskemaskine", "En helt ny opvaskemaskine", 599.95);
+		productContainer.addProduct(wife);
+		wife.addCopy("1");
+		wife.addCopy("2");
+		wife.addCopy("3");
+		
+		
+		//wife.addCopy("1");
+		
 		
 		//CompositeProducts
 		
