@@ -1,5 +1,6 @@
 package control;
 import model.ProductContainer;
+import model.ColiProduct;
 import model.Product;
 
 
@@ -31,4 +32,12 @@ public class ProductController
     {
         return productContainer.findProductByBarcode(barcode);
     }
+    
+    
+     public void createNewProduct(String barcode, String name, String description, double price)
+     {
+     	ColiProduct newProduct = new ColiProduct(barcode, name, description, price);
+     	productContainer.addProduct(newProduct);
+     }
+     
 }
