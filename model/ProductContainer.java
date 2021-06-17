@@ -53,7 +53,7 @@ public class ProductContainer
     }
     
     /**
-     * Add method for the individual proudct into the instance of a product container. 
+     * Add method for the individual product into the instance of a product container. 
      * @param a unique product. 
      */
     public void addProduct(Product product){

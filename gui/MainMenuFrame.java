@@ -114,6 +114,15 @@ public class MainMenuFrame extends JFrame {
 			}
 
 		});
+		
+		JButton createProductButton = new JButton("Opret et produkt");
+		createProductButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateProductDialog createProductDialog = new CreateProductDialog();
+				createProductDialog.setVisible(true);
+			}
+		});
+		buttonPanel.add(createProductButton);
 		buttonPanel.add(createSaleButton);
 
 		JPanel bodyPanel = new JPanel();

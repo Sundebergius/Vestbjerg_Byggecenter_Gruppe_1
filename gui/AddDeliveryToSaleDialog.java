@@ -122,7 +122,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 			errorMessage += "Adressen ";
 		}
 
-		if (postal == 0) {
+		if (postalField.getText().isEmpty()) {
 			error = true;
 			errorMessage += "Postnummeret ";
 		}
