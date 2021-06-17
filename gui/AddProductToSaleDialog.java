@@ -3,6 +3,7 @@ package gui;
 import control.ProductController;
 import control.SaleController;
 import model.Product;
+import model.SpecificProduct;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -36,6 +37,7 @@ public class AddProductToSaleDialog extends JDialog {
 	private JLabel descriptionLabel2;
 	private JLabel errorLabel;
 	private JLabel priceLabel;
+	private JLabel quantityLabel;
 
 	/**
 	 * Launch the application.
@@ -67,7 +69,9 @@ public class AddProductToSaleDialog extends JDialog {
 	 */
 
 	private boolean findProductByBarcode() {
-
+		boolean productFound = false;
+		
+		
 		Product product = productController.findProductByBarcode(barcodeField.getText());
 		if (product != null) {
 
@@ -75,11 +79,21 @@ public class AddProductToSaleDialog extends JDialog {
 			descriptionLabel2.setText(product.getDescription());
 			priceLabel.setText(String.format("%.2f",product.getPrice()) + " DDK");
 			errorLabel.setText("");
-			return true;
+			productFound = true;
 		} else {
 			errorLabel.setText("Ugyldig stregkode");
-			return false;
+			productFound = false;
 		}
+		
+		if(product instanceof SpecificProduct) {
+			quantityField.setVisible(false);
+			quantityLabel.setVisible(false);
+		}else {
+			quantityField.setVisible(true);
+			quantityLabel.setVisible(true);
+		}
+		
+		return productFound;
 	}
 	
 	/*
@@ -104,12 +118,20 @@ public class AddProductToSaleDialog extends JDialog {
 			errorLabel.setText("Fejl der blev ikke fundet et antal");
 
 		} else if (findProductByBarcode()) {
+			
+			Product product = productController.findProductByBarcode(barcodeField.getText());
 
 			if (quantity == 0) {
 				quantity = 1;
 			}
 
-			saleController.addProductToSale(barcode, quantity);
+			
+			
+			if(product instanceof SpecificProduct) {
+				saleController.addSpecificProductToSale(barcode);
+			}else {
+				saleController.addProductToSale(barcode, quantity);
+			}
 			
 			barcodeField.setText("");
 			quantityField.setText("");
@@ -184,7 +206,7 @@ public class AddProductToSaleDialog extends JDialog {
 			barcodeField.setColumns(10);
 		}
 		{
-			JLabel quantityLabel = new JLabel("Antal :");
+			quantityLabel = new JLabel("Antal :");
 			GridBagConstraints gbc_quantityLabel = new GridBagConstraints();
 			gbc_quantityLabel.anchor = GridBagConstraints.EAST;
 			gbc_quantityLabel.insets = new Insets(0, 0, 5, 5);
