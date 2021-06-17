@@ -12,6 +12,7 @@ public class SaleLineItem
     // instance variables - replace the example below with your own
     private int quantity;
     private Product product;
+    private Copy productCopy;
 
     /**
      * Constructor for objects of class SalesLineItem.
@@ -23,6 +24,14 @@ public class SaleLineItem
         this.product = product;
         this.quantity = quantity;
     }
+    
+    public SaleLineItem(Product product, Copy productCopy) {
+    	this.product = product;
+    	this.productCopy = productCopy;
+    	quantity = 1;
+    }
+    
+    
     
     /**
      * Method to calculate the total price of specified quantity of specific product. 
@@ -49,5 +58,9 @@ public class SaleLineItem
     public int getQuantity(){
         return quantity;
     }
+    
+    public Copy getProductCopy() {
+		return productCopy;
+	}
     
 }
