@@ -15,6 +15,7 @@ import model.ColiProduct;
 import model.CompositeProduct;
 import model.SaleLineItem;
 import model.SimpleProduct;
+import model.SpecificProduct;
 
 public class SaleLineItemCellRenderer implements ListCellRenderer<SaleLineItem> {
 
@@ -30,7 +31,7 @@ public class SaleLineItemCellRenderer implements ListCellRenderer<SaleLineItem> 
 		}
 
 
-		if (value.getProduct() instanceof SimpleProduct) {
+		if (value.getProduct() instanceof ColiProduct) {
 			panel.setLayout(new GridLayout(2, 2, 0, 0));
 			
 			JLabel productNameLabel = new JLabel(value.getProduct().getName());
@@ -59,6 +60,10 @@ public class SaleLineItemCellRenderer implements ListCellRenderer<SaleLineItem> 
 
 			}
 
+		}
+		
+		if (value.getProduct() instanceof SpecificProduct) {
+			
 		}
 
 		
