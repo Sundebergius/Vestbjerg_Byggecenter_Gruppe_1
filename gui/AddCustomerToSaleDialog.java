@@ -65,7 +65,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 	 * The information stored is then added to the required fields. 
 	 * If the boolean foundCustomer is null, print error message. 
 	 */
-	private void searchButton() {
+	private void search() {
 		String customerID = customerIDInputField.getText();
 		foundCustomer = personController.findCustomerByCustomerID(customerID);
 
@@ -121,7 +121,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 		customerCityField.setText("");
 		customerPhoneNoField.setText("");
 		
-		searchButton();
+		search();
 	}
 
 	/*
