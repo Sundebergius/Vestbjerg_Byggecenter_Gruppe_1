@@ -91,7 +91,12 @@ public class AddDeliveryToSaleDialog extends JDialog {
 	 */
 	private void addAddressButton() {
 		getInput();
+		validCheck();
 
+		
+	}
+	private boolean validCheck()
+	{
 		boolean validInput = isValidInput();
 
 		if (validInput) {
@@ -100,6 +105,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		}else {
 			
 		}
+		return validInput;
 	}
 
 	/*

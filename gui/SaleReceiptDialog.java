@@ -61,9 +61,20 @@ public class SaleReceiptDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Create the dialog.
+	 */
+	public SaleReceiptDialog(SaleController saleController) {
+		this.saleController = saleController;
+		createGUI();
+		updateProductList();
+		fillReceipt();
+	}
 
 	/*
-	 * Updates the JList in the CreateSaleFrame with the individual products in the SaleLineItem ArrayList 
+	 * Updates the JList in the CreateSaleFrame with the individual products in the
+	 * SaleLineItem ArrayList
 	 */
 	private void updateProductList() {
 		SaleLineItemCellRenderer cellRenderer = new SaleLineItemCellRenderer();
@@ -81,8 +92,8 @@ public class SaleReceiptDialog extends JDialog {
 
 	@SuppressWarnings("deprecation")
 	/*
-	 * A method to fill the receipt with the necessary information. 
-	 * The saleDate adds the date as well as the current time to the receipt. 
+	 * A method to fill the receipt with the necessary information. The saleDate
+	 * adds the date as well as the current time to the receipt.
 	 */
 	private void fillReceipt() {
 		Sale currentSale = saleController.getCurrentSale();
@@ -114,43 +125,43 @@ public class SaleReceiptDialog extends JDialog {
 	}
 
 	/*
-	 * A method for the print button which logs the sale in the SaleController
-	 * Disposes the window upon ending. 
+	 * A method to be run within the print button when pressed. 
 	 */
-	private void printButton() {
-
+	private void printButtonFeature() {
 		saleController.logSale();
 		dispose();
-		//CreateSaleFrame createSaleFrame = new CreateSaleFrame();
-		//createSaleFrame.setVisible(true);
 	}
 
 	/*
-	 * A method for the finish button which logs the sale in the SaleController
-	 * Disposes the window upon ending. 
+	 * A method to be run within the finish button when pressed. 
 	 */
-	private void finishButton() {
-
+	private void finishButtonFeature() {
 		saleController.logSale();
 		dispose();
 	}
 
-	/**
-	 * Create the dialog.
+	/*
+	 * A method for the print button which logs the sale in the SaleController
+	 * Disposes the window upon ending.
 	 */
-	public SaleReceiptDialog(SaleController saleController) {
-		setTitle("Kvittering");
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-		this.saleController = saleController;
-		createGUI();
-		updateProductList();
-		fillReceipt();
+	private void printButton() {
+		printButtonFeature();
+	}
+	
+	/*
+	 * A method for the finish button which logs the sale in the SaleController
+	 * Disposes the window upon ending.
+	 */
+	private void finishButton() {
+		finishButtonFeature();
 	}
 
 	/*
 	 * Creates the Graphical User Interface
 	 */
 	private void createGUI() {
+		setTitle("Kvittering");
+		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		setModal(true);
 		setBounds(100, 100, 645, 1002);
 		getContentPane().setLayout(new BorderLayout());
@@ -314,10 +325,10 @@ public class SaleReceiptDialog extends JDialog {
 					JPanel panel = new JPanel();
 					scrollPane.setColumnHeaderView(panel);
 					GridBagLayout gbl_panel = new GridBagLayout();
-					gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0};
-					gbl_panel.rowHeights = new int[]{14, 0};
-					gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-					gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+					gbl_panel.columnWidths = new int[] { 0, 0, 0, 0, 0 };
+					gbl_panel.rowHeights = new int[] { 14, 0 };
+					gbl_panel.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+					gbl_panel.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 					panel.setLayout(gbl_panel);
 					{
 						JLabel productHeadlineName = new JLabel("Navn:");

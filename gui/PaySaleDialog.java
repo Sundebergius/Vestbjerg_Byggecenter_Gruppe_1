@@ -51,37 +51,6 @@ public class PaySaleDialog extends JDialog {
 		// checkIfRefund();
 
 	}
-
-	// doesn't work
-	/*
-	 * private void checkIfRefund() {
-	 * 
-	 * double remainingPayment =
-	 * saleController.getCurrentSale().getRemainingPayment();
-	 * 
-	 * if(remainingPayment < 0) {
-	 * 
-	 * setVisible(false);
-	 * 
-	 * RefundPaymentDialog refundPaymentDialog = new
-	 * RefundPaymentDialog(saleController); refundPaymentDialog.setVisible(true);
-	 * 
-	 * dispose();
-	 * 
-	 * }else if(remainingPayment == 0){
-	 * 
-	 * 
-	 * 
-	 * setVisible(false);
-	 * 
-	 * SaleReceiptDialog receiptDialog = new SaleReceiptDialog(saleController);
-	 * receiptDialog.setVisible(true);
-	 * 
-	 * dispose(); }
-	 * 
-	 * }
-	 */
-
 	/*
 	 * Uses a get method for the calculated remaining payment. Formats the double
 	 * into a string. Prints the payment String to the subtotalTextField.
@@ -91,23 +60,19 @@ public class PaySaleDialog extends JDialog {
 		String remainingPaymentString = String.format("%.2f", remainingPayment);
 		subtotalTextField.setText(remainingPaymentString);
 	}
-
 	/*
 	 * A method for the pay button. Sets the amountpayed to 0, takes the amount in
-	 * the text field as a String.
-	 * Pays for the total price of all the products.
-	 * Makes the receipt dialog visible if the products have been paid for. 
-	 * If the customer paid too much, a refund payment is instantiated. 
+	 * the text field as a String. Pays for the total price of all the products.
+	 * Makes the receipt dialog visible if the products have been paid for. If the
+	 * customer paid too much, a refund payment is instantiated.
 	 */
-	private void payButton() {
-
+	private void paymentCheck() {
 		double amountPayed = 0;
 
 		try {
 			amountPayed = Double.parseDouble(payAmountTextField.getText());
 		} catch (NumberFormatException e) {
 		}
-
 		if (amountPayed > 0) {
 			double remainingPayment = saleController.pay(amountPayed);
 			if (remainingPayment > 0) {
@@ -142,11 +107,45 @@ public class PaySaleDialog extends JDialog {
 			lblOutput.setText("Skriv en positiv værdi. ");
 
 		}
+	}
+
+	// doesn't work
+	/*
+	 * private void checkIfRefund() {
+	 * 
+	 * double remainingPayment =
+	 * saleController.getCurrentSale().getRemainingPayment();
+	 * 
+	 * if(remainingPayment < 0) {
+	 * 
+	 * setVisible(false);
+	 * 
+	 * RefundPaymentDialog refundPaymentDialog = new
+	 * RefundPaymentDialog(saleController); refundPaymentDialog.setVisible(true);
+	 * 
+	 * dispose();
+	 * 
+	 * }else if(remainingPayment == 0){
+	 * 
+	 * 
+	 * 
+	 * setVisible(false);
+	 * 
+	 * SaleReceiptDialog receiptDialog = new SaleReceiptDialog(saleController);
+	 * receiptDialog.setVisible(true);
+	 * 
+	 * dispose(); }
+	 * 
+	 * }
+	 */
+
+	private void payButton() {
+		paymentCheck();
 
 	}
 
 	/*
-	 * Creates the Graphical User Interface. 
+	 * Creates the Graphical User Interface.
 	 */
 	private void createGUI() {
 
