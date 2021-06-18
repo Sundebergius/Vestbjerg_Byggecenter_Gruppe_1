@@ -30,9 +30,8 @@ public class LoginDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField employeeIDField;
 	private JPasswordField passwordField;
-	private MainMenuFrame mainMenu;
-	private PersonController personController;
 	private JLabel errorLabel;
+	private Employee employee;
 
 	/**
 	 * Launch the application.
@@ -46,41 +45,53 @@ public class LoginDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
-	/*
-	 * A button who can get an employee logged in.
-	 * using an if statement to check if the employee is in the system, otherwise it gives an error message
-	 */
-	private void loginButton() {
-		PersonController personController = new PersonController();
-		Employee employee = personController.findEmployeeByEmployeeID(employeeIDField.getText());
-		if(employee != null){
-			mainMenu.setCurrentEmployee(employee);
-			dispose();
-		}else {
-			errorLabel.setText("Denne medarbejder findes ikke i systemet. Prøv igen. ");
-		}
-	}
-	/*
-	 * A button to close the window by using dispose
-	 */
-	private void cancelButton() {
-		mainMenu.dispose();
-		dispose();
-	}
-	
 
 	/**
 	 * Create the dialog.
 	 */
-	public LoginDialog(MainMenuFrame mainMenu) {
-		setTitle("Medarbejder Login");
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	public LoginDialog() {
 		createGUI();
-		this.mainMenu = mainMenu;
+	}
 
+	/*
+	 * tries to find an employee with the given employeeID and saves it to employee
+	 * prints an error to the user if no employee is found
+	 */
+	private void login() {
+		PersonController personController = new PersonController();
+		employee = personController.findEmployeeByEmployeeID(employeeIDField.getText());
+
+		if (employee != null) {
+			dispose();
+		} else {
+			errorLabel.setText("Denne medarbejder findes ikke i systemet. Prøv igen. ");
+		}
+	}
+
+	/*
+	 * method for getting the employee that logged in
+	 */
+	public Employee getLoginEmployee() {
+		return employee;
+	}
+
+	/*
+	 * Gets run when the login button is pressed
+	 */
+	private void loginButton() {
+		login();
+	}
+
+	/*
+	 * A button to close the window by using dispose
+	 */
+	private void cancelButton() {
+		dispose();
 	}
 
 	private void createGUI() {
+		setTitle("Medarbejder Login");
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setModal(true);
 		setBounds(100, 100, 450, 300);
@@ -132,7 +143,7 @@ public class LoginDialog extends JDialog {
 		gbc_passwordField.gridx = 2;
 		gbc_passwordField.gridy = 3;
 		bodyPanel.add(passwordField, gbc_passwordField);
-		
+
 		errorLabel = new JLabel("");
 		errorLabel.setForeground(Color.RED);
 		errorLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
