@@ -24,5 +24,10 @@ public class SpecificProduct extends SimpleProduct {
 		
 		return copies.pop();
 	}
+	
+	public SaleLineItem createSaleLine(int quantity) {
+    	
+    	return new SaleLineItem(this, getCopy());
+    }
 
 }

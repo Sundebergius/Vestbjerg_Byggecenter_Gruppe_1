@@ -34,6 +34,8 @@ public abstract class Product
     {
         return barcode;
     }
+    
+    public abstract SaleLineItem createSaleLine(int quantity);
 
     /**
      * Get method for price. 

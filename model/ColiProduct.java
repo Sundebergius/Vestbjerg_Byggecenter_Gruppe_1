@@ -15,5 +15,10 @@ public class ColiProduct extends SimpleProduct
     public ColiProduct(String barcode, String name, String description, double price){
         super(barcode, name, description, price);
     }
+    
+    public SaleLineItem createSaleLine(int quantity) {
+    	
+    	return new SaleLineItem(this, quantity);
+    }
 
 }
