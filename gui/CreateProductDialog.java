@@ -63,31 +63,43 @@ public class CreateProductDialog extends JDialog {
 		createGUI();
 	}
 
-	private void addButton() {
-		setProductInfo();
+	/*
+	 * Method to add the new product to the product controller. 
+	 */
+	private void addProductFeature() {
 		boolean validInput = isValidInput();
 		if (validInput) {
 			productController.createNewProduct(productID, productName, productDescription, productPrice);
 			dispose();
 		} else {
-			
+
 		}
 	}
 
+	/*
+	 * Get the text from the text fields and adds them to their respective fields. 
+	 */
 	private void setProductInfo() {
 		productID = productIDTextField.getText();
 		productName = productNameTextField.getText();
 		productDescription = productDescriptionTextField.getText();
 		try {
-		productPrice = Double.parseDouble(productPriceTextField.getText());
+			productPrice = Double.parseDouble(productPriceTextField.getText());
 		} catch (Exception e) {
 		}
 	}
 
-	private void cancelButton() {
+	/*
+	 * Method to dispose the current window for the cancel button. 
+	 */
+	private void cancelButtonFeature()
+	{
 		dispose();
 	}
 
+	/*
+	 * Method to check if written input is valid and not empty. 
+	 */
 	private boolean isValidInput() {
 		String errorMessage = "Fejl: feltet for produkt ";
 
@@ -112,11 +124,26 @@ public class CreateProductDialog extends JDialog {
 			error = true;
 			errorMessage += "prisen ";
 		}
-		
+
 		if (error) {
-			errorLabel.setText(errorMessage +  "er tomt. ");
+			errorLabel.setText(errorMessage + "er tomt. ");
 		}
 		return !error;
+	}
+	
+	/*
+	 * Gets run when the add button gets pressed. 
+	 */
+	private void addButton() {
+		setProductInfo();
+		addProductFeature();
+	}
+	
+	/*
+	 * Gets run when the cancel button gets pressed. 
+	 */
+	private void cancelButton() {
+		cancelButtonFeature();
 	}
 
 	private void createGUI() {
