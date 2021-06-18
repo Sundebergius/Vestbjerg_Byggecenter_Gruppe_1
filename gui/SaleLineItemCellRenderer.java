@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import model.ColiProduct;
 import model.CompositeProduct;
+import model.Product;
 import model.SaleLineItem;
 import model.SimpleProduct;
 import model.SpecificProduct;
@@ -24,16 +25,16 @@ public class SaleLineItemCellRenderer implements ListCellRenderer<SaleLineItem> 
 			boolean isSelected, boolean cellHasFocus) {
 
 		JPanel panel = new JPanel();
-		
-		
-		if (value.getProduct() instanceof CompositeProduct) {
 
-		}
+		/*
+		 * if (value.getProduct() instanceof CompositeProduct) {
+		 * 
+		 * }
+		 */
 
-
-		if (value.getProduct() instanceof ColiProduct) {
+		if (value.getProduct() instanceof Product) {
 			panel.setLayout(new GridLayout(2, 2, 0, 0));
-			
+
 			JLabel productNameLabel = new JLabel(value.getProduct().getName());
 			panel.add(productNameLabel);
 
@@ -61,13 +62,9 @@ public class SaleLineItemCellRenderer implements ListCellRenderer<SaleLineItem> 
 			}
 
 		}
-		
-		if (value.getProduct() instanceof SpecificProduct) {
-			
-		}
-
-		
-		
+		/*
+		 * if (value.getProduct() instanceof SpecificProduct) {
+		 */
 
 		return panel;
 	}
