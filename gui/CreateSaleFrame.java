@@ -90,59 +90,83 @@ public class CreateSaleFrame extends JFrame {
 	}
 
 	/*
-	 * Method for the add button for products. 
-	 * Sets the error label to null, after a failed removal of products. 
-	 * Opens the AddProductToSaleDialog window, and updates the list of products. 
+	 * Method for the add button for products. Sets the error label to null, after a
+	 * failed removal of products. Opens the AddProductToSaleDialog window, and
+	 * updates the list of products.
 	 */
 	private void addProductButton() {
 		setProductErrorLabelNull();
+		openAddProductToSaleDialog();
+		updateProductList();
+	}
+	
+	/*
+	 * opens the addProductToSaleDialog window
+	 */
+	private void openAddProductToSaleDialog() {
 		AddProductToSaleDialog productToSaleDialog = new AddProductToSaleDialog(saleController);
 		productToSaleDialog.setVisible(true);
-		updateProductList();
 	}
 
 	/*
-	 * Method to reset the error label for failed removal of products. 
+	 * Method to reset the error label for failed removal of products.
 	 */
 	private void setProductErrorLabelNull() {
 		productErrorLabel.setText("");
 	}
 
 	/*
-	 * Method for the add button for customer. 
-	 * Opens the AddCustomerToSaleDialog window, adding the input in the saleController. 
-	 * If the boolean hasCustomer() method is true, adds the fields from customer through a get method to the text fields in the customer section of this class. 
-	 * Changes the name of the button. 
+	 * Method for the add button for customer. Opens the AddCustomerToSaleDialog
+	 * window, adding the input in the saleController. If the boolean hasCustomer()
+	 * method is true, adds the fields from customer through a get method to the
+	 * text fields in the customer section of this class. Changes the name of the
+	 * button.
 	 */
 	private void addCustomerButton() {
+		openAddCustomerToSaleDialog();
+		updateCustomerInfoFields();		
+		changeCustomerButtonName();
+	}
+	
+	/*
+	 * opens the AddCustomerToSaleDialog window
+	 */
+	private void openAddCustomerToSaleDialog() {
 		AddCustomerToSaleDialog customerToSaleDialog = new AddCustomerToSaleDialog(saleController);
 		customerToSaleDialog.setVisible(true);
-
-		Customer currentCustomer = saleController.getCurrentSale().getCustomer();
-
-		if (saleController.getCurrentSale().hasCustomer()) {
-			customerIDField.setText(currentCustomer.getCustomerID());
-			customerNameField.setText(currentCustomer.getName());
-		}
-		changeNameCustomerButton();
 	}
 
 	/*
-	 * A method to set the text fields in the customer section to an empty String. 
-	 * Also removes the current customer from the saleController. 
-	 * Changes the name of the button. 
+	 * A method to set the text fields in the customer section to an empty String.
+	 * Also removes the current customer from the saleController. Changes the name
+	 * of the button.
 	 */
 	private void removeCustomerButton() {
 		saleController.removeCustomerFromSale();
-		customerIDField.setText("");
-		customerNameField.setText("");
-		changeNameCustomerButton();
+		updateCustomerInfoFields();
+		changeCustomerButtonName();
+	}
+
+	
+	/*
+	 * updates the customer info fields depending on if the sale has a customer or not
+	 */
+	private void updateCustomerInfoFields() {
+		Customer currentCustomer = saleController.getCurrentSale().getCustomer();
+		
+		if (saleController.getCurrentSale().hasCustomer()) {
+			customerIDField.setText(currentCustomer.getCustomerID());
+			customerNameField.setText(currentCustomer.getName());
+		} else {
+			customerIDField.setText("");
+			customerNameField.setText("");
+		}
 	}
 
 	/*
-	 * A method to change the name of the add customer button to edit customer. 
+	 * A method to change the name of the add customer button to edit customer.
 	 */
-	private void changeNameCustomerButton() {
+	private void changeCustomerButtonName() {
 		if (saleController.getCurrentSale().hasCustomer()) {
 			addCustomerButton.setText("Ændre kunde");
 		} else {
@@ -151,15 +175,76 @@ public class CreateSaleFrame extends JFrame {
 	}
 
 	/*
-	 * A method for the add button for delivery in the delivery section. 
-	 * Opens an instance of the AddDeliveryToSaleDialog window through the saleController
-	 * If the boolean hasDelivery is true, adds the delivery information stored in the current text fields. 
-	 * Changes the name of the button. 
+	 * Starts the payment process and opens the paySaleDialog if the subtotal is
+	 * equal or less than 0 then no payment is required and the reciept dialog is
+	 * opened instead
 	 */
-	private void addDeliveryButton() {
+	private void startPaymentTransaction() {
+		if (saleController.getCurrentSale().calculateTotalPrice() <= 0) {
+			SaleReceiptDialog saleReceiptDialog = new SaleReceiptDialog(saleController);
+			saleReceiptDialog.setVisible(true);
+		} else {
+			saleController.setCurrentSaleID();
+			PaySaleDialog paySaleDialog = new PaySaleDialog(saleController);
+			paySaleDialog.setVisible(true);
+		}
+		if (saleController.getCurrentSale() == null) {
+			System.out.println("Sale is finished. ");
+			dispose();
+		}
+	}
+
+	/*
+	 * checks if a payment transaction can be started writes an error message to the
+	 * user if not
+	 */
+	private boolean canStartPaymentTransaction() {
+
+		boolean canStart = saleController.getCurrentSale().getSaleLineItems().length != 0;
+
+		if (!canStart) {
+			productErrorLabel.setText("Der skal tilføjes et produkt før betalingen kan gennemføres. ");
+		}
+		return canStart;
+	}
+
+	/*
+	 * Makes every call to the dispose method open the mainmenu and closes
+	 * createSaleFrame
+	 */
+	@Override
+	public void dispose() {
+		mainMenuFrame.openMainMenuFrame();
+
+		// calls the unoverridden dispose method
+		super.dispose();
+	}
+
+	/*
+	 * A method to change the name of the delivery button Depends on whether or not
+	 * the boolean hasDelivery is true or false.
+	 */
+	private void changeDeliveryButtonName() {
+		if (saleController.getCurrentSale().hasDelivery()) {
+			addDeliveryButton.setText("Ændre levering");
+		} else {
+			addDeliveryButton.setText("Tilføj levering");
+		}
+	}
+
+	/*
+	 * Opens an instance of the AddDeliveryToSaleDialog window
+	 */
+	private void openAddDeliveryToSaleDialog() {
 		AddDeliveryToSaleDialog deliveryToSaleDialog = new AddDeliveryToSaleDialog(saleController);
 		deliveryToSaleDialog.setVisible(true);
+	}
 
+	/*
+	 * updates the delivery info fields in CreateSaleFrame adds if the sale
+	 * hasDelivery removes if it doesn't
+	 */
+	private void updateDeliveryInfoFields() {
 		if (saleController.getCurrentSale().hasDelivery()) {
 
 			String deliveryAddress = saleController.getCurrentSale().getDeliveryAddress();
@@ -176,98 +261,36 @@ public class CreateSaleFrame extends JFrame {
 
 			String deliveryCity = saleController.getCurrentSale().getDeliveryCity();
 			deliveryCityField.setText(deliveryCity);
-		}
-		changeNameDeliveryButton();
-	}
 
-	/*
-	 * A method to set the text fields in the delivery section of CreateSaleFrame to an empty String. 
-	 * Removes the information stored about the delivery in the saleController
-	 * Changes the name of the button. 
-	 */
-	private void removeDeliveryButton() {
-		saleController.removeDelivery();
-		deliveryAddressField.setText("");
-		recieverField.setText("");
-		deliveryZipCodeField.setText("");
-		deliveryMobileNumberField.setText("");
-		deliveryCityField.setText("");
-		changeNameDeliveryButton();
-	}
-
-	/*
-	 * A method to change the name of the delivery button
-	 * Depends on whether or not the boolean hasDelivery is true or false. 
-	 */
-	private void changeNameDeliveryButton() {
-		if (saleController.getCurrentSale().hasDelivery()) {
-			addDeliveryButton.setText("Ændre levering");
 		} else {
-			addDeliveryButton.setText("Tilføj levering");
+			deliveryAddressField.setText("");
+			recieverField.setText("");
+			deliveryZipCodeField.setText("");
+			deliveryMobileNumberField.setText("");
+			deliveryCityField.setText("");
 		}
 	}
 
 	/*
-	 * Method for the pay button. Will open the receipt dialog if the price = 0, and
-	 * pay dialog if the price > 0.
+	 * Removes the selected saleLineItems from the current sale Prints an error
+	 * message if no saleLines are selected
 	 */
-	private void payButton() {
-		if (saleController.getCurrentSale().getSaleLineItems().length != 0) {
-			if (saleController.getCurrentSale().calculateTotalPrice() == 0) {
-				SaleReceiptDialog saleReceiptDialog = new SaleReceiptDialog(saleController);
-				saleReceiptDialog.setVisible(true);
-			} else {
-				saleController.setCurrentSaleID();
-				PaySaleDialog paySaleDialog = new PaySaleDialog(saleController);
-				paySaleDialog.setVisible(true);
-			}
-			if (saleController.getCurrentSale() == null) {
-				System.out.println("Sale is finished. ");
-				dispose();
-			}
-		} else {
-			productErrorLabel.setText("Der skal tilføjes et produkt før betalingen kan gennemføres. ");
-		}
-
-	}
-
-	/*
-	 * A method for the cancel button. 
-	 * Disposes the current window. 
-	 */
-	private void cancelButton() {
-		// ask for confirmation
-		dispose();
-		mainMenuFrame.openMainMenuFrame();
-	}
-
-	/*
-	 * A method for the remove button in the product section. 
-	 * Through a for loop, a selected indice is able to be removed if selected. 
-	 * If no indecies is selected, a error message is printed. 
-	 */
-	private void removeProductButton() {
-
+	private void removeSaleLineItems() {
 		int[] selectedIndices = productList.getSelectedIndices();
 
-		Sale currentSale = saleController.getCurrentSale();
+		saleController.removeSaleLineItemsFromCurrentSale(selectedIndices);
 
-		for (int i = selectedIndices.length - 1; i >= 0; i--) {
-
-			currentSale.removeSaleLineItem(selectedIndices[i]);
-
-		}
-		updateProductList();
 		if (selectedIndices.length == 0) {
 			removeErrorLabel.setText("Klik på den vare som du ønsker at fjerne først. ");
 		} else {
 			removeErrorLabel.setText("");
 		}
-
+		updateProductList();
 	}
 
 	/*
-	 * Updates the JList in the CreateSaleFrame with the individual products in the SaleLineItem ArrayList 
+	 * Updates the JList in the CreateSaleFrame with the individual products in the
+	 * SaleLineItem ArrayList
 	 */
 	private void updateProductList() {
 		SaleLineItemCellRenderer cellRenderer = new SaleLineItemCellRenderer();
@@ -287,7 +310,8 @@ public class CreateSaleFrame extends JFrame {
 	}
 
 	/*
-	 * Updates the subtotal field in the createSaleFrame window, with all the prices from the currentSale in the SaleController. 
+	 * Updates the subtotal field in the createSaleFrame window, with all the prices
+	 * from the currentSale in the SaleController.
 	 */
 	private void updateSubtotal() {
 
@@ -299,7 +323,51 @@ public class CreateSaleFrame extends JFrame {
 	}
 
 	/*
-	 * Creates the Graphical User Interface 
+	 * A method for the add button for delivery in the delivery section. If the
+	 * boolean hasDelivery is true, adds the delivery information stored in the
+	 * current text fields. Changes the name of the button.
+	 */
+	private void addDeliveryButton() {
+
+		openAddDeliveryToSaleDialog();
+		updateDeliveryInfoFields();
+		changeDeliveryButtonName();
+	}
+
+	/*
+	 * Gets run when the remove delivery button is pressed
+	 */
+	private void removeDeliveryButton() {
+		saleController.removeDelivery();
+		updateDeliveryInfoFields();
+		changeDeliveryButtonName();
+	}
+
+	/*
+	 * Method for the pay button. Will open the receipt dialog if the price = 0, and
+	 * pay dialog if the price > 0.
+	 */
+	private void payButton() {
+
+		if (canStartPaymentTransaction()) {
+			startPaymentTransaction();
+		}
+	}
+
+	/*
+	 * A method for the cancel button. Disposes the current window.
+	 */
+	private void cancelButton() {
+		// ask for confirmation
+		dispose();
+	}
+
+	private void removeProductButton() {
+		removeSaleLineItems();
+	}
+
+	/*
+	 * Creates the Graphical User Interface
 	 */
 	private void createGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
