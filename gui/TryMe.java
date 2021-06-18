@@ -107,6 +107,7 @@ public class TryMe {
 		cabinetSetProduct.addProductToComposite(1, cabinetDoorSetProduct);
 		cabinetSetProduct.addProductToComposite(3, cabinetPanelSetProduct);
 		cabinetSetProduct.addProductToComposite(3, cabinetShelfSetProduct);
+		cabinetSetProduct.addProductToComposite(1, wife);
 		
 
 	}
