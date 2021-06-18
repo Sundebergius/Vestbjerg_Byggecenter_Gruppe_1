@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import control.SaleController;
 import gui.PaySaleDialog;
 
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -36,7 +35,7 @@ public class RefundPaymentDialog extends JDialog {
 	private JTextField refundTextField;
 	private SaleController saleController;
 	private PaySaleDialog paySaleDialog;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -49,24 +48,31 @@ public class RefundPaymentDialog extends JDialog {
 			e.printStackTrace();
 		}
 	}
-
 	
 	/**
-	 * 	 The done button
-	 * When pressed the receipt window opens and the payment windows is closed
+	 * Create the dialog.
 	 */
-	private void okButton() {		
+	public RefundPaymentDialog(SaleController saleController) {
+		createGUI();
+		this.saleController = saleController;
+		calRefund();
+	}
+
+	/*
+	 * Method to be run within the okButton method. 
+	 * opens the receipt dialog window, disposes the current window. 
+	 */
+	private void okButtonFeature() {
 		setVisible(false);
-		
+
 		SaleReceiptDialog receiptDialog = new SaleReceiptDialog(saleController);
 		receiptDialog.setVisible(true);
 		dispose();
-
 	}
-	
+
 	/**
-	 * The method that calculates refund
-	 * If tolalRefund is higher than zero totalRefund is set in the refund text field
+	 * The method that calculates refund If tolalRefund is higher than zero
+	 * totalRefund is set in the refund text field
 	 */
 	private void calRefund() {
 		totalRefund = saleController.getCurrentSale().getRemainingPayment();
@@ -78,17 +84,17 @@ public class RefundPaymentDialog extends JDialog {
 	}
 	
 	/**
-	 * Create the dialog.
+	 * The done button When pressed the receipt window opens and the payment windows
+	 * is closed
 	 */
-	public RefundPaymentDialog(SaleController saleController) {
-		setTitle("Retur ");
-		setModal(true);
-		createGUI();
-		this.saleController = saleController;
-		calRefund();
+	private void okButton() {
+		okButtonFeature();
+
 	}
 
 	private void createGUI() {
+		setTitle("Retur ");
+		setModal(true);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -166,5 +172,5 @@ public class RefundPaymentDialog extends JDialog {
 				getRootPane().setDefaultButton(doneButton);
 			}
 		}
-	}	
+	}
 }
