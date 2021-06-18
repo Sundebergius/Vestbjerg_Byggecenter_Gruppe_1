@@ -67,6 +67,7 @@ public class LoginDialog extends JDialog {
 		mainMenu.dispose();
 		dispose();
 	}
+	
 
 	/**
 	 * Create the dialog.
