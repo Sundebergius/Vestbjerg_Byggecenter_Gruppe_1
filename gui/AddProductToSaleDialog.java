@@ -64,41 +64,40 @@ public class AddProductToSaleDialog extends JDialog {
 
 	}
 	/*
-	 * Finding product by barcode.
-	 * using an if statement to get name, description and price for the product.
+	 * Finding product by barcode. using an if statement to get name, description
+	 * and price for the product.
 	 */
 
 	private boolean findProductByBarcode() {
 		boolean productFound = false;
-		
-		
+
 		Product product = productController.findProductByBarcode(barcodeField.getText());
 		if (product != null) {
 
 			nameLabel2.setText(product.getName());
 			descriptionLabel2.setText(product.getDescription());
-			priceLabel.setText(String.format("%.2f",product.getPrice()) + " DDK");
+			priceLabel.setText(String.format("%.2f", product.getPrice()) + " DDK");
 			errorLabel.setText("");
 			productFound = true;
 		} else {
 			errorLabel.setText("Ugyldig stregkode");
 			productFound = false;
 		}
-		
-		if(product instanceof SpecificProduct) {
+
+		if (product instanceof SpecificProduct) {
 			quantityField.setVisible(false);
 			quantityLabel.setVisible(false);
-		}else {
+		} else {
 			quantityField.setVisible(true);
 			quantityLabel.setVisible(true);
 		}
-		
+
 		return productFound;
 	}
-	
+
 	/*
-	 * Adding product by barcode and quantity
-	 * Using if statements to sending error message for 0 quantity, or if there is a quantity, adding the information
+	 * Adding product by barcode and quantity Using if statements to sending error
+	 * message for 0 quantity, or if there is a quantity, adding the information
 	 */
 	private void addProductByBarcodeAndQuantity() {
 
@@ -111,60 +110,54 @@ public class AddProductToSaleDialog extends JDialog {
 		} catch (NumberFormatException e) {
 			errorLabel.setText("Fejl indtast et tal");
 		}
-			
-		
+
 		if (quantity < 0) {
 
 			errorLabel.setText("Fejl der blev ikke fundet et antal");
 
 		} else if (findProductByBarcode()) {
-			
+
 			Product product = productController.findProductByBarcode(barcodeField.getText());
 
 			if (quantity == 0) {
 				quantity = 1;
 			}
 
-			
-			
-			if(product instanceof SpecificProduct) {
-				saleController.addSpecificProductToSale(barcode);
-			}else {
-				saleController.addProductToSale(barcode, quantity);
-			}
-			
+			saleController.addProductToSale(barcode, quantity);
+
 			barcodeField.setText("");
 			quantityField.setText("");
 			nameLabel2.setText("");
-			descriptionLabel2.setText("");			
+			descriptionLabel2.setText("");
 			priceLabel.setText("");
 			errorLabel.setText("Vare er blevet tilføjet");
 		}
 	}
-	
-	
+
 	/*
 	 * A button using the method addProductByBarcodeAndQuantity
 	 */
 	private void addButton() {
 		addProductByBarcodeAndQuantity();
 	}
+
 	/*
 	 * A button that close the window by using dispose.
 	 */
 	private void finishedButton() {
 		dispose();
 	}
+
 	/*
-	 * Setting text on labels for name, description and price.
-	 * Using the method findProductByBarcode
+	 * Setting text on labels for name, description and price. Using the method
+	 * findProductByBarcode
 	 */
 	private void productIDKeyReleased() {
 		nameLabel2.setText("");
-		descriptionLabel2.setText("");			
+		descriptionLabel2.setText("");
 		priceLabel.setText("");
 		findProductByBarcode();
-		
+
 	}
 
 	private void createGUI() {
@@ -339,4 +332,3 @@ public class AddProductToSaleDialog extends JDialog {
 	}
 
 }
-

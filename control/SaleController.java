@@ -6,6 +6,7 @@ import model.SaleLineItem;
 import model.SpecificProduct;
 import model.Product;
 import model.Employee;
+import model.CompositeProduct;
 import model.Customer;
 
 /**
@@ -32,25 +33,14 @@ public class SaleController {
 		return currentSale;
 	}
 
-	public Product addProductToSale(String barcode, int quantity) {
-		Product product = productController.findProductByBarcode(barcode);
-
-		SaleLineItem saleLineItem = new SaleLineItem(product, quantity);
-
-		currentSale.addSaleLineItem(saleLineItem);
-
-		return product;
-	}
-
-	public Product addSpecificProductToSale(String barcode) {
-
-		SpecificProduct product = (SpecificProduct) productController.findProductByBarcode(barcode);
-
-		SaleLineItem saleLineItem = new SaleLineItem(product, product.getCopy());
+	public void addProductToSale(String barcode, int quantity) {
+		Product product = productController.findProductByBarcode(barcode);		
+		
+		SaleLineItem saleLineItem = product.createSaleLine(quantity);		
 
 		currentSale.addSaleLineItem(saleLineItem);
 
-		return product;
+		
 	}
 
 	public Customer addCustomerToSale(String customerID) {
