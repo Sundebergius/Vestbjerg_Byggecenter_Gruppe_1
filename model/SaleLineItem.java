@@ -31,6 +31,11 @@ public class SaleLineItem
     	quantity = 1;
     }
     
+    public SaleLineItem(Product product) {
+    	this.product = product;
+    	quantity = 1;
+    }
+    
     
     
     /**
