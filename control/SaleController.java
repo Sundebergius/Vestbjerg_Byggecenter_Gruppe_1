@@ -34,13 +34,12 @@ public class SaleController {
 	}
 
 	public void addProductToSale(String barcode, int quantity) {
-		Product product = productController.findProductByBarcode(barcode);		
-		
-		SaleLineItem saleLineItem = product.createSaleLine(quantity);		
+		Product product = productController.findProductByBarcode(barcode);
+
+		SaleLineItem saleLineItem = product.createSaleLine(quantity);
 
 		currentSale.addSaleLineItem(saleLineItem);
 
-		
 	}
 
 	public Customer addCustomerToSale(String customerID) {
@@ -104,6 +103,13 @@ public class SaleController {
 	public void logSale() {
 		saleContainer.addSale(currentSale);
 		currentSale = null;
+	}
+	
+	public void removeSaleLineItemsFromCurrentSale(int[] selectedIndices) {
+		
+		for (int i = selectedIndices.length - 1; i >= 0; i--) {
+			currentSale.removeSaleLineItem(selectedIndices[i]);
+		}
 	}
 
 }
