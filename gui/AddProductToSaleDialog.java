@@ -133,6 +133,19 @@ public class AddProductToSaleDialog extends JDialog {
 			errorLabel.setText("Vare er blevet tilføjet");
 		}
 	}
+	
+	/*
+	 * Setting text on labels for name, description and price. Using the method
+	 * findProductByBarcode
+	 */
+	
+	private void productIDKeyReleased() {
+		nameLabel2.setText("");
+		descriptionLabel2.setText("");
+		priceLabel.setText("");
+		findProductByBarcode();
+
+	}
 
 	/*
 	 * A button using the method addProductByBarcodeAndQuantity
@@ -148,17 +161,6 @@ public class AddProductToSaleDialog extends JDialog {
 		dispose();
 	}
 
-	/*
-	 * Setting text on labels for name, description and price. Using the method
-	 * findProductByBarcode
-	 */
-	private void productIDKeyReleased() {
-		nameLabel2.setText("");
-		descriptionLabel2.setText("");
-		priceLabel.setText("");
-		findProductByBarcode();
-
-	}
 
 	private void createGUI() {
 
