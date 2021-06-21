@@ -106,13 +106,6 @@ public class AddCustomerToSaleDialog extends JDialog {
 	/*
 	 * 
 	 */
-	private void customerIDInputFieldKeyAction() {
-		errorInfoLabel.setText("");
-	}
-	
-	/*
-	 * 
-	 */
 	private void customerIDKeyReleased() {
 		
 		customerNameField.setText("");
@@ -120,6 +113,8 @@ public class AddCustomerToSaleDialog extends JDialog {
 		customerZipcodeField.setText("");
 		customerCityField.setText("");
 		customerPhoneNoField.setText("");
+		
+		errorInfoLabel.setText("");
 		
 		search();
 	}
@@ -301,12 +296,7 @@ public class AddCustomerToSaleDialog extends JDialog {
 			{
 				customerIDInputField = new JTextField();
 				customerIDInputField.addKeyListener(new KeyAdapter() {
-					@Override
-					public void keyPressed(KeyEvent e) {
-						if (e.getKeyCode() != KeyEvent.VK_ENTER) {
-							customerIDInputFieldKeyAction();
-						}
-					}
+					
 					@Override
 					public void keyReleased(KeyEvent e) {
 						customerIDKeyReleased();
