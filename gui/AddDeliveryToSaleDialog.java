@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import control.SaleController;
+import model.Customer;
 
 import java.awt.GridBagLayout;
 
@@ -42,6 +43,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 	private String phoneNumber;
 	private JLabel contryLabel;
 	private JLabel errorLabel;
+	private JButton addCustomerInfoButton;
 
 	/**
 	 * Launch the application.
@@ -64,6 +66,16 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		setModal(true);
 		this.saleController = saleController;
 		createUI();
+		
+		updateAddCustomerInfoButtonVisibility();
+	}
+	
+	private void updateAddCustomerInfoButtonVisibility() {
+		if(saleController.getCurrentSale().hasCustomer()) {
+			addCustomerInfoButton.setVisible(true);
+		}else {
+			addCustomerInfoButton.setVisible(false);
+		}
 	}
 
 	/*
@@ -157,9 +169,32 @@ public class AddDeliveryToSaleDialog extends JDialog {
 
 		saleController.addDeliveryAddressToSale(address);
 		saleController.addDeliveryNameToSale(name);
-		saleController.addPostalToSale(postal);
-		saleController.addPhoneNumberToSale("+45" + phoneNumber);
+		saleController.addPostalToSale(postal);		
+		saleController.addPhoneNumberToSale(phoneNumber);
 		saleController.addDeliveryCityToSale(city);
+	}
+	
+	private void addInfoFromCustomer() {
+		
+		Customer customer = saleController.getCurrentSale().getCustomer();		
+		
+		name = customer.getName();
+		address = customer.getAddress();
+		postal = customer.getPostalCode();
+		phoneNumber = customer.getMobileNo();
+		city = customer.getCity();
+		
+		nameField.setText(name);
+		addressField.setText(address);
+		postalField.setText(postal + "");
+		mobileNumber.setText(phoneNumber);
+		cityField.setText(city);
+		
+		addDeliveryInformationToSale();
+	}
+	
+	private void addCustomerInfoButton() {
+		addInfoFromCustomer();		
 	}
 
 	/*
@@ -187,6 +222,14 @@ public class AddDeliveryToSaleDialog extends JDialog {
 				addAddressButton();
 			}
 		});
+		
+		addCustomerInfoButton = new JButton("Brug Kundeinformation");
+		addCustomerInfoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addCustomerInfoButton();
+			}
+		});
+		panel.add(addCustomerInfoButton);
 		panel.add(addButton);
 		closeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -330,5 +373,7 @@ public class AddDeliveryToSaleDialog extends JDialog {
 		gbc_errorLabel.gridy = 5;
 		panel_1.add(errorLabel, gbc_errorLabel);
 	}
+
+	
 
 }
