@@ -689,7 +689,7 @@ public class CreateSaleFrame extends JFrame {
 		deliveryContentPanel.add(deliveryAddressField, gbc_deliveryAddressField);
 		deliveryAddressField.setColumns(10);
 
-		JLabel lblNewLabel_6 = new JLabel("By");
+		JLabel lblNewLabel_6 = new JLabel("By :");
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_6.fill = GridBagConstraints.HORIZONTAL;
@@ -708,7 +708,7 @@ public class CreateSaleFrame extends JFrame {
 		deliveryContentPanel.add(deliveryCityField, gbc_deliveryCityField);
 		deliveryCityField.setColumns(10);
 
-		JLabel lblNewLabel_5 = new JLabel("Postnummer");
+		JLabel lblNewLabel_5 = new JLabel("Postnummer :");
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 0, 5);

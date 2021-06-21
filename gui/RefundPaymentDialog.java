@@ -53,6 +53,7 @@ public class RefundPaymentDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public RefundPaymentDialog(SaleController saleController) {
+		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		createGUI();
 		this.saleController = saleController;
 		calRefund();
