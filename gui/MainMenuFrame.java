@@ -1,5 +1,7 @@
 package gui;
 
+import static org.junit.Assert.fail;
+
 import java.awt.BorderLayout;
 
 import java.awt.EventQueue;
@@ -36,6 +38,8 @@ public class MainMenuFrame extends JFrame {
 				try {
 					MainMenuFrame frame = new MainMenuFrame();
 					frame.setVisible(true);
+					frame.startLoginDialog();
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,8 +50,6 @@ public class MainMenuFrame extends JFrame {
 	public MainMenuFrame() {
 		new TryMe();
 		createGUI();
-		startLoginDialog();
-
 	}
 
 	/*
@@ -60,8 +62,8 @@ public class MainMenuFrame extends JFrame {
 	/*
 	 * A set method to show the employee
 	 */
-	public void setCurrentEmployee(Employee employee) {
-		currentEmployee = employee;
+	public void updateCurrentEmployee() {
+		
 		employeeLabel.setText(currentEmployee.getName());
 		setVisible(true);
 	}
@@ -72,13 +74,16 @@ public class MainMenuFrame extends JFrame {
 	private void startLoginDialog() {
 		currentEmployee = null;
 		setVisible(false);
+		
 		LoginDialog loginDialog = new LoginDialog();
 		loginDialog.setVisible(true);
-
+		
 		currentEmployee = loginDialog.getLoginEmployee();
 
 		if (currentEmployee == null) {
-			dispose();
+			dispose();				
+		}else {			
+			updateCurrentEmployee();
 		}
 	}
 
