@@ -57,6 +57,7 @@ public class CreateProductDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public CreateProductDialog() {
+		setTitle("Tilføjelse af produkt");
 		ProductController productController = new ProductController();
 		this.productController = productController;
 		setModal(true);
@@ -268,7 +269,7 @@ public class CreateProductDialog extends JDialog {
 				getRootPane().setDefaultButton(addButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Annuller");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						cancelButton();
