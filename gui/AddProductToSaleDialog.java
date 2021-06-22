@@ -2,6 +2,7 @@ package gui;
 
 import control.ProductController;
 import control.SaleController;
+import model.CompositeProduct;
 import model.Product;
 import model.SpecificProduct;
 
@@ -84,7 +85,7 @@ public class AddProductToSaleDialog extends JDialog {
 			productFound = false;
 		}
 
-		if (product instanceof SpecificProduct) {
+		if (product instanceof SpecificProduct || product instanceof CompositeProduct) {
 			quantityField.setVisible(false);
 			quantityLabel.setVisible(false);
 		} else {
